@@ -1,6 +1,6 @@
 {
     "name": "ngredux-router",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Keep your Angular 2+ router state in Redux.",
     "author": "Dag Stuan",
     "license": "MIT",
