@@ -87,7 +87,7 @@ export class ConnectArrayDirective extends ControlContainer implements OnInit, O
         this.formDirective.addControl(this as any);
     }
 
-    get name(): string {
+    get keyName(): string {
         return this.key || '';
     }
 

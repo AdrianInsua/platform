@@ -39,6 +39,9 @@
     "engines": {
         "node": ">=8"
     },
+    "devDependencies": {
+        "ngredux-store": "*"
+    },
     "peerDependencies": {
         "ngredux-store": "*",
         "@angular/common": "11.0.5",
