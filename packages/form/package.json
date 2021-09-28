@@ -1,6 +1,6 @@
 {
     "name": "ngredux-form",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Build Angular 2+ forms with Redux",
     "author": "Chris Bond",
     "license": "MIT",
