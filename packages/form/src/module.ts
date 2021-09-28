@@ -7,23 +7,23 @@ import { NgReduxFormConnectModule } from './connect/connect.module';
 import { FormStore } from './form-store';
 
 export function formStoreFactory(ngRedux: NgRedux<any>) {
-  return new FormStore(ngRedux);
+    return new FormStore(ngRedux);
 }
 
 @NgModule({
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    NgReduxFormConnectModule,
-    NgReduxFormConnectArrayModule,
-  ],
-  exports: [NgReduxFormConnectModule, NgReduxFormConnectArrayModule],
-  providers: [
-    {
-      provide: FormStore,
-      useFactory: formStoreFactory,
-      deps: [NgRedux],
-    },
-  ],
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        NgReduxFormConnectModule,
+        NgReduxFormConnectArrayModule,
+    ],
+    exports: [ NgReduxFormConnectModule, NgReduxFormConnectArrayModule ],
+    providers: [
+        {
+            provide: FormStore,
+            useFactory: formStoreFactory,
+            deps: [ NgRedux ],
+        },
+    ],
 })
 export class NgReduxFormModule {}

@@ -21,17 +21,17 @@ import { getInstanceSelection } from './helpers';
  * @param comparator Function used to determine if this selector has changed.
  */
 export function select<T>(
-  selector?: Selector<any, T>,
-  comparator?: Comparator,
+    selector?: Selector<any, T>,
+    comparator?: Comparator,
 ): PropertyDecorator {
-  return (target: any, key: string | symbol): void => {
-    const adjustedSelector = selector
-      ? selector
-      : String(key).lastIndexOf('$') === String(key).length - 1
-      ? String(key).substring(0, String(key).length - 1)
-      : key;
-    decorate(adjustedSelector, undefined, comparator)(target, key);
-  };
+    return (target: any, key: string | symbol): void => {
+        const adjustedSelector = selector
+            ? selector
+            : String(key).lastIndexOf('$') === String(key).length - 1
+                ? String(key).substring(0, String(key).length - 1)
+                : key;
+        decorate(adjustedSelector, undefined, comparator)(target, key);
+    };
 }
 
 /**
@@ -58,30 +58,30 @@ export function select<T>(
  * ```
  */
 export function select$<T>(
-  selector: Selector<any, T>,
-  transformer: Transformer<any, T>,
-  comparator?: Comparator,
+    selector: Selector<any, T>,
+    transformer: Transformer<any, T>,
+    comparator?: Comparator,
 ): PropertyDecorator {
-  return decorate(selector, transformer, comparator);
+    return decorate(selector, transformer, comparator);
 }
 
 function decorate(
-  selector: Selector<any, any>,
-  transformer?: Transformer<any, any>,
-  comparator?: Comparator,
+    selector: Selector<any, any>,
+    transformer?: Transformer<any, any>,
+    comparator?: Comparator,
 ): PropertyDecorator {
-  return function decorator(target: any, key): void {
-    function getter(this: any) {
-      return getInstanceSelection(this, key, selector, transformer, comparator);
-    }
+    return function decorator(target: any, key): void {
+        function getter(this: any) {
+            return getInstanceSelection(this, key, selector, transformer, comparator);
+        }
 
-    // Replace decorated property with a getter that returns the observable.
-    if (delete target[key]) {
-      Object.defineProperty(target, key, {
-        get: getter,
-        enumerable: true,
-        configurable: true,
-      });
-    }
-  };
+        // Replace decorated property with a getter that returns the observable.
+        if (delete target[key]) {
+            Object.defineProperty(target, key, {
+                get: getter,
+                enumerable: true,
+                configurable: true,
+            });
+        }
+    };
 }

@@ -3,10 +3,10 @@ import { distinctUntilChanged } from 'rxjs/operators';
 import { NgRedux } from '../components/ng-redux';
 import { ObservableStore } from '../components/observable-store';
 import {
-  Comparator,
-  PathSelector,
-  Selector,
-  Transformer,
+    Comparator,
+    PathSelector,
+    Selector,
+    Transformer,
 } from '../components/selectors';
 
 /**
@@ -60,14 +60,14 @@ const INSTANCE_SELECTIONS_KEY =
 const INSTANCE_BASE_PATH_KEY = '@angular-redux::substore::instance::basepath';
 
 const getClassOptions = (decoratedInstance: any): FractalStoreOptions =>
-  decoratedInstance.constructor[OPTIONS_KEY];
+    decoratedInstance.constructor[OPTIONS_KEY];
 
 /** @hidden */
 export const setClassOptions = (
-  decoratedClassConstructor: any,
-  options: FractalStoreOptions,
+    decoratedClassConstructor: any,
+    options: FractalStoreOptions,
 ): void => {
-  decoratedClassConstructor[OPTIONS_KEY] = options;
+    decoratedClassConstructor[OPTIONS_KEY] = options;
 };
 
 // I want the store to be saved on the actual instance so
@@ -75,36 +75,36 @@ export const setClassOptions = (
 // 2. the substore/selections will be marked for garbage collection when the
 //    instance is destroyed.
 const setInstanceStore = (
-  decoratedInstance: any,
-  store?: ObservableStore<any>,
+    decoratedInstance: any,
+    store?: ObservableStore<any>,
 ) => (decoratedInstance[INSTANCE_SUBSTORE_KEY] = store);
 
 const getInstanceStore = (decoratedInstance: any): ObservableStore<any> =>
-  decoratedInstance[INSTANCE_SUBSTORE_KEY];
+    decoratedInstance[INSTANCE_SUBSTORE_KEY];
 
 const getInstanceSelectionMap = (decoratedInstance: any) => {
-  const map = decoratedInstance[INSTANCE_SELECTIONS_KEY] || {};
-  decoratedInstance[INSTANCE_SELECTIONS_KEY] = map;
-  return map;
+    const map = decoratedInstance[INSTANCE_SELECTIONS_KEY] || {};
+    decoratedInstance[INSTANCE_SELECTIONS_KEY] = map;
+    return map;
 };
 
 const hasBasePathChanged = (
-  decoratedInstance: any,
-  basePath?: PathSelector,
+    decoratedInstance: any,
+    basePath?: PathSelector,
 ): boolean =>
-  decoratedInstance[INSTANCE_BASE_PATH_KEY] !== (basePath || []).toString();
+    decoratedInstance[INSTANCE_BASE_PATH_KEY] !== (basePath || []).toString();
 
 const setInstanceBasePath = (
-  decoratedInstance: any,
-  basePath?: PathSelector,
+    decoratedInstance: any,
+    basePath?: PathSelector,
 ): void => {
-  decoratedInstance[INSTANCE_BASE_PATH_KEY] = (basePath || []).toString();
+    decoratedInstance[INSTANCE_BASE_PATH_KEY] = (basePath || []).toString();
 };
 
 const clearInstanceState = (decoratedInstance: any) => {
-  decoratedInstance[INSTANCE_SELECTIONS_KEY] = null;
-  decoratedInstance[INSTANCE_SUBSTORE_KEY] = null;
-  decoratedInstance[INSTANCE_BASE_PATH_KEY] = null;
+    decoratedInstance[INSTANCE_SELECTIONS_KEY] = null;
+    decoratedInstance[INSTANCE_SUBSTORE_KEY] = null;
+    decoratedInstance[INSTANCE_BASE_PATH_KEY] = null;
 };
 
 /**
@@ -113,40 +113,40 @@ const clearInstanceState = (decoratedInstance: any) => {
  * @hidden
  */
 export const getBaseStore = (
-  decoratedInstance: any,
+    decoratedInstance: any,
 ): ObservableStore<any> | undefined => {
-  // The root store hasn't been set up yet.
-  if (!NgRedux.instance) {
-    return undefined;
-  }
+    // The root store hasn't been set up yet.
+    if (!NgRedux.instance) {
+        return undefined;
+    }
 
-  const options = getClassOptions(decoratedInstance);
+    const options = getClassOptions(decoratedInstance);
 
-  // This is not decorated with `@WithSubStore`. Return the root store.
-  if (!options) {
-    return NgRedux.instance;
-  }
+    // This is not decorated with `@WithSubStore`. Return the root store.
+    if (!options) {
+        return NgRedux.instance;
+    }
 
-  // Dynamic base path support:
-  const basePath = decoratedInstance[options.basePathMethodName]();
-  if (hasBasePathChanged(decoratedInstance, basePath)) {
-    clearInstanceState(decoratedInstance);
-    setInstanceBasePath(decoratedInstance, basePath);
-  }
+    // Dynamic base path support:
+    const basePath = decoratedInstance[options.basePathMethodName]();
+    if (hasBasePathChanged(decoratedInstance, basePath)) {
+        clearInstanceState(decoratedInstance);
+        setInstanceBasePath(decoratedInstance, basePath);
+    }
 
-  if (!basePath) {
-    return NgRedux.instance;
-  }
+    if (!basePath) {
+        return NgRedux.instance;
+    }
 
-  const store = getInstanceStore(decoratedInstance);
-  if (!store) {
-    setInstanceStore(
-      decoratedInstance,
-      NgRedux.instance.configureSubStore(basePath, options.localReducer),
-    );
-  }
+    const store = getInstanceStore(decoratedInstance);
+    if (!store) {
+        setInstanceStore(
+            decoratedInstance,
+            NgRedux.instance.configureSubStore(basePath, options.localReducer),
+        );
+    }
 
-  return getInstanceStore(decoratedInstance);
+    return getInstanceStore(decoratedInstance);
 };
 
 /**
@@ -156,28 +156,28 @@ export const getBaseStore = (
  * @hidden
  */
 export const getInstanceSelection = <T>(
-  decoratedInstance: any,
-  key: string | symbol,
-  selector: Selector<any, T>,
-  transformer?: Transformer<any, T>,
-  comparator?: Comparator,
+    decoratedInstance: any,
+    key: string | symbol,
+    selector: Selector<any, T>,
+    transformer?: Transformer<any, T>,
+    comparator?: Comparator,
 ) => {
-  const store = getBaseStore(decoratedInstance);
+    const store = getBaseStore(decoratedInstance);
 
-  if (store) {
-    const selections = getInstanceSelectionMap(decoratedInstance);
+    if (store) {
+        const selections = getInstanceSelectionMap(decoratedInstance);
 
-    selections[key] =
+        selections[key] =
       selections[key] ||
       (!transformer
-        ? store.select(selector, comparator)
-        : store.select(selector).pipe(
-            obs$ => transformer(obs$, decoratedInstance),
-            distinctUntilChanged(comparator),
+          ? store.select(selector, comparator)
+          : store.select(selector).pipe(
+              obs$ => transformer(obs$, decoratedInstance),
+              distinctUntilChanged(comparator),
           ));
 
-    return selections[key];
-  }
+        return selections[key];
+    }
 
-  return undefined;
+    return undefined;
 };

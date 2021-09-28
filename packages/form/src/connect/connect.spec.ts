@@ -115,131 +115,131 @@
 // export class UpdateTextComponent {}
 
 describe('connect directive', () => {
-  it('should have a fake test for now until we can fix them...', () =>
-    undefined);
-  //   let store: Store<AppState>;
+    it('should have a fake test for now until we can fix them...', () =>
+        undefined);
+    //   let store: Store<AppState>;
 
-  //   beforeEach(done => {
-  //     const create = compose(applyMiddleware(logger))(createStore);
+    //   beforeEach(done => {
+    //     const create = compose(applyMiddleware(logger))(createStore);
 
-  //     store = create(reducers, <AppState>{});
+    //     store = create(reducers, <AppState>{});
 
-  //     TestBed.configureCompiler({
-  //       providers: [{ provide: ComponentFixtureNoNgZone, useValue: true }],
-  //     });
+    //     TestBed.configureCompiler({
+    //       providers: [{ provide: ComponentFixtureNoNgZone, useValue: true }],
+    //     });
 
-  //     TestBed.configureTestingModule({
-  //       imports: [FormsModule, ReactiveFormsModule, NgReduxFormModule],
-  //       declarations: [
-  //         BasicUsageComponent,
-  //         DeepConnectComponent,
-  //         CheckboxComponent,
-  //         SelectComponent,
-  //         UpdateTextComponent,
-  //       ],
-  //       providers: [provideReduxForms(store)],
-  //     });
+    //     TestBed.configureTestingModule({
+    //       imports: [FormsModule, ReactiveFormsModule, NgReduxFormModule],
+    //       declarations: [
+    //         BasicUsageComponent,
+    //         DeepConnectComponent,
+    //         CheckboxComponent,
+    //         SelectComponent,
+    //         UpdateTextComponent,
+    //       ],
+    //       providers: [provideReduxForms(store)],
+    //     });
 
-  //     TestBed.compileComponents().then(() => done());
-  //   });
+    //     TestBed.compileComponents().then(() => done());
+    //   });
 
-  //   it(
-  //     'should bind all form controls to application state',
-  //     fakeAsync(
-  //       inject([], () => {
-  //         const fixture = TestBed.createComponent(BasicUsageComponent);
-  //         fixture.detectChanges();
+    //   it(
+    //     'should bind all form controls to application state',
+    //     fakeAsync(
+    //       inject([], () => {
+    //         const fixture = TestBed.createComponent(BasicUsageComponent);
+    //         fixture.detectChanges();
 
-  //         tick();
-  //         flushMicrotasks();
+    //         tick();
+    //         flushMicrotasks();
 
-  //         const textbox = fixture.nativeElement.querySelector('input');
-  //         expect(textbox.value).toEqual('Test!');
-  //       }),
-  //     ),
-  //   );
+    //         const textbox = fixture.nativeElement.querySelector('input');
+    //         expect(textbox.value).toEqual('Test!');
+    //       }),
+    //     ),
+    //   );
 
-  //   it('should bind a form control to element deep inside application state', () => {
-  //     return fakeAsync(
-  //       inject([], () => {
-  //         const fixture = TestBed.createComponent(DeepConnectComponent);
-  //         fixture.detectChanges();
+    //   it('should bind a form control to element deep inside application state', () => {
+    //     return fakeAsync(
+    //       inject([], () => {
+    //         const fixture = TestBed.createComponent(DeepConnectComponent);
+    //         fixture.detectChanges();
 
-  //         tick();
-  //         flushMicrotasks();
+    //         tick();
+    //         flushMicrotasks();
 
-  //         const textbox = fixture.nativeElement.querySelector('input');
-  //         expect(textbox.value).toEqual('Bar!');
-  //       }),
-  //     );
-  //   });
+    //         const textbox = fixture.nativeElement.querySelector('input');
+    //         expect(textbox.value).toEqual('Bar!');
+    //       }),
+    //     );
+    //   });
 
-  //   it(
-  //     'should bind a checkbox to a boolean state',
-  //     fakeAsync(
-  //       inject([], () => {
-  //         const fixture = TestBed.createComponent(CheckboxComponent);
-  //         fixture.detectChanges();
+    //   it(
+    //     'should bind a checkbox to a boolean state',
+    //     fakeAsync(
+    //       inject([], () => {
+    //         const fixture = TestBed.createComponent(CheckboxComponent);
+    //         fixture.detectChanges();
 
-  //         tick();
-  //         flushMicrotasks();
+    //         tick();
+    //         flushMicrotasks();
 
-  //         const checkbox = fixture.nativeElement.querySelector(
-  //           'input[type="checkbox"]',
-  //         );
-  //         expect(checkbox.checked).toEqual(true);
-  //       }),
-  //     ),
-  //   );
+    //         const checkbox = fixture.nativeElement.querySelector(
+    //           'input[type="checkbox"]',
+    //         );
+    //         expect(checkbox.checked).toEqual(true);
+    //       }),
+    //     ),
+    //   );
 
-  //   it(
-  //     'should bind a select dropdown to application state',
-  //     fakeAsync(
-  //       inject([], () => {
-  //         const fixture = TestBed.createComponent(SelectComponent);
-  //         fixture.detectChanges();
+    //   it(
+    //     'should bind a select dropdown to application state',
+    //     fakeAsync(
+    //       inject([], () => {
+    //         const fixture = TestBed.createComponent(SelectComponent);
+    //         fixture.detectChanges();
 
-  //         tick();
-  //         flushMicrotasks();
+    //         tick();
+    //         flushMicrotasks();
 
-  //         const select = fixture.nativeElement.querySelector('select');
-  //         expect(select.value).toEqual('two');
+    //         const select = fixture.nativeElement.querySelector('select');
+    //         expect(select.value).toEqual('two');
 
-  //         // TODO(cbond): How to simulate a click-select sequence on this control?
-  //         // Just updating `value' does not appear to invoke all of the Angular
-  //         // change routines and therefore does not update Redux. But manually clicking
-  //         // and selecting does. Need to find a way to simulate that sequence.
-  //       }),
-  //     ),
-  //   );
+    //         // TODO(cbond): How to simulate a click-select sequence on this control?
+    //         // Just updating `value' does not appear to invoke all of the Angular
+    //         // change routines and therefore does not update Redux. But manually clicking
+    //         // and selecting does. Need to find a way to simulate that sequence.
+    //       }),
+    //     ),
+    //   );
 
-  //   it(
-  //     'should update Redux state when the user changes the value of a control',
-  //     fakeAsync(
-  //       inject([], () => {
-  //         const fixture = TestBed.createComponent(UpdateTextComponent);
-  //         fixture.detectChanges();
+    //   it(
+    //     'should update Redux state when the user changes the value of a control',
+    //     fakeAsync(
+    //       inject([], () => {
+    //         const fixture = TestBed.createComponent(UpdateTextComponent);
+    //         fixture.detectChanges();
 
-  //         tick();
-  //         flushMicrotasks();
+    //         tick();
+    //         flushMicrotasks();
 
-  //         // validate initial data before we do the UI tests
-  //         let state = store.getState();
-  //         expect(state.fooState.bar).toEqual('two');
+    //         // validate initial data before we do the UI tests
+    //         let state = store.getState();
+    //         expect(state.fooState.bar).toEqual('two');
 
-  //         const textbox = fixture.nativeElement.querySelector('input');
-  //         expect(textbox.value).toEqual('two');
+    //         const textbox = fixture.nativeElement.querySelector('input');
+    //         expect(textbox.value).toEqual('two');
 
-  //         return simulateUserTyping(textbox, 'abc').then(() => {
-  //           tick();
-  //           flushMicrotasks();
+    //         return simulateUserTyping(textbox, 'abc').then(() => {
+    //           tick();
+    //           flushMicrotasks();
 
-  //           expect(textbox.value).toEqual('twoabc');
+    //           expect(textbox.value).toEqual('twoabc');
 
-  //           state = store.getState();
-  //           expect(state.fooState.bar).toEqual('twoabc');
-  //         });
-  //       }),
-  //     ),
-  //   );
+    //           state = store.getState();
+    //           expect(state.fooState.bar).toEqual('twoabc');
+    //         });
+    //       }),
+    //     ),
+    //   );
 });

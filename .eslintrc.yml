@@ -1,0 +1,41 @@
+env:
+  es6: true
+  node: true
+  browser: true
+  jest: true
+plugins:
+  - '@typescript-eslint'
+  - 'eslint-plugin-prettier'
+parser:
+  '@typescript-eslint/parser'
+ignorePatterns:
+  - '**/docs/**'
+parserOptions:
+  ecmaVersion: 2018
+  sourceType: module
+rules:
+  curly:
+    - error
+    - all
+  object-curly-spacing:
+    - error
+    - always
+  array-bracket-spacing:
+    - error
+    - always
+  no-console:
+    - error
+    - { allow: ["warn", "error"] }
+  indent:
+    - error
+    - 4
+    - { SwitchCase: 1 }
+  linebreak-style:
+    - error
+    - unix
+  quotes:
+    - error
+    - single
+  semi:
+    - error
+    - always

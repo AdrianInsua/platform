@@ -9,13 +9,13 @@ import { FractalStoreOptions, setClassOptions } from './helpers';
  * for more information about SubStores.
  */
 export function WithSubStore({
-  basePathMethodName,
-  localReducer,
+    basePathMethodName,
+    localReducer,
 }: FractalStoreOptions): ClassDecorator {
-  return function decorate(constructor: Function): void {
-    setClassOptions(constructor, {
-      basePathMethodName,
-      localReducer,
-    });
-  };
+    return function decorate(constructor: Function): void {
+        setClassOptions(constructor, {
+            basePathMethodName,
+            localReducer,
+        });
+    };
 }

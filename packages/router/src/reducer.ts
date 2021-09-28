@@ -9,13 +9,13 @@ export interface RouterAction extends Action {
 }
 
 export function routerReducer(
-  state: string | undefined = DefaultRouterState,
-  action: RouterAction,
+    state: string | undefined = DefaultRouterState,
+    action: RouterAction,
 ): string {
-  switch (action.type) {
-    case UPDATE_LOCATION:
-      return action.payload || DefaultRouterState;
-    default:
-      return state;
-  }
+    switch (action.type) {
+        case UPDATE_LOCATION:
+            return action.payload || DefaultRouterState;
+        default:
+            return state;
+    }
 }

@@ -10,6 +10,6 @@ export class ReactiveConnectDirective extends ConnectBase {
   @Input() formGroup: any;
 
   constructor(protected store: FormStore) {
-    super();
+      super();
   }
 }

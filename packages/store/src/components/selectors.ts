@@ -26,26 +26,26 @@ export type Selector<RootState, S> =
 
 /** @hidden */
 export const sniffSelectorType = <RootState, S>(
-  selector?: Selector<RootState, S>,
+    selector?: Selector<RootState, S>,
 ) =>
-  !selector
-    ? 'nil'
-    : Array.isArray(selector)
-    ? 'path'
-    : 'function' === typeof selector
-    ? 'function'
-    : 'property';
+        !selector
+            ? 'nil'
+            : Array.isArray(selector)
+                ? 'path'
+                : 'function' === typeof selector
+                    ? 'function'
+                    : 'property';
 
 /** @hidden */
 export const resolver = <RootState, S>(selector?: Selector<RootState, S>) => ({
-  property: (state: any) =>
-    state ? state[selector as PropertySelector] : undefined,
-  path: (state: RootState) => getIn(state, selector as PathSelector),
-  function: selector as FunctionSelector<RootState, S>,
-  nil: (state: RootState) => state,
+    property: (state: any) =>
+        state ? state[selector as PropertySelector] : undefined,
+    path: (state: RootState) => getIn(state, selector as PathSelector),
+    function: selector as FunctionSelector<RootState, S>,
+    nil: (state: RootState) => state,
 });
 
 /** @hidden */
 export const resolveToFunctionSelector = <RootState, S>(
-  selector?: Selector<RootState, S>,
+    selector?: Selector<RootState, S>,
 ) => resolver(selector)[sniffSelectorType(selector)];

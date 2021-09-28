@@ -17,16 +17,16 @@ interface WindowWithReduxDevTools extends Window {
 }
 
 const environment: WindowWithReduxDevTools = (typeof window !== 'undefined'
-  ? window
-  : {}) as WindowWithReduxDevTools;
+    ? window
+    : {}) as WindowWithReduxDevTools;
 
 /**
  * An angular-2-ified version of the Redux DevTools chrome extension.
  */
 @Injectable()
 export class DevToolsExtension {
-  /** @hidden */
-  constructor(private appRef: ApplicationRef, private ngRedux: NgRedux<any>) {}
+    /** @hidden */
+    constructor(private appRef: ApplicationRef, private ngRedux: NgRedux<any>) {}
 
   /**
    * A wrapper for the Chrome Extension Redux DevTools.
@@ -38,22 +38,22 @@ export class DevToolsExtension {
    * [zalmoxisus/redux-devtools-extension/blob/master/docs/API/Arguments.md]
    */
   enhancer = (options?: EnhancerOptions) => {
-    let subscription: Unsubscribe;
-    if (!this.isEnabled()) {
-      return null;
-    }
+      let subscription: Unsubscribe;
+      if (!this.isEnabled()) {
+          return null;
+      }
 
     // Make sure changes from dev tools update angular's view.
     this.getDevTools()!.listen(({ type }) => {
-      if (type === 'START') {
-        subscription = this.ngRedux.subscribe(() => {
-          if (!NgZone.isInAngularZone()) {
-            this.appRef.tick();
-          }
-        });
-      } else if (type === 'STOP') {
-        subscription();
-      }
+        if (type === 'START') {
+            subscription = this.ngRedux.subscribe(() => {
+                if (!NgZone.isInAngularZone()) {
+                    this.appRef.tick();
+                }
+            });
+        } else if (type === 'STOP') {
+            subscription();
+        }
     });
 
     return this.getDevTools()!(options || {});
@@ -68,6 +68,6 @@ export class DevToolsExtension {
    * Returns the redux devtools enhancer.
    */
   getDevTools = () =>
-    environment &&
+      environment &&
     (environment.__REDUX_DEVTOOLS_EXTENSION__ || environment.devToolsExtension);
 }

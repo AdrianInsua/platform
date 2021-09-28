@@ -29,15 +29,15 @@ export class NgReduxRouter {
    * at the same time.
    */
   destroy() {
-    if (this.urlStateSubscription) {
-      this.urlStateSubscription.unsubscribe();
-    }
+      if (this.urlStateSubscription) {
+          this.urlStateSubscription.unsubscribe();
+      }
 
-    if (this.reduxSubscription) {
-      this.reduxSubscription.unsubscribe();
-    }
+      if (this.reduxSubscription) {
+          this.reduxSubscription.unsubscribe();
+      }
 
-    this.initialized = false;
+      this.initialized = false;
   }
 
   /**
@@ -55,93 +55,93 @@ export class NgReduxRouter {
    * you can supply this argument as an Observable of the current url state.
    */
   initialize(
-    selectLocationFromState: (state: any) => string = state => state.router,
-    urlState$?: Observable<string> | undefined,
+      selectLocationFromState: (state: any) => string = state => state.router,
+      urlState$?: Observable<string> | undefined,
   ) {
-    if (this.initialized) {
-      throw new Error(
-        'ngredux-router already initialized! If you meant to re-initialize, call destroy first.',
-      );
-    }
+      if (this.initialized) {
+          throw new Error(
+              'ngredux-router already initialized! If you meant to re-initialize, call destroy first.',
+          );
+      }
 
-    this.selectLocationFromState = selectLocationFromState;
+      this.selectLocationFromState = selectLocationFromState;
 
-    this.urlState = urlState$ || this.getDefaultUrlStateObservable();
+      this.urlState = urlState$ || this.getDefaultUrlStateObservable();
 
-    this.listenToRouterChanges();
-    this.listenToReduxChanges();
-    this.initialized = true;
+      this.listenToRouterChanges();
+      this.listenToReduxChanges();
+      this.initialized = true;
   }
 
   private selectLocationFromState: (state: any) => string = state =>
-    state.router;
+      state.router;
 
   private getDefaultUrlStateObservable() {
-    return this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd),
-      map(() => this.location.path()),
-      distinctUntilChanged(),
-    );
+      return this.router.events.pipe(
+          filter(event => event instanceof NavigationEnd),
+          map(() => this.location.path()),
+          distinctUntilChanged(),
+      );
   }
 
   private getLocationFromStore(useInitial: boolean = false) {
-    return (
-      this.selectLocationFromState(this.ngRedux.getState()) ||
+      return (
+          this.selectLocationFromState(this.ngRedux.getState()) ||
       (useInitial ? this.initialLocation : '')
-    );
+      );
   }
 
   private listenToRouterChanges() {
-    const handleLocationChange = (location: string) => {
-      if (this.currentLocation === location) {
-        // Dont dispatch changes if we haven't changed location.
-        return;
+      const handleLocationChange = (location: string) => {
+          if (this.currentLocation === location) {
+              // Dont dispatch changes if we haven't changed location.
+              return;
+          }
+
+          this.currentLocation = location;
+          if (this.initialLocation === undefined) {
+              this.initialLocation = location;
+
+              // Fetch initial location from store and make sure
+              // we dont dispath an event if the current url equals
+              // the initial url.
+              const locationFromStore = this.getLocationFromStore();
+              if (locationFromStore === this.currentLocation) {
+                  return;
+              }
+          }
+
+          this.ngRedux.dispatch({
+              type: UPDATE_LOCATION,
+              payload: location,
+          });
+      };
+
+      if (this.urlState) {
+          this.urlStateSubscription = this.urlState.subscribe(handleLocationChange);
       }
-
-      this.currentLocation = location;
-      if (this.initialLocation === undefined) {
-        this.initialLocation = location;
-
-        // Fetch initial location from store and make sure
-        // we dont dispath an event if the current url equals
-        // the initial url.
-        const locationFromStore = this.getLocationFromStore();
-        if (locationFromStore === this.currentLocation) {
-          return;
-        }
-      }
-
-      this.ngRedux.dispatch({
-        type: UPDATE_LOCATION,
-        payload: location,
-      });
-    };
-
-    if (this.urlState) {
-      this.urlStateSubscription = this.urlState.subscribe(handleLocationChange);
-    }
   }
 
   private listenToReduxChanges() {
-    const handleLocationChange = (location: string) => {
-      if (this.initialLocation === undefined) {
-        // Wait for router to set initial location.
-        return;
-      }
+      const handleLocationChange = (location: string) => {
+          if (this.initialLocation === undefined) {
+              // Wait for router to set initial location.
+              return;
+          }
 
-      const locationInStore = this.getLocationFromStore(true);
-      if (this.currentLocation === locationInStore) {
-        // Dont change router location if its equal to the one in the store.
-        return;
-      }
+          const locationInStore = this.getLocationFromStore(true);
+          if (this.currentLocation === locationInStore) {
+              // Dont change router location if its equal to the one in the store.
+              return;
+          }
 
-      this.currentLocation = location;
-      this.router.navigateByUrl(location);
-    };
+          this.currentLocation = location;
+          this.router.navigateByUrl(location);
+      };
 
-    this.reduxSubscription = this.ngRedux
-      .select(state => this.selectLocationFromState(state))
-      .pipe(distinctUntilChanged())
-      .subscribe(handleLocationChange);
+      this.reduxSubscription = this.ngRedux
+          .select(state => this.selectLocationFromState(state))
+          .pipe(distinctUntilChanged())
+          .subscribe(handleLocationChange);
   }
 }

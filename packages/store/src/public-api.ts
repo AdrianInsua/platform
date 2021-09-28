@@ -3,12 +3,12 @@ import { enableFractalReducers } from './components/fractal-reducer-map';
 import { NgRedux } from './components/ng-redux';
 import { ObservableStore } from './components/observable-store';
 import {
-  Comparator,
-  FunctionSelector,
-  PathSelector,
-  PropertySelector,
-  Selector,
-  Transformer,
+    Comparator,
+    FunctionSelector,
+    PathSelector,
+    PropertySelector,
+    Selector,
+    Transformer,
 } from './components/selectors';
 import { dispatch } from './decorators/dispatch';
 import { select, select$ } from './decorators/select';
@@ -20,19 +20,19 @@ import { NgReduxModule } from './ng-redux.module';
 // ... because it breaks rollup. See
 // https://github.com/rollup/rollup/wiki/Troubleshooting#name-is-not-exported-by-module
 export {
-  NgRedux,
-  Selector,
-  PathSelector,
-  PropertySelector,
-  FunctionSelector,
-  Comparator,
-  Transformer,
-  NgReduxModule,
-  DevToolsExtension,
-  enableFractalReducers,
-  select,
-  select$,
-  dispatch,
-  WithSubStore,
-  ObservableStore,
+    NgRedux,
+    Selector,
+    PathSelector,
+    PropertySelector,
+    FunctionSelector,
+    Comparator,
+    Transformer,
+    NgReduxModule,
+    DevToolsExtension,
+    enableFractalReducers,
+    select,
+    select$,
+    dispatch,
+    WithSubStore,
+    ObservableStore,
 };

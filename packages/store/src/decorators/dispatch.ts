@@ -10,39 +10,39 @@ import { getBaseStore } from './helpers';
  * value will automatically be passed to ngRedux.dispatch() for you.
  */
 export function dispatch(): PropertyDecorator {
-  return function decorate(
-    target: object,
-    key: string | symbol | number,
-    descriptor?: PropertyDescriptor,
-  ): PropertyDescriptor {
-    let originalMethod: () => Action;
+    return function decorate(
+        target: object,
+        key: string | symbol | number,
+        descriptor?: PropertyDescriptor,
+    ): PropertyDescriptor {
+        let originalMethod: () => Action;
 
-    const wrapped = function(this: unknown, ...args: any) {
-      const result = originalMethod.apply(this, args);
-      if (result !== undefined) {
-        const store = getBaseStore(this) || NgRedux.instance;
-        if (store) {
-          store.dispatch(result);
+        const wrapped = function(this: unknown, ...args: any) {
+            const result = originalMethod.apply(this, args);
+            if (result !== undefined) {
+                const store = getBaseStore(this) || NgRedux.instance;
+                if (store) {
+                    store.dispatch(result);
+                }
+            }
+            return result;
+        };
+
+        descriptor = descriptor || Object.getOwnPropertyDescriptor(target, key);
+
+        if (descriptor === undefined) {
+            const dispatchDescriptor: PropertyDescriptor = {
+                get: () => wrapped,
+                set: setMethod => (originalMethod = setMethod),
+            };
+            Object.defineProperty(target, key, dispatchDescriptor);
+            return dispatchDescriptor;
+        } else {
+            originalMethod = descriptor.value;
+            descriptor.value = wrapped;
+            return descriptor;
         }
-      }
-      return result;
     };
-
-    descriptor = descriptor || Object.getOwnPropertyDescriptor(target, key);
-
-    if (descriptor === undefined) {
-      const dispatchDescriptor: PropertyDescriptor = {
-        get: () => wrapped,
-        set: setMethod => (originalMethod = setMethod),
-      };
-      Object.defineProperty(target, key, dispatchDescriptor);
-      return dispatchDescriptor;
-    } else {
-      originalMethod = descriptor.value;
-      descriptor.value = wrapped;
-      return descriptor;
-    }
-  };
 }
 // get descriptor
 // if no descriptor, create one with getter setter

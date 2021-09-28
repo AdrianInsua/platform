@@ -5,13 +5,13 @@ import { RootStore } from './components/root-store';
 
 /** @hidden */
 export function _ngReduxFactory(ngZone: NgZone) {
-  return new RootStore(ngZone);
+    return new RootStore(ngZone);
 }
 
 @NgModule({
-  providers: [
-    DevToolsExtension,
-    { provide: NgRedux, useFactory: _ngReduxFactory, deps: [NgZone] },
-  ],
+    providers: [
+        DevToolsExtension,
+        { provide: NgRedux, useFactory: _ngReduxFactory, deps: [ NgZone ] },
+    ],
 })
 export class NgReduxModule {}

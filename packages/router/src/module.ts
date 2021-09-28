@@ -6,7 +6,7 @@ export class NgReduxRouterModule {
     static forRoot(): ModuleWithProviders<NgReduxRouterModule> {
         return {
             ngModule: NgReduxRouterModule,
-            providers: [NgReduxRouter],
+            providers: [ NgReduxRouter ],
         };
     }
 }

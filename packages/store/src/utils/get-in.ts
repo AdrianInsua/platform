@@ -5,27 +5,27 @@
  * @hidden
  */
 export function getIn(
-  v: any | undefined,
-  pathElems: (string | number)[],
+    v: any | undefined,
+    pathElems: (string | number)[],
 ): any | undefined {
-  if (!v) {
-    return v;
-  }
+    if (!v) {
+        return v;
+    }
 
-  // If this is an ImmutableJS structure, use existing getIn function
-  if ('function' === typeof v.getIn) {
-    return v.getIn(pathElems);
-  }
+    // If this is an ImmutableJS structure, use existing getIn function
+    if ('function' === typeof v.getIn) {
+        return v.getIn(pathElems);
+    }
 
-  const [firstElem, ...restElems] = pathElems;
+    const [ firstElem, ...restElems ] = pathElems;
 
-  if (undefined === v[firstElem]) {
-    return undefined;
-  }
+    if (undefined === v[firstElem]) {
+        return undefined;
+    }
 
-  if (restElems.length === 0) {
-    return v[firstElem];
-  }
+    if (restElems.length === 0) {
+        return v[firstElem];
+    }
 
-  return getIn(v[firstElem], restElems);
+    return getIn(v[firstElem], restElems);
 }

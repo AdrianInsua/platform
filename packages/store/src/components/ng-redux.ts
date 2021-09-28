@@ -1,11 +1,11 @@
 import {
-  AnyAction,
-  Dispatch,
-  Middleware,
-  Reducer,
-  Store,
-  StoreEnhancer,
-  Unsubscribe,
+    AnyAction,
+    Dispatch,
+    Middleware,
+    Reducer,
+    Store,
+    StoreEnhancer,
+    Unsubscribe,
 } from 'redux';
 import { Observable } from 'rxjs';
 import { ObservableStore } from './observable-store';
