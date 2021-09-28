@@ -18,7 +18,7 @@ This repo is setup to automatically release canary builds for every commit that 
 
 For stable releases, the build and publishing is done automatically for CircleCI. If you have write access to the repo, run the following steps to automatically release a new version to `latest`
 
-- Pull down the latest version of master to your local machine
-- Run `yarn release:stable`
+-   Pull down the latest version of master to your local machine
+-   Run `yarn release:stable`
 
 The release commit will be automatically pushed to `master` where CircleCI will complete the remaining publishing steps.

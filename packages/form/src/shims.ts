@@ -18,8 +18,6 @@ const BUILTIN_ACCESSORS = [
     RadioControlValueAccessor,
 ];
 
-export function isBuiltInAccessor(
-    valueAccessor: ControlValueAccessor,
-): boolean {
+export function isBuiltInAccessor(valueAccessor: ControlValueAccessor): boolean {
     return BUILTIN_ACCESSORS.some(a => valueAccessor.constructor === a);
 }

@@ -5,10 +5,10 @@ import { PathSelector } from './selectors';
 
 let reducerMap: { [id: string]: Reducer<any, AnyAction> } = {};
 
-const composeReducers = (
-    ...reducers: Reducer<any, AnyAction>[]
-): Reducer<any, AnyAction> => (state: any, action: AnyAction) =>
-    reducers.reduce((subState, reducer) => reducer(subState, action), state);
+const composeReducers = (...reducers: Reducer<any, AnyAction>[]): Reducer<any, AnyAction> => (
+    state: any,
+    action: AnyAction,
+) => reducers.reduce((subState, reducer) => reducer(subState, action), state);
 
 /**
  * @param rootReducer Call this on your root reducer to enable SubStore
@@ -22,32 +22,21 @@ export function enableFractalReducers(rootReducer: Reducer<any, AnyAction>) {
 }
 
 /** @hidden */
-export function registerFractalReducer(
-    basePath: PathSelector,
-    localReducer: Reducer<any, AnyAction>,
-): void {
+export function registerFractalReducer(basePath: PathSelector, localReducer: Reducer<any, AnyAction>): void {
     const existingFractalReducer = reducerMap[JSON.stringify(basePath)];
     if (existingFractalReducer && existingFractalReducer !== localReducer) {
-        throw new Error(
-            `attempt to overwrite fractal reducer for basePath ${basePath}`,
-        );
+        throw new Error(`attempt to overwrite fractal reducer for basePath ${basePath}`);
     }
 
     reducerMap[JSON.stringify(basePath)] = localReducer;
 }
 
 /** @hidden */
-export function replaceLocalReducer(
-    basePath: PathSelector,
-    nextLocalReducer: Reducer<any, AnyAction>,
-): void {
+export function replaceLocalReducer(basePath: PathSelector, nextLocalReducer: Reducer<any, AnyAction>): void {
     reducerMap[JSON.stringify(basePath)] = nextLocalReducer;
 }
 
-function rootFractalReducer(
-    state: {} = {},
-    action: AnyAction & { '@angular-redux::fractalkey'?: string },
-) {
+function rootFractalReducer(state: {} = {}, action: AnyAction & { '@angular-redux::fractalkey'?: string }) {
     const fractalKey = action['@angular-redux::fractalkey'];
     const fractalPath = fractalKey ? JSON.parse(fractalKey) : [];
     const localReducer = reducerMap[fractalKey || ''];

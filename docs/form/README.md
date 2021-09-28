@@ -16,9 +16,7 @@ For the simplest use-cases, the API is very straightforward. Your template
 would look something like this:
 
 ```html
-<form connect="myForm">
-  <input type="text" name="address" ngControl ngModel />
-</form>
+<form connect="myForm"><input type="text" name="address" ngControl ngModel /></form>
 ```
 
 The important bit to note here is the `[connect]` directive. This is the only thing
@@ -28,10 +26,10 @@ overall app state. So for example if my Redux app state looks like this:
 
 ```json
 {
-  "foo": "bar",
-  "myForm": {
-    "address": "1 Foo St."
-  }
+    "foo": "bar",
+    "myForm": {
+        "address": "1 Foo St."
+    }
 }
 ```
 
@@ -59,14 +57,8 @@ import { NgReduxModule } from 'ngredux-store';
 import { NgReduxFormModule } from 'ngredux-form';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    FormsModule,
-    NgReduxFormModule,
-    NgReduxModule,
-  ],
-  bootstrap: [MyApplicationComponent],
+    imports: [BrowserModule, ReactiveFormsModule, FormsModule, NgReduxFormModule, NgReduxModule],
+    bootstrap: [MyApplicationComponent],
 })
 export class ExampleModule {}
 ```
@@ -81,9 +73,9 @@ const storeCreator = compose(applyMiddleware(logger))(createStore);
 const store = create(reducers, <MyApplicationState>{});
 
 @NgModule({
-  imports: [BrowserModule, ReactiveFormsModule, FormsModule, NgReduxFormModule],
-  providers: [provideReduxForms(store)],
-  bootstrap: [MyApplicationComponent],
+    imports: [BrowserModule, ReactiveFormsModule, FormsModule, NgReduxFormModule],
+    providers: [provideReduxForms(store)],
+    bootstrap: [MyApplicationComponent],
 })
 export class ExampleModule {}
 ```
@@ -95,14 +87,14 @@ basic:
 
 ```typescript
 export interface AbstractStore<RootState> {
-  /// Dispatch an action
-  dispatch(action: Action & { payload? }): void;
+    /// Dispatch an action
+    dispatch(action: Action & { payload? }): void;
 
-  /// Retrieve the current application state
-  getState(): RootState;
+    /// Retrieve the current application state
+    getState(): RootState;
 
-  /// Subscribe to changes in the store
-  subscribe(fn: () => void): Redux.Unsubscribe;
+    /// Subscribe to changes in the store
+    subscribe(fn: () => void): Redux.Unsubscribe;
 }
 ```
 
@@ -122,16 +114,16 @@ user provide their full name and the names and types of their children:
 
 ```html
 <form connect="form1">
-  <input ngControl ngModel name="fullname" type="text" />
-  <template connectArray let-index connectArrayOf="dependents">
-    <div [ngModelGroup]="index">
-      <input ngControl ngModel name="fullname" type="text" />
-      <select ngControl ngModel name="type">
-        <option value="adopted">Adopted</option>
-        <option value="biological">Biological child</option>
-      </select>
-    </div>
-  </template>
+    <input ngControl ngModel name="fullname" type="text" />
+    <template connectArray let-index connectArrayOf="dependents">
+        <div [ngModelGroup]="index">
+            <input ngControl ngModel name="fullname" type="text" />
+            <select ngControl ngModel name="type">
+                <option value="adopted">Adopted</option>
+                <option value="biological">Biological child</option>
+            </select>
+        </div>
+    </template>
 </form>
 ```
 
@@ -149,9 +141,9 @@ And therefore it would bind to this piece of Redux state:
 
 ```json
 {
-  "form1": {
-    "fullname": "Chris Bond"
-  }
+    "form1": {
+        "fullname": "Chris Bond"
+    }
 }
 ```
 
@@ -166,15 +158,15 @@ matches our Redux state. Let's say our state looks like this:
 
 ```json
 {
-  "form1": {
-    "fullname": "Chris Bond",
-    "dependents": [
-      {
-        "fullname": "Christopher Bond Jr.",
-        "type": "biological"
-      }
-    ]
-  }
+    "form1": {
+        "fullname": "Chris Bond",
+        "dependents": [
+            {
+                "fullname": "Christopher Bond Jr.",
+                "type": "biological"
+            }
+        ]
+    }
 }
 ```
 
@@ -202,9 +194,7 @@ that element from the Redux state.
 The value in "connect" attribute is the value that will show up in the Redux store. The formGroup value is the name of the object in your code that represents the form group.
 
 ```html
-<form connect="myForm" [formGroup]="loginForm">
-  <input type="text" name="address" formControlName="firstName" />
-</form>
+<form connect="myForm" [formGroup]="loginForm"><input type="text" name="address" formControlName="firstName" /></form>
 ```
 
 # Troubleshooting
@@ -232,11 +222,11 @@ To use it, you need to combine it with your existing reducers like so:
 import { composeReducers, defaultFormReducer } from 'ngredux-form';
 
 const reducer = composeReducers(
-  defaultFormReducer(),
-  combineReducers({
-    foo: fooReducer,
-    bar: barReducer,
-  }),
+    defaultFormReducer(),
+    combineReducers({
+        foo: fooReducer,
+        bar: barReducer,
+    }),
 );
 ```
 
@@ -264,12 +254,12 @@ has the shape of an object containing all of your raw form values:
 
 ```json
 {
-  "address1": "129 Spadina Ave",
-  "address2": "Toronto, Ontario M4Y 1F7",
-  "otherGroup": {
-    "foo": "bar",
-    "biz": 1
-  }
+    "address1": "129 Spadina Ave",
+    "address2": "Toronto, Ontario M4Y 1F7",
+    "otherGroup": {
+        "foo": "bar",
+        "biz": 1
+    }
 }
 ```
 
@@ -277,12 +267,10 @@ This would match a form that looks like this:
 
 ```html
 <form connect>
-  <input name="address1" ngControl ngModel type="text" />
-  <input name="address2" ngControl ngModel type="text" />
-  <form name="otherGroup">
-    <input name="foo" ngControl ngModel type="text" />
-    <input name="biz" ngControl ngModel type="number" />
-  </form>
+    <input name="address1" ngControl ngModel type="text" /> <input name="address2" ngControl ngModel type="text" />
+    <form name="otherGroup">
+        <input name="foo" ngControl ngModel type="text" /> <input name="biz" ngControl ngModel type="number" />
+    </form>
 </form>
 ```
 

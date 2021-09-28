@@ -1,25 +1,25 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "module": "es2015",
-    "moduleResolution": "node",
-    "lib": ["esnext", "dom", "dom.iterable"],
-    "baseUrl": ".",
-    "strict": true,
-    "paths": {
-      "ngredux-store": ["packages/store/src/index.ts"],
-      "ngredux-form": ["packages/form/source/index.ts"],
-      "ngredux-router": ["packages/router/src/index.ts"]
-    },
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "declaration": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "pretty": true
-  }
+    "compilerOptions": {
+        "target": "es5",
+        "module": "es2015",
+        "moduleResolution": "node",
+        "lib": ["esnext", "dom", "dom.iterable"],
+        "baseUrl": ".",
+        "strict": true,
+        "paths": {
+            "ngredux-store": ["packages/store/src/index.ts"],
+            "ngredux-form": ["packages/form/source/index.ts"],
+            "ngredux-router": ["packages/router/src/index.ts"]
+        },
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "declaration": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "pretty": true
+    }
 }

@@ -12,15 +12,15 @@ class MockNgZone extends NgZone {
 }
 
 interface SubState {
-  wat: {
-    quux: number;
-  };
+    wat: {
+        quux: number;
+    };
 }
 
 interface AppState {
-  foo: {
-    bar: SubState;
-  };
+    foo: {
+        bar: SubState;
+    };
 }
 
 describe('Substore', () => {
@@ -49,18 +49,17 @@ describe('Substore', () => {
             '@angular-redux::fractalkey': '["foo","bar"]',
         }));
 
-    it('gets state rooted at the base path', () =>
-        expect(subStore.getState()).toEqual({ wat: { quux: 3 } }));
+    it('gets state rooted at the base path', () => expect(subStore.getState()).toEqual({ wat: { quux: 3 } }));
 
     it('selects based on base path', () => {
         subStore.select('wat').subscribe(wat => expect(wat).toEqual({ quux: 3 }));
     });
 
     it('handles property selection on a base path that doesn\'t exist yet', () => {
-        const nonExistentSubStore = ngRedux.configureSubStore(
-            [ 'sure', 'whatever' ],
-            (state: any, action: any) => ({ ...state, value: action.newValue }),
-        );
+        const nonExistentSubStore = ngRedux.configureSubStore([ 'sure', 'whatever' ], (state: any, action: any) => ({
+            ...state,
+            value: action.newValue,
+        }));
         nonExistentSubStore
             .select<any>('value')
             .pipe(
@@ -75,10 +74,10 @@ describe('Substore', () => {
     });
 
     it('handles path selection on a base path that doesn\'t exist yet', () => {
-        const nonExistentSubStore = ngRedux.configureSubStore(
-            [ 'sure', 'whatever' ],
-            (state: any, action: any) => ({ ...state, value: action.newValue }),
-        );
+        const nonExistentSubStore = ngRedux.configureSubStore([ 'sure', 'whatever' ], (state: any, action: any) => ({
+            ...state,
+            value: action.newValue,
+        }));
         nonExistentSubStore
             .select<any>([ 'value' ])
             .pipe(
@@ -93,10 +92,10 @@ describe('Substore', () => {
     });
 
     it('handles function selection on a base path that doesn\'t exist yet', () => {
-        const nonExistentSubStore = ngRedux.configureSubStore(
-            [ 'sure', 'whatever' ],
-            (state: any, action: any) => ({ ...state, value: action.newValue }),
-        );
+        const nonExistentSubStore = ngRedux.configureSubStore([ 'sure', 'whatever' ], (state: any, action: any) => ({
+            ...state,
+            value: action.newValue,
+        }));
         nonExistentSubStore
             .select(s => (s ? s.value : s))
             .pipe(

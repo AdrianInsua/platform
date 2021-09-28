@@ -1,25 +1,6 @@
 {
-  "packages": ["packages/*"],
-  "version": "0.0.1",
-  "npmClient": "yarn",
-  "useWorkspaces": true,
-  "ignoreChanges": ["**/*.spec.ts", "**/*.md"],
-  "command": {
-    "init": {
-      "exact": true
-    },
-    "publish": {
-      "npmClient": "yarn",
-      "allowBranch": "master",
-      "contents": "dist"
-    },
-    "version": {
-      "allowBranch": "main",
-      "conventionalCommits": true,
-      "exact": true,
-      "message": "chore(release): publish %s",
-      "signGitCommit": true,
-      "signGitTag": true
-    }
-  }
+    "packages": ["packages/core", "packages/router", "packages/store"],
+    "version": "0.0.1",
+    "npmClient": "yarn",
+    "ignoreChanges": ["**/*.spec.ts", "**/*.md"]
 }

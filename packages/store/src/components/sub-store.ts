@@ -3,61 +3,49 @@ import { Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 
 import { getIn } from '../utils/get-in';
-import {
-    registerFractalReducer,
-    replaceLocalReducer,
-} from './fractal-reducer-map';
+import { registerFractalReducer, replaceLocalReducer } from './fractal-reducer-map';
 import { NgRedux } from './ng-redux';
 import { ObservableStore } from './observable-store';
-import {
-    Comparator,
-    PathSelector,
-    resolveToFunctionSelector,
-    Selector,
-} from './selectors';
+import { Comparator, PathSelector, resolveToFunctionSelector, Selector } from './selectors';
 
 /** @hidden */
 export class SubStore<State> implements ObservableStore<State> {
     constructor(
-    private rootStore: NgRedux<any>,
-    private basePath: PathSelector,
-    localReducer: Reducer<State, AnyAction>,
+        private rootStore: NgRedux<any>,
+        private basePath: PathSelector,
+        localReducer: Reducer<State, AnyAction>,
     ) {
         registerFractalReducer(basePath, localReducer);
     }
 
-  dispatch: Dispatch<AnyAction> = action =>
-      this.rootStore.dispatch({
-          ...(action as any),
-          '@angular-redux::fractalkey': JSON.stringify(this.basePath),
-      });
+    dispatch: Dispatch<AnyAction> = action =>
+        this.rootStore.dispatch({
+            ...(action as any),
+            '@angular-redux::fractalkey': JSON.stringify(this.basePath),
+        });
 
-  getState = (): State => getIn(this.rootStore.getState(), this.basePath);
+    getState = (): State => getIn(this.rootStore.getState(), this.basePath);
 
-  configureSubStore = <SubState>(
-    basePath: PathSelector,
-    localReducer: Reducer<SubState, AnyAction>,
-  ): ObservableStore<SubState> =>
-      new SubStore<SubState>(
-          this.rootStore,
-          [ ...this.basePath, ...basePath ],
-          localReducer,
-      );
+    configureSubStore = <SubState>(
+        basePath: PathSelector,
+        localReducer: Reducer<SubState, AnyAction>,
+    ): ObservableStore<SubState> =>
+        new SubStore<SubState>(this.rootStore, [ ...this.basePath, ...basePath ], localReducer);
 
-  select = <SelectedState>(
-    selector?: Selector<State, SelectedState>,
-    comparator?: Comparator,
-  ): Observable<SelectedState> =>
-      this.rootStore.select<State>(this.basePath).pipe(
-          map(resolveToFunctionSelector(selector)),
-          distinctUntilChanged(comparator),
-      );
+    select = <SelectedState>(
+        selector?: Selector<State, SelectedState>,
+        comparator?: Comparator,
+    ): Observable<SelectedState> =>
+        this.rootStore.select<State>(this.basePath).pipe(
+            map(resolveToFunctionSelector(selector)),
+            distinctUntilChanged(comparator),
+        );
 
-  subscribe = (listener: () => void): (() => void) => {
-      const subscription = this.select().subscribe(listener);
-      return () => subscription.unsubscribe();
-  };
+    subscribe = (listener: () => void): (() => void) => {
+        const subscription = this.select().subscribe(listener);
+        return () => subscription.unsubscribe();
+    };
 
-  replaceReducer = (nextLocalReducer: Reducer<State, AnyAction>) =>
-      replaceLocalReducer(this.basePath, nextLocalReducer);
+    replaceReducer = (nextLocalReducer: Reducer<State, AnyAction>) =>
+        replaceLocalReducer(this.basePath, nextLocalReducer);
 }

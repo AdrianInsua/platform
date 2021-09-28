@@ -20,10 +20,7 @@ import { getInstanceSelection } from './helpers';
  *
  * @param comparator Function used to determine if this selector has changed.
  */
-export function select<T>(
-    selector?: Selector<any, T>,
-    comparator?: Comparator,
-): PropertyDecorator {
+export function select<T>(selector?: Selector<any, T>, comparator?: Comparator): PropertyDecorator {
     return (target: any, key: string | symbol): void => {
         const adjustedSelector = selector
             ? selector

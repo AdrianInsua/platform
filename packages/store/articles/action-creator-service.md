@@ -22,45 +22,42 @@ import { RandomNumberService } from '../services/random-number';
 
 @Injectable()
 export class CounterActions {
-  constructor(
-    private ngRedux: NgRedux<RootState>,
-    private randomNumberService: RandomNumberService,
-  ) {}
+    constructor(private ngRedux: NgRedux<RootState>, private randomNumberService: RandomNumberService) {}
 
-  static INCREMENT_COUNTER: string = 'INCREMENT_COUNTER';
-  static DECREMENT_COUNTER: string = 'DECREMENT_COUNTER';
-  static RANDOMIZE_COUNTER: string = 'RANDOMIZE_COUNTER';
+    static INCREMENT_COUNTER: string = 'INCREMENT_COUNTER';
+    static DECREMENT_COUNTER: string = 'DECREMENT_COUNTER';
+    static RANDOMIZE_COUNTER: string = 'RANDOMIZE_COUNTER';
 
-  // Basic action
-  increment(): void {
-    this.ngRedux.dispatch({ type: CounterActions.INCREMENT_COUNTER });
-  }
-
-  // Basic action
-  decrement(): void {
-    this.ngRedux.dispatch({ type: CounterActions.DECREMENT_COUNTER });
-  }
-
-  // Async action.
-  incrementAsync(delay: number = 1000): void {
-    setTimeout(this.increment.bind(this), delay);
-  }
-
-  // State-dependent action
-  incrementIfOdd(): void {
-    const { counter } = this.ngRedux.getState();
-    if (counter % 2 !== 0) {
-      this.increment();
+    // Basic action
+    increment(): void {
+        this.ngRedux.dispatch({ type: CounterActions.INCREMENT_COUNTER });
     }
-  }
 
-  // Service-dependent action
-  randomize(): void {
-    this.ngRedux.dispatch({
-      type: CounterActions.RANDOMIZE_COUNTER,
-      payload: this.randomNumberService.pick(),
-    });
-  }
+    // Basic action
+    decrement(): void {
+        this.ngRedux.dispatch({ type: CounterActions.DECREMENT_COUNTER });
+    }
+
+    // Async action.
+    incrementAsync(delay: number = 1000): void {
+        setTimeout(this.increment.bind(this), delay);
+    }
+
+    // State-dependent action
+    incrementIfOdd(): void {
+        const { counter } = this.ngRedux.getState();
+        if (counter % 2 !== 0) {
+            this.increment();
+        }
+    }
+
+    // Service-dependent action
+    randomize(): void {
+        this.ngRedux.dispatch({
+            type: CounterActions.RANDOMIZE_COUNTER,
+            payload: this.randomNumberService.pick(),
+        });
+    }
 }
 ```
 
@@ -74,22 +71,21 @@ import { CounterActions } from '../actions/counter-actions';
 import { RandomNumberService } from '../services/random-number';
 
 @Component({
-  selector: 'counter',
-  providers: [CounterActions, RandomNumberService],
-  template: `
-    <p>
-      Clicked: {{ counter$ | async }} times
-      <button (click)="actions.increment()">+</button>
-      <button (click)="actions.decrement()">-</button>
-      <button (click)="actions.incrementIfOdd()">Increment if odd</button>
-      <button (click)="actions.incrementAsync(2222)">Increment async</button>
-      <button (click)="actions.randomize()">Set to random number</button>
-    </p>
-  `,
+    selector: 'counter',
+    providers: [CounterActions, RandomNumberService],
+    template: `
+        <p>
+            Clicked: {{ counter$ | async }} times <button (click)="actions.increment()">+</button>
+            <button (click)="actions.decrement()">-</button>
+            <button (click)="actions.incrementIfOdd()">Increment if odd</button>
+            <button (click)="actions.incrementAsync(2222)">Increment async</button>
+            <button (click)="actions.randomize()">Set to random number</button>
+        </p>
+    `,
 })
 export class Counter {
-  @select('counter') counter$: any;
+    @select('counter') counter$: any;
 
-  constructor(private actions: CounterActions) {}
+    constructor(private actions: CounterActions) {}
 }
 ```

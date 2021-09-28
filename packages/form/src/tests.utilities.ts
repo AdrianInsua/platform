@@ -21,10 +21,7 @@ export const logger: Middleware = createLogger({
     },
 });
 
-export const simulateUserTyping = (
-    control: any,
-    text: string,
-): Promise<void> => {
+export const simulateUserTyping = (control: any, text: string): Promise<void> => {
     return new Promise<void>((resolve, reject) => {
         try {
             dispatchKeyEvents(control, text);

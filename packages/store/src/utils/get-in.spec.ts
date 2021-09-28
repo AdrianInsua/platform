@@ -44,14 +44,11 @@ describe('getIn', () => {
         expect(getIn(test, [ 'foo', 'd' ])).toEqual(undefined);
     });
 
-    it('should not freak if the object is null', () =>
-        expect(getIn(null, [ 'foo', 'd' ])).toEqual(null));
+    it('should not freak if the object is null', () => expect(getIn(null, [ 'foo', 'd' ])).toEqual(null));
 
-    it('should not freak if the object is undefined', () =>
-        expect(getIn(undefined, [ 'foo', 'd' ])).toEqual(undefined));
+    it('should not freak if the object is undefined', () => expect(getIn(undefined, [ 'foo', 'd' ])).toEqual(undefined));
 
-    it('should not freak if the object is a primitive', () =>
-        expect(getIn(42, [ 'foo', 'd' ])).toEqual(undefined));
+    it('should not freak if the object is a primitive', () => expect(getIn(42, [ 'foo', 'd' ])).toEqual(undefined));
 
     it('should return undefined for a nonexistent prop', () => {
         const test = { foo: 1 };
@@ -91,8 +88,7 @@ describe('getIn', () => {
     it('should defer to a native getIn function if it exists on the data', () => {
         const testPath = [ 'foo', 'bar' ];
         const test = {
-            getIn: (path: (string | number)[]) =>
-                path === testPath ? 42 : undefined,
+            getIn: (path: (string | number)[]) => (path === testPath ? 42 : undefined),
         };
 
         expect(getIn(test, testPath)).toEqual(42);

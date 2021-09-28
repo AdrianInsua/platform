@@ -11,14 +11,14 @@ import { RootStore } from '../components/root-store';
 import { select, select$ } from './select';
 
 interface AppState {
-  foo: string;
-  baz: number;
+    foo: string;
+    baz: number;
 }
 
 type PayloadAction = Action & { payload?: any };
 
 class MockNgZone {
-  run = (fn: Function) => fn();
+    run = (fn: Function) => fn();
 }
 
 describe('Select decorators', () => {
@@ -40,7 +40,7 @@ describe('Select decorators', () => {
         describe('when passed no arguments', () => {
             it('binds to a store property that matches the name of the class property', done => {
                 class MockClass {
-          @select() baz!: Observable<number>;
+                    @select() baz!: Observable<number>;
                 }
                 const mockInstance = new MockClass();
 
@@ -49,17 +49,13 @@ describe('Select decorators', () => {
                         take(2),
                         toArray(),
                     )
-                    .subscribe(
-                        values => expect(values).toEqual([ -1, 1 ]),
-                        undefined,
-                        done,
-                    );
+                    .subscribe(values => expect(values).toEqual([ -1, 1 ]), undefined, done);
                 ngRedux.dispatch({ type: 'nvm', payload: 1 });
             });
 
             it('binds by name ignoring any $ characters in the class property name', done => {
                 class MockClass {
-          @select() baz$!: Observable<number>;
+                    @select() baz$!: Observable<number>;
                 }
                 const mockInstance = new MockClass();
 
@@ -68,11 +64,7 @@ describe('Select decorators', () => {
                         take(2),
                         toArray(),
                     )
-                    .subscribe(
-                        values => expect(values).toEqual([ -1, 4 ]),
-                        undefined,
-                        done,
-                    );
+                    .subscribe(values => expect(values).toEqual([ -1, 4 ]), undefined, done);
                 ngRedux.dispatch({ type: 'nvm', payload: 4 });
             });
         });
@@ -80,7 +72,7 @@ describe('Select decorators', () => {
         describe('when passed a string', () => {
             it('binds to the store property whose name matches the string value', done => {
                 class MockClass {
-          @select('baz') obs$!: Observable<number>;
+                    @select('baz') obs$!: Observable<number>;
                 }
                 const mockInstance = new MockClass();
 
@@ -89,11 +81,7 @@ describe('Select decorators', () => {
                         take(2),
                         toArray(),
                     )
-                    .subscribe(
-                        values => expect(values).toEqual([ -1, 3 ]),
-                        undefined,
-                        done,
-                    );
+                    .subscribe(values => expect(values).toEqual([ -1, 3 ]), undefined, done);
                 ngRedux.dispatch({ type: 'nvm', payload: 3 });
             });
         });
@@ -102,7 +90,7 @@ describe('Select decorators', () => {
             it('attempts to use that function as the selector function', done => {
                 const selector = (state: AppState) => state.baz * 2;
                 class MockClass {
-          @select(selector) obs$!: Observable<number>;
+                    @select(selector) obs$!: Observable<number>;
                 }
                 const mockInstance = new MockClass();
 
@@ -111,11 +99,7 @@ describe('Select decorators', () => {
                         take(2),
                         toArray(),
                     )
-                    .subscribe(
-                        values => expect(values).toEqual([ -2, 10 ]),
-                        undefined,
-                        done,
-                    );
+                    .subscribe(values => expect(values).toEqual([ -2, 10 ]), undefined, done);
                 ngRedux.dispatch({ type: 'nvm', payload: 5 });
             });
         });
@@ -123,8 +107,8 @@ describe('Select decorators', () => {
         describe('when passed a comparator', () => {
             const comparator = (_: any, y: any): boolean => y === 1;
             class MockClass {
-        @select('baz', comparator)
-        baz$!: Observable<number>;
+                @select('baz', comparator)
+                baz$!: Observable<number>;
             }
 
             it('should only trigger next when comparator returns true', done => {
@@ -134,11 +118,7 @@ describe('Select decorators', () => {
                         take(2),
                         toArray(),
                     )
-                    .subscribe(
-                        values => expect(values).toEqual([ -1, 2 ]),
-                        undefined,
-                        done,
-                    );
+                    .subscribe(values => expect(values).toEqual([ -1, 2 ]), undefined, done);
                 ngRedux.dispatch({ type: 'nvm', payload: 1 });
                 ngRedux.dispatch({ type: 'nvm', payload: 2 });
             });
@@ -146,8 +126,8 @@ describe('Select decorators', () => {
             it('should receive previous and next value for comparison', done => {
                 const spy = jasmine.createSpy('spy');
                 class LocalMockClass {
-          @select('baz', spy)
-          baz$!: Observable<number>;
+                    @select('baz', spy)
+                    baz$!: Observable<number>;
                 }
 
                 const mockInstance = new LocalMockClass();
@@ -163,13 +143,12 @@ describe('Select decorators', () => {
     });
 
     describe('@select$', () => {
-        const transformer = (baz$: Observable<number>) =>
-            baz$.pipe(map(baz => 2 * baz));
+        const transformer = (baz$: Observable<number>) => baz$.pipe(map(baz => 2 * baz));
 
         it('applies a transformer to the observable', done => {
             class MockClass {
-        @select$('baz', transformer)
-        baz$!: Observable<number>;
+                @select$('baz', transformer)
+                baz$!: Observable<number>;
             }
             const mockInstance = new MockClass();
 
@@ -185,8 +164,8 @@ describe('Select decorators', () => {
         describe('when passed a comparator', () => {
             const comparator = (_: any, y: any): boolean => y === 1;
             class MockClass {
-        @select$('baz', transformer, comparator)
-        baz$!: Observable<number>;
+                @select$('baz', transformer, comparator)
+                baz$!: Observable<number>;
             }
 
             it('should only trigger next when the comparator returns true', done => {
@@ -196,11 +175,7 @@ describe('Select decorators', () => {
                         take(2),
                         toArray(),
                     )
-                    .subscribe(
-                        values => expect(values).toEqual([ -2, 2 ]),
-                        undefined,
-                        done,
-                    );
+                    .subscribe(values => expect(values).toEqual([ -2, 2 ]), undefined, done);
                 ngRedux.dispatch({ type: 'nvm', payload: 1 });
                 ngRedux.dispatch({ type: 'nvm', payload: 2 });
             });
@@ -208,8 +183,8 @@ describe('Select decorators', () => {
             it('should receive previous and next value for comparison', done => {
                 const spy = jasmine.createSpy('spy');
                 class SpyClass {
-          @select$('baz', transformer, spy)
-          baz$!: Observable<number>;
+                    @select$('baz', transformer, spy)
+                    baz$!: Observable<number>;
                 }
 
                 const mockInstance = new SpyClass();

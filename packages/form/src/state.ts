@@ -3,29 +3,20 @@ import { isCollection, Map as ImmutableMap } from 'immutable';
 import { FormException } from './form-exception';
 
 export interface Operations<T> {
-  /// Shallow clone the object
-  clone(): T;
+    /// Shallow clone the object
+    clone(): T;
 
-  /// Clone and merge
-  merge(key: number | string | null, value: T): any;
+    /// Clone and merge
+    merge(key: number | string | null, value: T): any;
 
-  /// Clone the object and update a specific key inside of it
-  update(key: number | string | null, value: T): any;
+    /// Clone the object and update a specific key inside of it
+    update(key: number | string | null, value: T): any;
 }
 
-export type TraverseCallback = (
-  parent: any,
-  key: number | string,
-  remainingPath: string[],
-  value?: any,
-) => any;
+export type TraverseCallback = (parent: any, key: number | string, remainingPath: string[], value?: any) => any;
 
 export abstract class State {
-    static traverse<StateType>(
-        state: StateType,
-        path: string[],
-        fn?: TraverseCallback,
-    ) {
+    static traverse<StateType>(state: StateType, path: string[], fn?: TraverseCallback) {
         let deepValue = state;
 
         for (const k of path) {
@@ -36,9 +27,7 @@ export abstract class State {
                 if (typeof m.get === 'function') {
                     deepValue = m.get(k);
                 } else {
-                    throw new FormException(
-                        `Cannot retrieve value from immutable nonassociative container: ${k}`,
-                    );
+                    throw new FormException(`Cannot retrieve value from immutable nonassociative container: ${k}`);
                 }
             } else if (deepValue instanceof Map) {
                 deepValue = ((deepValue as any) as Map<string, any>).get(k);
@@ -47,12 +36,7 @@ export abstract class State {
             }
 
             if (typeof fn === 'function') {
-                const transformed = fn(
-                    parent,
-                    k,
-                    path.slice(path.indexOf(k) + 1),
-                    deepValue,
-                );
+                const transformed = fn(parent, k, path.slice(path.indexOf(k) + 1), deepValue);
 
                 deepValue = transformed[k];
 
@@ -90,45 +74,37 @@ export abstract class State {
         // to offer the best performance: we can shallow clone everything that has
         // not been modified, and {deep clone + update} the path down to the value
         // that we wish to update.
-        State.traverse(
-            root,
-            path,
-            (parent, key: number | string, remainingPath: string[], innerValue?) => {
-                const parentOperations = State.inspect(parent);
+        State.traverse(root, path, (parent, key: number | string, remainingPath: string[], innerValue?) => {
+            const parentOperations = State.inspect(parent);
 
-                if (innerValue) {
-                    const innerOperations = State.inspect(innerValue);
+            if (innerValue) {
+                const innerOperations = State.inspect(innerValue);
 
-                    return parentOperations.update(
-                        key,
-                        remainingPath.length > 0
-                            ? innerOperations.clone()
-                            : innerOperations.merge(null, value),
-                    );
-                } else {
-                    const getProbableType = (stateKey: string | number) => {
-                        // NOTE(cbond): If your code gets here, you might not be using the library
-                        /// correctly. If you are assigning into a path in your state, try to
-                        /// ensure that there is a path to traverse, even if everything is just
-                        /// empty objects and arrays. If we have to guess the type of the containers
-                        /// and then create them ourselves, we may not get the types right. Use
-                        /// the Redux `initial state' construct to resolve this issue if you like.
-                        return typeof stateKey === 'number'
-                            ? new Array()
-                            : Array.isArray(stateKey)
-                                ? ImmutableMap()
-                                : new Object();
-                    };
+                return parentOperations.update(
+                    key,
+                    remainingPath.length > 0 ? innerOperations.clone() : innerOperations.merge(null, value),
+                );
+            } else {
+                const getProbableType = (stateKey: string | number) => {
+                    // NOTE(cbond): If your code gets here, you might not be using the library
+                    /// correctly. If you are assigning into a path in your state, try to
+                    /// ensure that there is a path to traverse, even if everything is just
+                    /// empty objects and arrays. If we have to guess the type of the containers
+                    /// and then create them ourselves, we may not get the types right. Use
+                    /// the Redux `initial state' construct to resolve this issue if you like.
+                    return typeof stateKey === 'number'
+                        ? new Array()
+                        : Array.isArray(stateKey)
+                            ? ImmutableMap()
+                            : new Object();
+                };
 
-                    return parentOperations.update(
-                        key,
-                        remainingPath.length > 0
-                            ? getProbableType(remainingPath[0])
-                            : value,
-                    );
-                }
-            },
-        );
+                return parentOperations.update(
+                    key,
+                    remainingPath.length > 0 ? getProbableType(remainingPath[0]) : value,
+                );
+            }
+        });
 
         return root;
     }
@@ -142,14 +118,10 @@ export abstract class State {
         ) => {
             const operations = {
                 /// Clone the object (shallow)
-                clone:
-          typeof clone === 'function'
-              ? () => clone(object as any) as any
-              : () => object,
+                clone: typeof clone === 'function' ? () => clone(object as any) as any : () => object,
 
                 /// Update a specific key inside of the container object
-                update: (key: string, value: K) =>
-                    update(operations.clone(), key, value),
+                update: (key: string, value: K) => update(operations.clone(), key, value),
 
                 /// Merge existing values with new values
                 merge: (key: string, value: K) => {
@@ -191,10 +163,7 @@ export abstract class State {
                     if (key != null) {
                         parent[key] = value;
                     } else {
-                        parent.splice.apply(
-                            parent,
-                            [ 0, parent.length ].concat(Array.isArray(value) ? value : [ value ]),
-                        );
+                        parent.splice.apply(parent, [ 0, parent.length ].concat(Array.isArray(value) ? value : [ value ]));
                     }
                 },
 
@@ -257,15 +226,10 @@ export abstract class State {
                 },
 
                 // Clone
-                () =>
-                    object instanceof WeakSet
-                        ? new WeakSet<any>(object as any)
-                        : new Set<any>(object as any),
+                () => (object instanceof WeakSet ? new WeakSet<any>(object as any) : new Set<any>(object as any)),
             );
         } else if (object instanceof Date) {
-            throw new FormException(
-                'Cannot understand why a Date object appears in the mutation path!',
-            );
+            throw new FormException('Cannot understand why a Date object appears in the mutation path!');
         } else {
             switch (typeof object) {
                 case 'boolean':
@@ -301,16 +265,14 @@ export abstract class State {
 
         throw new Error(
             `An object of type ${typeof object} has appeared in the mutation path! Every element ` +
-        'in the mutation path should be an array, an associative container, or a set',
+                'in the mutation path should be an array, an associative container, or a set',
         );
     }
 
     static empty(value: any): boolean {
         return (
             value == null ||
-      (value.length === 0 ||
-        (typeof value.length === 'undefined' &&
-          Object.keys(value).length === 0))
+            (value.length === 0 || (typeof value.length === 'undefined' && Object.keys(value).length === 0))
         );
     }
 }

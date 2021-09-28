@@ -1,104 +1,89 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "ngredux-store": {
-      "projectType": "library",
-      "root": "packages/store",
-      "sourceRoot": "packages/store/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "./tsconfig.lib.json",
-            "project": "packages/store/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "./tsconfig.lib.prod.json"
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "ngredux-store": {
+            "projectType": "library",
+            "root": "packages/store",
+            "sourceRoot": "packages/store/src",
+            "prefix": "lib",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "options": {
+                        "tsConfig": "./tsconfig.lib.json",
+                        "project": "packages/store/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "./tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["./tsconfig.lib.json", "./tsconfig.spec.json"],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                }
             }
-          }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "./tsconfig.lib.json",
-              "./tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
+        "ngredux-router": {
+            "projectType": "library",
+            "root": "packages/router",
+            "sourceRoot": "packages/router/src",
+            "prefix": "lib",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "options": {
+                        "tsConfig": "./tsconfig.lib.json",
+                        "project": "packages/router/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "./tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["./tsconfig.lib.json", "./tsconfig.spec.json"],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                }
+            }
+        },
+        "ngredux-form": {
+            "projectType": "library",
+            "root": "packages/form",
+            "sourceRoot": "packages/form/src",
+            "prefix": "lib",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "options": {
+                        "tsConfig": "./tsconfig.lib.json",
+                        "project": "packages/form/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "./tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["./tsconfig.lib.json", "./tsconfig.spec.json"],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                }
+            }
         }
-      }
     },
-    "ngredux-router": {
-      "projectType": "library",
-      "root": "packages/router",
-      "sourceRoot": "packages/router/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "./tsconfig.lib.json",
-            "project": "packages/router/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "./tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "./tsconfig.lib.json",
-              "./tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "ngredux-form": {
-      "projectType": "library",
-      "root": "packages/form",
-      "sourceRoot": "packages/form/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "./tsconfig.lib.json",
-            "project": "packages/form/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "./tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "./tsconfig.lib.json",
-              "./tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    }
-  },
-  "defaultProject": "store"
+    "defaultProject": "store"
 }

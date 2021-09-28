@@ -7,9 +7,9 @@ Redux, and ngredux-store. I'll try to explain the basic concepts as we go.
 
 Redux is a popular approach to managing state in applications. It emphasises:
 
-- A single, immutable data store.
-- One-way data flow.
-- An approach to change based on pure functions and a stream of actions.
+-   A single, immutable data store.
+-   One-way data flow.
+-   An approach to change based on pure functions and a stream of actions.
 
 You can find lots of excellent documentation here: [Redux](http://redux.js.org/).
 
@@ -19,9 +19,9 @@ We provide a set of npm packages that help you integrate your redux store
 into your Angular applications. Our approach helps you by bridging the gap
 with some of Angular's advanced features, including:
 
-- Change processing with RxJS observables.
-- Compile time optimizations with `NgModule` and Ahead-of-Time compilation.
-- Integration with the Angular change detector.
+-   Change processing with RxJS observables.
+-   Compile time optimizations with `NgModule` and Ahead-of-Time compilation.
+-   Integration with the Angular change detector.
 
 ## Installation
 
@@ -70,15 +70,15 @@ import { NgReduxModule, NgRedux } from 'ngredux-store'; // <- New
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    NgReduxModule, // <- New
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        NgReduxModule, // <- New
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
 ```
@@ -94,10 +94,7 @@ a value, and one for decrementing it.
 Open up `src/app/app.component.html` and add the following code:
 
 ```html
-<div>
-  Count: {{ count }} <button (click)="increment()">+</button>
-  <button (click)="decrement()">-</button>
-</div>
+<div>Count: {{ count }} <button (click)="increment()">+</button> <button (click)="decrement()">-</button></div>
 ```
 
 Then open `src/app/app.component.ts` and add some fields:
@@ -106,16 +103,16 @@ Then open `src/app/app.component.ts` and add some fields:
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'app works!';
-  count: number; // <- New
+    title = 'app works!';
+    count: number; // <- New
 
-  increment() {} // <- New
-  decrement() {} // <- New
+    increment() {} // <- New
+    decrement() {} // <- New
 }
 ```
 
@@ -139,7 +136,7 @@ So we can define the type of our state as follows:
 
 ```typescript
 interface IAppState {
-  count: number;
+    count: number;
 }
 ```
 
@@ -160,17 +157,17 @@ So we can think of our application conceptually like this:
 ```js
 // Pseudocode
 const nextValueOfCount = streamOfActions.reduce(
-  (currentValueOfCount, action) => {
-    switch (action.type) {
-      case 'INCREMENT':
-        return state + 1;
-      case 'DECREMENT':
-        return state - 1;
-    }
+    (currentValueOfCount, action) => {
+        switch (action.type) {
+            case 'INCREMENT':
+                return state + 1;
+            case 'DECREMENT':
+                return state - 1;
+        }
 
-    return state;
-  },
-  { count: 0 },
+        return state;
+    },
+    { count: 0 },
 );
 ```
 
@@ -187,16 +184,16 @@ import { Action } from 'redux';
 
 @Injectable()
 export class CounterActions {
-  static INCREMENT = 'INCREMENT';
-  static DECREMENT = 'DECREMENT';
+    static INCREMENT = 'INCREMENT';
+    static DECREMENT = 'DECREMENT';
 
-  increment(): Action {
-    return { type: CounterActions.INCREMENT };
-  }
+    increment(): Action {
+        return { type: CounterActions.INCREMENT };
+    }
 
-  decrement(): Action {
-    return { type: CounterActions.DECREMENT };
-  }
+    decrement(): Action {
+        return { type: CounterActions.DECREMENT };
+    }
 }
 ```
 
@@ -207,23 +204,23 @@ import { Action } from 'redux';
 import { CounterActions } from './app/app.actions';
 
 export interface IAppState {
-  count: number;
+    count: number;
 }
 
 export const INITIAL_STATE: IAppState = {
-  count: 0,
+    count: 0,
 };
 
 export function rootReducer(lastState: IAppState, action: Action): IAppState {
-  switch (action.type) {
-    case CounterActions.INCREMENT:
-      return { count: lastState.count + 1 };
-    case CounterActions.DECREMENT:
-      return { count: lastState.count - 1 };
-  }
+    switch (action.type) {
+        case CounterActions.INCREMENT:
+            return { count: lastState.count + 1 };
+        case CounterActions.DECREMENT:
+            return { count: lastState.count - 1 };
+    }
 
-  // We don't care about any other actions right now.
-  return lastState;
+    // We don't care about any other actions right now.
+    return lastState;
 }
 ```
 
@@ -246,18 +243,18 @@ import { rootReducer, IAppState, INITIAL_STATE } from '../store'; // < New
 import { CounterActions } from './app.actions'; // <- New
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, FormsModule, HttpModule, NgReduxModule],
-  providers: [CounterActions], // <- New
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [BrowserModule, FormsModule, HttpModule, NgReduxModule],
+    providers: [CounterActions], // <- New
+    bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>) {
-    // Tell ngredux-store about our rootReducer and our initial state.
-    // It will use this to create a redux store for us and wire up all the
-    // events.
-    ngRedux.configureStore(rootReducer, INITIAL_STATE);
-  }
+    constructor(ngRedux: NgRedux<IAppState>) {
+        // Tell ngredux-store about our rootReducer and our initial state.
+        // It will use this to create a redux store for us and wire up all the
+        // events.
+        ngRedux.configureStore(rootReducer, INITIAL_STATE);
+    }
 }
 ```
 
@@ -290,10 +287,7 @@ ends up looking conceptually a bit like this:
 
 ```typescript
 // Pseudocode
-const finalAppState: IAppState = actionsOverTime.reduce(
-  rootReducer,
-  INITIAL_STATE,
-);
+const finalAppState: IAppState = actionsOverTime.reduce(rootReducer, INITIAL_STATE);
 ```
 
 Or perhaps more usefully:
@@ -323,27 +317,27 @@ import { CounterActions } from './app.actions'; // <- New
 import { IAppState } from '../store'; // <- New
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'app works!';
-  count: number;
+    title = 'app works!';
+    count: number;
 
-  constructor(
-    // <- New
-    private ngRedux: NgRedux<IAppState>, // <- New
-    private actions: CounterActions,
-  ) {} // <- New
+    constructor(
+        // <- New
+        private ngRedux: NgRedux<IAppState>, // <- New
+        private actions: CounterActions,
+    ) {} // <- New
 
-  increment() {
-    this.ngRedux.dispatch(this.actions.increment()); // <- New
-  }
+    increment() {
+        this.ngRedux.dispatch(this.actions.increment()); // <- New
+    }
 
-  decrement() {
-    this.ngRedux.dispatch(this.actions.decrement()); // <- New
-  }
+    decrement() {
+        this.ngRedux.dispatch(this.actions.decrement()); // <- New
+    }
 }
 ```
 
@@ -362,26 +356,23 @@ import { OnDestroy } from '@angular/core';
 
 // Decorator as before
 export class AppComponent implements OnDestroy {
-  // <- New
-  title = 'app works!';
-  count: number;
-  subscription; // <- New;
-
-  constructor(
-    private ngRedux: NgRedux<IAppState>,
-    private actions: CounterActions,
-  ) {
-    this.subscription = ngRedux
-      .select<number>('count') // <- New
-      .subscribe(newCount => (this.count = newCount)); // <- New
-  }
-
-  ngOnDestroy() {
     // <- New
-    this.subscription.unsubscribe(); // <- New
-  } // <- New
+    title = 'app works!';
+    count: number;
+    subscription; // <- New;
 
-  // Rest of class as before.
+    constructor(private ngRedux: NgRedux<IAppState>, private actions: CounterActions) {
+        this.subscription = ngRedux
+            .select<number>('count') // <- New
+            .subscribe(newCount => (this.count = newCount)); // <- New
+    }
+
+    ngOnDestroy() {
+        // <- New
+        this.subscription.unsubscribe(); // <- New
+    } // <- New
+
+    // Rest of class as before.
 }
 ```
 
@@ -465,26 +456,23 @@ import { IAppState } from '../store';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'app works!';
-  @select() readonly count$: Observable<number>; // <- Changed
+    title = 'app works!';
+    @select() readonly count$: Observable<number>; // <- Changed
 
-  constructor(
-    private actions: CounterActions,
-    private ngRedux: NgRedux<IAppState>,
-  ) {} // <- Changed
+    constructor(private actions: CounterActions, private ngRedux: NgRedux<IAppState>) {} // <- Changed
 
-  increment() {
-    this.ngRedux.dispatch(this.actions.increment());
-  }
+    increment() {
+        this.ngRedux.dispatch(this.actions.increment());
+    }
 
-  decrement() {
-    this.ngRedux.dispatch(this.actions.decrement());
-  }
+    decrement() {
+        this.ngRedux.dispatch(this.actions.decrement());
+    }
 }
 ```
 
@@ -495,9 +483,9 @@ You can also specify a name or even a nested store path manually:
 
 ```typescript
 class MyComponent {
-  @select('count') readonly differentVarNameInComponent$: Observable<number>;
-  @select(['deeply', 'nested', 'store', 'property'])
-  readonly deeplyNested$: Observable<any>;
+    @select('count') readonly differentVarNameInComponent$: Observable<number>;
+    @select(['deeply', 'nested', 'store', 'property'])
+    readonly deeplyNested$: Observable<any>;
 }
 ```
 
@@ -571,13 +559,13 @@ hook into this as well:
 
 ```typescript
 it('dispatches INCREMENT when ...', () => {
-  const spy = spyOn(MockNgRedux.mockInstance, 'dispatch');
+    const spy = spyOn(MockNgRedux.mockInstance, 'dispatch');
 
-  // Run your test code ...
+    // Run your test code ...
 
-  // Perform your expectations
-  expect(spy).toHaveBeenCalledWith({ type: CounterActions.INCREMENT });
-  // ... etc.
+    // Perform your expectations
+    expect(spy).toHaveBeenCalledWith({ type: CounterActions.INCREMENT });
+    // ... etc.
 });
 ```
 
@@ -586,10 +574,10 @@ it('dispatches INCREMENT when ...', () => {
 The Redux community has a lot of powerful extensions that can be plugged into your store to
 enhance it in different ways. Libraries that let you
 
-- [persist parts of your store to localStorage](https://www.npmjs.com/package/redux-localstorage)
-- [handle side-effects and business logic in clean ways](https://www.npmjs.com/package/redux-observable)
-- [collect analytics data](https://www.npmjs.com/package/redux-beacon)
-- and many more...
+-   [persist parts of your store to localStorage](https://www.npmjs.com/package/redux-localstorage)
+-   [handle side-effects and business logic in clean ways](https://www.npmjs.com/package/redux-observable)
+-   [collect analytics data](https://www.npmjs.com/package/redux-beacon)
+-   and many more...
 
 These libraries are implemented as [Redux Middleware](http://redux.js.org/docs/advanced/Middleware.html)
 or [StoreEnhancers](https://github.com/reactjs/redux/blob/master/docs/Glossary.md#store-enhancer) and
@@ -607,30 +595,26 @@ Then, make a quick adjustment to enable them in your app:
 
 ```typescript
 // Other imports as before
-import {
-  NgReduxModule,
-  NgRedux,
-  DevToolsExtension,
-} from 'ngredux-store'; // <- Changed
+import { NgReduxModule, NgRedux, DevToolsExtension } from 'ngredux-store'; // <- Changed
 
 @NgModule({
-  // Decorator as before
+    // Decorator as before
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension) {
-    // <- New
+    constructor(ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension) {
+        // <- New
 
-    const storeEnhancers = devTools.isEnabled() // <- New
-      ? [devTools.enhancer()] // <- New
-      : []; // <- New
+        const storeEnhancers = devTools.isEnabled() // <- New
+            ? [devTools.enhancer()] // <- New
+            : []; // <- New
 
-    ngRedux.configureStore(
-      rootReducer,
-      INITIAL_STATE,
-      [], // <- New
-      storeEnhancers,
-    ); // <- New
-  }
+        ngRedux.configureStore(
+            rootReducer,
+            INITIAL_STATE,
+            [], // <- New
+            storeEnhancers,
+        ); // <- New
+    }
 }
 ```
 

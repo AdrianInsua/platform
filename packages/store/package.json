@@ -1,50 +1,50 @@
 {
-  "name": "ngredux-store",
-  "version": "0.0.1",
-  "description": "Angular bindings for Redux",
-  "author": "William Buchwalter <wbuchwalter@gmail.com> (http://github.com/wbuchwalter)",
-  "license": "MIT",
-  "homepage": "https://github.com/AdrianInsua/platform",
-  "scripts": {
-    "build": "ng build --prod ngredux-store"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AdrianInsua/platform"
-  },
-  "bugs": {
-    "url": "https://github.com/AdrianInsua/platform"
-  },
-  "main": "dist/ngredux-store/bundles/ngredux-store.umd.js",
-  "module": "dist/ngredux-store/fesm2015/ngredux-store.js",
-  "es2015": "dist/ngredux-store/fesm2015/ngredux-store.js",
-  "esm2015": "dist/ngredux-store/esm2015/ngredux-store.js",
-  "fesm2015": "dist/ngredux-store/fesm2015/ngredux-store.js",
-  "typings": "dist/ngredux-store/ngredux-store.d.ts",
-  "files": [
-    "dist/"
-  ],
-  "keywords": [
-    "angular",
-    "angular2",
-    "angular@11",
-    "ivy",
-    "redux",
-    "store",
-    "state management"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "engines": {
-    "node": ">=8"
-  },
-  "peerDependencies": {
-    "@angular/core": "^11.0.5",
-    "redux": "^4.0.0",
-    "rxjs": "^6.0.0"
-  },
-  "devDependencies": {
-    "redux-devtools-extension": "2.13.7"
-  }
+    "name": "ngredux-store",
+    "version": "0.0.1",
+    "description": "Angular bindings for Redux",
+    "author": "William Buchwalter <wbuchwalter@gmail.com> (http://github.com/wbuchwalter)",
+    "license": "MIT",
+    "homepage": "https://github.com/AdrianInsua/platform",
+    "scripts": {
+        "build": "ng build --prod ngredux-store"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AdrianInsua/platform"
+    },
+    "bugs": {
+        "url": "https://github.com/AdrianInsua/platform"
+    },
+    "main": "dist/ngredux-store/bundles/ngredux-store.umd.js",
+    "module": "dist/ngredux-store/fesm2015/ngredux-store.js",
+    "es2015": "dist/ngredux-store/fesm2015/ngredux-store.js",
+    "esm2015": "dist/ngredux-store/esm2015/ngredux-store.js",
+    "fesm2015": "dist/ngredux-store/fesm2015/ngredux-store.js",
+    "typings": "dist/ngredux-store/ngredux-store.d.ts",
+    "files": [
+        "dist/"
+    ],
+    "keywords": [
+        "angular",
+        "angular2",
+        "angular@11",
+        "ivy",
+        "redux",
+        "store",
+        "state management"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "engines": {
+        "node": ">=8"
+    },
+    "peerDependencies": {
+        "@angular/core": "^11.0.5",
+        "redux": "^4.0.0",
+        "rxjs": "^6.0.0"
+    },
+    "devDependencies": {
+        "redux-devtools-extension": "2.13.7"
+    }
 }

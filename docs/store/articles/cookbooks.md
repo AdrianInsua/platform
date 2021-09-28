@@ -24,45 +24,42 @@ import { RandomNumberService } from '../services/random-number';
 
 @Injectable()
 export class CounterActions {
-  constructor(
-    private ngRedux: NgRedux<RootState>,
-    private randomNumberService: RandomNumberService,
-  ) {}
+    constructor(private ngRedux: NgRedux<RootState>, private randomNumberService: RandomNumberService) {}
 
-  static INCREMENT_COUNTER: string = 'INCREMENT_COUNTER';
-  static DECREMENT_COUNTER: string = 'DECREMENT_COUNTER';
-  static RANDOMIZE_COUNTER: string = 'RANDOMIZE_COUNTER';
+    static INCREMENT_COUNTER: string = 'INCREMENT_COUNTER';
+    static DECREMENT_COUNTER: string = 'DECREMENT_COUNTER';
+    static RANDOMIZE_COUNTER: string = 'RANDOMIZE_COUNTER';
 
-  // Basic action
-  increment(): void {
-    this.ngRedux.dispatch({ type: CounterActions.INCREMENT_COUNTER });
-  }
-
-  // Basic action
-  decrement(): void {
-    this.ngRedux.dispatch({ type: CounterActions.DECREMENT_COUNTER });
-  }
-
-  // Async action.
-  incrementAsync(delay: number = 1000): void {
-    setTimeout(this.increment.bind(this), delay);
-  }
-
-  // State-dependent action
-  incrementIfOdd(): void {
-    const { counter } = this.ngRedux.getState();
-    if (counter % 2 !== 0) {
-      this.increment();
+    // Basic action
+    increment(): void {
+        this.ngRedux.dispatch({ type: CounterActions.INCREMENT_COUNTER });
     }
-  }
 
-  // Service-dependent action
-  randomize(): void {
-    this.ngRedux.dispatch({
-      type: CounterActions.RANDOMIZE_COUNTER,
-      payload: this.randomNumberService.pick(),
-    });
-  }
+    // Basic action
+    decrement(): void {
+        this.ngRedux.dispatch({ type: CounterActions.DECREMENT_COUNTER });
+    }
+
+    // Async action.
+    incrementAsync(delay: number = 1000): void {
+        setTimeout(this.increment.bind(this), delay);
+    }
+
+    // State-dependent action
+    incrementIfOdd(): void {
+        const { counter } = this.ngRedux.getState();
+        if (counter % 2 !== 0) {
+            this.increment();
+        }
+    }
+
+    // Service-dependent action
+    randomize(): void {
+        this.ngRedux.dispatch({
+            type: CounterActions.RANDOMIZE_COUNTER,
+            payload: this.randomNumberService.pick(),
+        });
+    }
 }
 ```
 
@@ -76,23 +73,22 @@ import { CounterActions } from '../actions/counter-actions';
 import { RandomNumberService } from '../services/random-number';
 
 @Component({
-  selector: 'counter',
-  providers: [CounterActions, RandomNumberService],
-  template: `
-    <p>
-      Clicked: {{ counter$ | async }} times
-      <button (click)="actions.increment()">+</button>
-      <button (click)="actions.decrement()">-</button>
-      <button (click)="actions.incrementIfOdd()">Increment if odd</button>
-      <button (click)="actions.incrementAsync(2222)">Increment async</button>
-      <button (click)="actions.randomize()">Set to random number</button>
-    </p>
-  `,
+    selector: 'counter',
+    providers: [CounterActions, RandomNumberService],
+    template: `
+        <p>
+            Clicked: {{ counter$ | async }} times <button (click)="actions.increment()">+</button>
+            <button (click)="actions.decrement()">-</button>
+            <button (click)="actions.incrementIfOdd()">Increment if odd</button>
+            <button (click)="actions.incrementAsync(2222)">Increment async</button>
+            <button (click)="actions.randomize()">Set to random number</button>
+        </p>
+    `,
 })
 export class Counter {
-  @select('counter') counter$: any;
+    @select('counter') counter$: any;
 
-  constructor(private actions: CounterActions) {}
+    constructor(private actions: CounterActions) {}
 }
 ```
 
@@ -141,21 +137,18 @@ import reduxLogger from 'redux-logger';
 import { LogRemoteName } from './middleware/log-remote-name';
 
 @NgModule({
-  /* ... */
-  imports: [, /* ... */ NgReduxModule],
-  providers: [
-    LogRemoteName,
     /* ... */
-  ],
+    imports: [, /* ... */ NgReduxModule],
+    providers: [
+        LogRemoteName,
+        /* ... */
+    ],
 })
 export class AppModule {
-  constructor(
-    private ngRedux: NgRedux<IAppState>,
-    logRemoteName: LogRemoteName,
-  ) {
-    const middleware = [reduxLogger, logRemoteName.middleware];
-    this.ngRedux.configureStore(rootReducer, {}, middleware);
-  }
+    constructor(private ngRedux: NgRedux<IAppState>, logRemoteName: LogRemoteName) {
+        const middleware = [reduxLogger, logRemoteName.middleware];
+        this.ngRedux.configureStore(rootReducer, {}, middleware);
+    }
 }
 ```
 
@@ -179,23 +172,23 @@ import { IAppState } from '../reducers';
 
 @Injectable()
 export class SessionActions {
-  static LOGIN_USER = 'LOGIN_USER';
-  static LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
-  static LOGIN_USER_ERROR = 'LOGIN_USER_ERROR';
-  static LOGOUT_USER = 'LOGOUT_USER';
+    static LOGIN_USER = 'LOGIN_USER';
+    static LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
+    static LOGIN_USER_ERROR = 'LOGIN_USER_ERROR';
+    static LOGOUT_USER = 'LOGOUT_USER';
 
-  constructor(private ngRedux: NgRedux<IAppState>) {}
+    constructor(private ngRedux: NgRedux<IAppState>) {}
 
-  loginUser(credentials) {
-    this.ngRedux.dispatch({
-      type: SessionActions.LOGIN_USER,
-      payload: credentials,
-    });
-  }
+    loginUser(credentials) {
+        this.ngRedux.dispatch({
+            type: SessionActions.LOGIN_USER,
+            payload: credentials,
+        });
+    }
 
-  logoutUser() {
-    this.ngRedux.dispatch({ type: SessionActions.LOGOUT_USER });
-  }
+    logoutUser() {
+        this.ngRedux.dispatch({ type: SessionActions.LOGOUT_USER });
+    }
 }
 ```
 
@@ -218,23 +211,23 @@ const BASE_URL = '/api';
 
 @Injectable()
 export class SessionEpics {
-  constructor(private http: Http) {}
+    constructor(private http: Http) {}
 
-  login = (action$: ActionsObservable) => {
-    return action$.ofType(SessionActions.LOGIN_USER).mergeMap(({ payload }) => {
-      return this.http
-        .post(`${BASE_URL}/auth/login`, payload)
-        .map(result => ({
-          type: SessionActions.LOGIN_USER_SUCCESS,
-          payload: result.json().meta,
-        }))
-        .catch(error =>
-          Observable.of({
-            type: SessionActions.LOGIN_USER_ERROR,
-          }),
-        );
-    });
-  };
+    login = (action$: ActionsObservable) => {
+        return action$.ofType(SessionActions.LOGIN_USER).mergeMap(({ payload }) => {
+            return this.http
+                .post(`${BASE_URL}/auth/login`, payload)
+                .map(result => ({
+                    type: SessionActions.LOGIN_USER_SUCCESS,
+                    payload: result.json().meta,
+                }))
+                .catch(error =>
+                    Observable.of({
+                        type: SessionActions.LOGIN_USER_ERROR,
+                    }),
+                );
+        });
+    };
 }
 ```
 
@@ -254,21 +247,18 @@ import rootReducer from './reducers';
 import { SessionEpics } from './epics';
 
 @NgModule({
-  /* ... */
-  imports: [, /* ... */ NgReduxModule],
-  providers: [
-    SessionEpics,
     /* ... */
-  ],
+    imports: [, /* ... */ NgReduxModule],
+    providers: [
+        SessionEpics,
+        /* ... */
+    ],
 })
 export class AppModule {
-  constructor(
-    private ngRedux: NgRedux<IAppState>,
-    private epics: SessionEpics,
-  ) {
-    const middleware = [createEpicMiddleware(this.epics.login)];
-    ngRedux.configureStore(rootReducer, {}, middleware);
-  }
+    constructor(private ngRedux: NgRedux<IAppState>, private epics: SessionEpics) {
+        const middleware = [createEpicMiddleware(this.epics.login)];
+        ngRedux.configureStore(rootReducer, {}, middleware);
+    }
 }
 ```
 
@@ -294,30 +284,26 @@ tools that handles this for you.
 Here's how to hook the extension up to your app:
 
 ```typescript
-import {
-  NgReduxModule,
-  NgRedux,
-  DevToolsExtension,
-} from 'ngredux-store';
+import { NgReduxModule, NgRedux, DevToolsExtension } from 'ngredux-store';
 
 // Add the dev tools enhancer your ngRedux.configureStore called
 // when you initialize your root component:
 @NgModule({
-  /* ... */
-  imports: [, /* ... */ NgReduxModule],
+    /* ... */
+    imports: [, /* ... */ NgReduxModule],
 })
 export class AppModule {
-  constructor(private ngRedux: NgRedux, private devTools: DevToolsExtension) {
-    let enhancers = [];
-    // ... add whatever other enhancers you want.
+    constructor(private ngRedux: NgRedux, private devTools: DevToolsExtension) {
+        let enhancers = [];
+        // ... add whatever other enhancers you want.
 
-    // You probably only want to expose this tool in devMode.
-    if (__DEVMODE__ && devTools.isEnabled()) {
-      enhancers = [...enhancers, devTools.enhancer()];
+        // You probably only want to expose this tool in devMode.
+        if (__DEVMODE__ && devTools.isEnabled()) {
+            enhancers = [...enhancers, devTools.enhancer()];
+        }
+
+        this.ngRedux.configureStore(rootReducer, initialState, [], enhancers);
     }
-
-    this.ngRedux.configureStore(rootReducer, initialState, [], enhancers);
-  }
 }
 ```
 
@@ -351,7 +337,7 @@ can no longer easily dereference properties:
 
 ```typescript
 const mutableFoo = {
-  foo: 1,
+    foo: 1,
 };
 
 const foo: number = mutableFoo.foo;
@@ -412,11 +398,11 @@ Here's that same conceptual store, defined immutably:
 
 ```typescript
 Immutable.Map<string, any>({
-  totalCount: 0,
-  counts: Immutable.map<string, number>({
-    firstCount: 0,
-    secondCount: 0,
-  }),
+    totalCount: 0,
+    counts: Immutable.map<string, number>({
+        firstCount: 0,
+        secondCount: 0,
+    }),
 });
 ```
 
@@ -512,13 +498,13 @@ a global 'AppState' by composing the reducer types:
 
 ```typescript
 export interface IAppState {
-  foo?: TFoo;
-  bar?: IBar;
+    foo?: TFoo;
+    bar?: IBar;
 }
 
 export const rootReducer = combineReducers({
-  foo: fooReducer,
-  bar: barReducer,
+    foo: fooReducer,
+    bar: barReducer,
 });
 ```
 
@@ -530,9 +516,9 @@ import { IAppState } from './store';
 
 @Injectable()
 export class MyActionService {
-  constructor(private ngRedux: NgRedux<IAppState>) {}
+    constructor(private ngRedux: NgRedux<IAppState>) {}
 
-  // ...
+    // ...
 }
 ```
 
@@ -544,11 +530,8 @@ particular, consider importing and using the `Action` and `Reducer` types:
 ```typescript
 import { Action, Reducer } from 'redux';
 
-export const fooReducer: Reducer<TFoo> = (
-  state: TFoo,
-  action: Action,
-): TFoo => {
-  // ...
+export const fooReducer: Reducer<TFoo> = (state: TFoo, action: Action): TFoo => {
+    // ...
 };
 ```
 
@@ -572,11 +555,8 @@ further:
 import { Reducer } from 'redux';
 import { Action } from 'flux-standard-action';
 
-export const fooReducer: Reducer<TFoo> = (
-  state: TFoo,
-  action: Action<TFoo>,
-): TFoo => {
-  // ...
+export const fooReducer: Reducer<TFoo> = (state: TFoo, action: Action<TFoo>): TFoo => {
+    // ...
 };
 ```
 
@@ -585,21 +565,18 @@ If you need more flexibility in payload types, you can use a union and
 [type assertions](https://www.typescriptlang.org/docs/handbook/advanced-types.html):
 
 ```typescript
-export const barReducer: Reducer<IBar> = (
-  state: IBar,
-  action: Action<number | string>,
-): IBar => {
-  switch (action.type) {
-    case A_HAS_CHANGED:
-      return Object.assign({}, state, {
-        a: <number>action.payload,
-      });
-    case B_HAS_CHANGED:
-      return Object.assign({}, state, {
-        b: <string>action.payload,
-      });
-    // ...
-  }
+export const barReducer: Reducer<IBar> = (state: IBar, action: Action<number | string>): IBar => {
+    switch (action.type) {
+        case A_HAS_CHANGED:
+            return Object.assign({}, state, {
+                a: <number>action.payload,
+            });
+        case B_HAS_CHANGED:
+            return Object.assign({}, state, {
+                b: <string>action.payload,
+            });
+        // ...
+    }
 };
 ```
 
@@ -611,18 +588,15 @@ In the Babel world, reducers often use `Object.assign` or property spread to
 maintain immutability. This works in Typescript too, but it's not typesafe:
 
 ```typescript
-export const barReducer: Reducer<IBar> = (
-  state: IBar,
-  action: Action<number | string>,
-): IBar => {
-  switch (action.type) {
-    case A_HAS_CHANGED:
-      return Object.assign({}, state, {
-        a: <number>action.payload,
-        zzz: 'test', // We'd like this to generate a compile error, but it doesn't
-      });
-    // ...
-  }
+export const barReducer: Reducer<IBar> = (state: IBar, action: Action<number | string>): IBar => {
+    switch (action.type) {
+        case A_HAS_CHANGED:
+            return Object.assign({}, state, {
+                a: <number>action.payload,
+                zzz: 'test', // We'd like this to generate a compile error, but it doesn't
+            });
+        // ...
+    }
 };
 ```
 
@@ -637,18 +611,15 @@ that will catch this type of error:
 ```typescript
 import { tassign } from 'tassign';
 
-export const barReducer: Reducer<IBar> = (
-  state: IBar,
-  action: Action<number | string>,
-): IBar => {
-  switch (action.type) {
-    case A_HAS_CHANGED:
-      return tassign(state, {
-        a: <number>action.payload,
-        zzz: 'test', // Error: zzz is not a property of IBar
-      });
-    // ...
-  }
+export const barReducer: Reducer<IBar> = (state: IBar, action: Action<number | string>): IBar => {
+    switch (action.type) {
+        case A_HAS_CHANGED:
+            return tassign(state, {
+                a: <number>action.payload,
+                zzz: 'test', // Error: zzz is not a property of IBar
+            });
+        // ...
+    }
 };
 ```
 

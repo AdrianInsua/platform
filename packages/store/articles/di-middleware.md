@@ -43,20 +43,17 @@ import reduxLogger from 'redux-logger';
 import { LogRemoteName } from './middleware/log-remote-name';
 
 @NgModule({
-  /* ... */
-  imports: [, /* ... */ NgReduxModule],
-  providers: [
-    LogRemoteName,
     /* ... */
-  ],
+    imports: [, /* ... */ NgReduxModule],
+    providers: [
+        LogRemoteName,
+        /* ... */
+    ],
 })
 export class AppModule {
-  constructor(
-    private ngRedux: NgRedux<IAppState>,
-    logRemoteName: LogRemoteName,
-  ) {
-    const middleware = [reduxLogger, logRemoteName.middleware];
-    this.ngRedux.configureStore(rootReducer, {}, middleware);
-  }
+    constructor(private ngRedux: NgRedux<IAppState>, logRemoteName: LogRemoteName) {
+        const middleware = [reduxLogger, logRemoteName.middleware];
+        this.ngRedux.configureStore(rootReducer, {}, middleware);
+    }
 }
 ```

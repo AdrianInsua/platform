@@ -3,9 +3,9 @@
 
 # Getting Started
 
-- I already know what Redux and RxJS are. [Give me the TL;DR](#quickstart).
-- I'm just learning about Redux. [Break it down for me](store/articles/intro-tutorial)!
-- Talk is cheap. [Show me a complete code example](https://github.com/angular-redux/platform/blob/master/packages/example-app)
+-   I already know what Redux and RxJS are. [Give me the TL;DR](#quickstart).
+-   I'm just learning about Redux. [Break it down for me](store/articles/intro-tutorial)!
+-   Talk is cheap. [Show me a complete code example](https://github.com/angular-redux/platform/blob/master/packages/example-app)
 
 ## Quickstart
 
@@ -34,17 +34,17 @@ import { createLogger } from 'redux-logger';
 import { rootReducer } from './reducers';
 
 interface IAppState {
-  /* ... */
+    /* ... */
 }
 
 @NgModule({
-  /* ... */
-  imports: [, /* ... */ NgReduxModule],
+    /* ... */
+    imports: [, /* ... */ NgReduxModule],
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.configureStore(rootReducer, {}, [createLogger()]);
-  }
+    constructor(ngRedux: NgRedux<IAppState>) {
+        ngRedux.configureStore(rootReducer, {}, [createLogger()]);
+    }
 }
 ```
 
@@ -52,34 +52,25 @@ Or if you prefer to create the Redux store yourself you can do that and use the
 `provideStore()` function instead:
 
 ```typescript
-import {
-  applyMiddleware,
-  Store,
-  combineReducers,
-  compose,
-  createStore,
-} from 'redux';
+import { applyMiddleware, Store, combineReducers, compose, createStore } from 'redux';
 import { NgReduxModule, NgRedux } from 'ngredux-store';
 import { createLogger } from 'redux-logger';
 import { rootReducer } from './reducers';
 
 interface IAppState {
-  /* ... */
+    /* ... */
 }
 
-export const store: Store<IAppState> = createStore(
-  rootReducer,
-  applyMiddleware(createLogger()),
-);
+export const store: Store<IAppState> = createStore(rootReducer, applyMiddleware(createLogger()));
 
 @NgModule({
-  /* ... */
-  imports: [, /* ... */ NgReduxModule],
+    /* ... */
+    imports: [, /* ... */ NgReduxModule],
 })
 class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.provideStore(store);
-  }
+    constructor(ngRedux: NgRedux<IAppState>) {
+        ngRedux.provideStore(store);
+    }
 }
 ```
 
@@ -98,17 +89,16 @@ access your store state, and `.dispatch()` to dispatch actions:
 import { select } from 'ngredux-store';
 
 @Component({
-  template:
-    '<button (click)="onClick()">Clicked {{ count | async }} times</button>',
+    template: '<button (click)="onClick()">Clicked {{ count | async }} times</button>',
 })
 class App {
-  @select() count$: Observable<number>;
+    @select() count$: Observable<number>;
 
-  constructor(private ngRedux: NgRedux<IAppState>) {}
+    constructor(private ngRedux: NgRedux<IAppState>) {}
 
-  onClick() {
-    this.ngRedux.dispatch({ type: INCREMENT });
-  }
+    onClick() {
+        this.ngRedux.dispatch({ type: INCREMENT });
+    }
 }
 ```
 
@@ -116,14 +106,14 @@ class App {
 
 # Companion Packages
 
-- [Reduxify your Routing with ngredux-router](https://github.com/angular-redux/platform/blob/master/packages/router)
-- [Reduxify your Forms with ngredux-form](https://github.com/angular-redux/platform/blob/master/packages/form)
+-   [Reduxify your Routing with ngredux-router](https://github.com/angular-redux/platform/blob/master/packages/router)
+-   [Reduxify your Forms with ngredux-form](https://github.com/angular-redux/platform/blob/master/packages/form)
 
 # Resources
 
-- [Using Redux with Angular - JS Toronto Meetup 2016-07-12](https://www.youtube.com/watch?v=s4xr2avwv3s)
-- [Getting started with Redux](https://egghead.io/courses/getting-started-with-redux)
-- [Awesome Redux: Community Resources](https://github.com/xgrommx/awesome-redux)
+-   [Using Redux with Angular - JS Toronto Meetup 2016-07-12](https://www.youtube.com/watch?v=s4xr2avwv3s)
+-   [Getting started with Redux](https://egghead.io/courses/getting-started-with-redux)
+-   [Awesome Redux: Community Resources](https://github.com/xgrommx/awesome-redux)
 
 # In-Depth Usage
 
@@ -149,13 +139,13 @@ the Redux Store value which is selected by the decorator's parameter.
 The decorator expects to receive a `string`, an array of `string`s, a `function` or no
 parameter at all.
 
-- If a `string` is passed the `@select` decorator will attempt to observe a store
-  property whose name matches the `string`.
-- If an array of strings is passed, the decorator will attempt to match that path
-  through the store (similar to `immutableJS`'s `getIn`).
-- If a `function` is passed the `@select` decorator will attempt to use that function
-  as a selector on the RxJs observable.
-- If nothing is passed then the `@select` decorator will attempt to use the name of the class property to find a matching value in the Redux store. Note that a utility is in place here where any \$ characters will be ignored from the class property's name.
+-   If a `string` is passed the `@select` decorator will attempt to observe a store
+    property whose name matches the `string`.
+-   If an array of strings is passed, the decorator will attempt to match that path
+    through the store (similar to `immutableJS`'s `getIn`).
+-   If a `function` is passed the `@select` decorator will attempt to use that function
+    as a selector on the RxJs observable.
+-   If nothing is passed then the `@select` decorator will attempt to use the name of the class property to find a matching value in the Redux store. Note that a utility is in place here where any \$ characters will be ignored from the class property's name.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -163,38 +153,38 @@ import { Observable } from 'rxjs/Observable';
 import { select } from 'ngredux-store';
 
 @Component({
-  selector: 'counter-value-printed-many-times',
-  template: `
-    <p>{{ counter$ | async }}</p>
-    <p>{{ counter | async }}</p>
-    <p>{{ counterSelectedWithString | async }}</p>
-    <p>{{ counterSelectedWithFunction | async }}</p>
-    <p>{{ counterSelectedWithFunctionAndMultipliedByTwo | async }}</p>
-  `,
+    selector: 'counter-value-printed-many-times',
+    template: `
+        <p>{{ counter$ | async }}</p>
+        <p>{{ counter | async }}</p>
+        <p>{{ counterSelectedWithString | async }}</p>
+        <p>{{ counterSelectedWithFunction | async }}</p>
+        <p>{{ counterSelectedWithFunctionAndMultipliedByTwo | async }}</p>
+    `,
 })
 export class CounterValue {
-  // this selects `counter` from the store and attaches it to this property
-  // it uses the property name to select, and ignores the $ from it
-  @select() counter$;
+    // this selects `counter` from the store and attaches it to this property
+    // it uses the property name to select, and ignores the $ from it
+    @select() counter$;
 
-  // this selects `counter` from the store and attaches it to this property
-  @select() counter;
+    // this selects `counter` from the store and attaches it to this property
+    @select() counter;
 
-  // this selects `counter` from the store and attaches it to this property
-  @select('counter') counterSelectedWithString;
+    // this selects `counter` from the store and attaches it to this property
+    @select('counter') counterSelectedWithString;
 
-  // this selects `pathDemo.foo.bar` from the store and attaches it to this
-  // property.
-  @select(['pathDemo', 'foo', 'bar'])
-  pathSelection;
+    // this selects `pathDemo.foo.bar` from the store and attaches it to this
+    // property.
+    @select(['pathDemo', 'foo', 'bar'])
+    pathSelection;
 
-  // this selects `counter` from the store and attaches it to this property
-  @select(state => state.counter)
-  counterSelectedWithFunction;
+    // this selects `counter` from the store and attaches it to this property
+    @select(state => state.counter)
+    counterSelectedWithFunction;
 
-  // this selects `counter` from the store and multiples it by two
-  @select(state => state.counter * 2)
-  counterSelectedWithFuntionAndMultipliedByTwo: Observable<any>;
+    // this selects `counter` from the store and multiples it by two
+    @select(state => state.counter * 2)
+    counterSelectedWithFuntionAndMultipliedByTwo: Observable<any>;
 }
 ```
 
@@ -211,35 +201,28 @@ import * as CounterActions from '../actions/CounterActions';
 import { NgRedux } from 'ngredux-store';
 
 interface IAppState {
-  counter: number;
+    counter: number;
 }
 
 @Component({
-  selector: 'root',
-  template: `
-    <counter
-      [counter]="counter$ | async"
-      [increment]="increment"
-      [decrement]="decrement"
-    >
-    </counter>
-  `,
+    selector: 'root',
+    template: `
+        <counter [counter]="counter$ | async" [increment]="increment" [decrement]="decrement"> </counter>
+    `,
 })
 export class Counter {
-  private count$: Observable<number>;
+    private count$: Observable<number>;
 
-  constructor(private ngRedux: NgRedux<IAppState>) {}
+    constructor(private ngRedux: NgRedux<IAppState>) {}
 
-  ngOnInit() {
-    let { increment, decrement } = CounterActions;
-    this.counter$ = this.ngRedux.select('counter');
-  }
+    ngOnInit() {
+        let { increment, decrement } = CounterActions;
+        this.counter$ = this.ngRedux.select('counter');
+    }
 
-  incrementIfOdd = () =>
-    this.ngRedux.dispatch(<any>CounterActions.incrementIfOdd());
+    incrementIfOdd = () => this.ngRedux.dispatch(<any>CounterActions.incrementIfOdd());
 
-  incrementAsync = () =>
-    this.ngRedux.dispatch(<any>CounterActions.incrementAsync());
+    incrementAsync = () => this.ngRedux.dispatch(<any>CounterActions.incrementAsync());
 }
 ```
 
@@ -257,16 +240,16 @@ import { select$ } from 'angular-redux/store';
 export const debounceAndTriple = obs$ => obs$.debounce(300).map(x => 3 * x);
 
 class Foo {
-  @select$(['foo', 'bar'], debounceAndTriple)
-  readonly debouncedFooBar$: Observable<number>;
+    @select$(['foo', 'bar'], debounceAndTriple)
+    readonly debouncedFooBar$: Observable<number>;
 }
 ```
 
 # Cookbooks
 
-- [Using Angular's Dependency Injector with Action Creators](store/articles/cookbooks#using-angular-services-in-your-action-creators)
-- [Using Angular's Dependency Injector with Middlewares](store/articles/cookbooks#using-angular-2-services-in-your-middleware)
-- [Managing Side-Effects with redux-observable Epics](store/articles/cookbooks#side-effect-management-using-epics)
-- [Using the Redux DevTools Chrome Extension](store/articles/cookbooks#using-devtools)
-- [ngredux-store and ImmutableJS](store/articles/cookbooks#using-immutablejs)
-- [Strongly Typed Reducers](store/articles/cookbooks#strongly-typed-reducers)
+-   [Using Angular's Dependency Injector with Action Creators](store/articles/cookbooks#using-angular-services-in-your-action-creators)
+-   [Using Angular's Dependency Injector with Middlewares](store/articles/cookbooks#using-angular-2-services-in-your-middleware)
+-   [Managing Side-Effects with redux-observable Epics](store/articles/cookbooks#side-effect-management-using-epics)
+-   [Using the Redux DevTools Chrome Extension](store/articles/cookbooks#using-devtools)
+-   [ngredux-store and ImmutableJS](store/articles/cookbooks#using-immutablejs)
+-   [Strongly Typed Reducers](store/articles/cookbooks#strongly-typed-reducers)

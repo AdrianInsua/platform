@@ -7,10 +7,4 @@ import { NgReduxRouter } from './router';
 //  export * from './foo'
 // ... because it breaks rollup. See
 // https://github.com/rollup/rollup/wiki/Troubleshooting#name-is-not-exported-by-module
-export {
-    NgReduxRouter,
-    NgReduxRouterModule,
-    RouterAction,
-    routerReducer,
-    UPDATE_LOCATION,
-};
+export { NgReduxRouter, NgReduxRouterModule, RouterAction, routerReducer, UPDATE_LOCATION };

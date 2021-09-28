@@ -20,8 +20,8 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'ngredux-router';
 
 export default combineReducers<IAppState>({
-  // your reducers..
-  router: routerReducer,
+    // your reducers..
+    router: routerReducer,
 });
 ```
 
@@ -35,19 +35,19 @@ import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes),
-    NgReduxModule,
-    NgReduxRouterModule.forRoot(),
-    // ...your imports
-  ],
-  // Other stuff..
+    imports: [
+        RouterModule.forRoot(routes),
+        NgReduxModule,
+        NgReduxRouterModule.forRoot(),
+        // ...your imports
+    ],
+    // Other stuff..
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>, ngReduxRouter: NgReduxRouter) {
-    ngRedux.configureStore(/* args */);
-    ngReduxRouter.initialize(/* args */);
-  }
+    constructor(ngRedux: NgRedux<IAppState>, ngReduxRouter: NgReduxRouter) {
+        ngRedux.configureStore(/* args */);
+        ngReduxRouter.initialize(/* args */);
+    }
 }
 ```
 
@@ -70,4 +70,4 @@ getting the URL from there.
 
 ## Examples
 
-- [Example-app: An example of using ngredux-router along with the other companion packages.](https://github.com/angular-redux/platform/tree/master/packages/example-app)
+-   [Example-app: An example of using ngredux-router along with the other companion packages.](https://github.com/angular-redux/platform/tree/master/packages/example-app)

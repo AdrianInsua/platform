@@ -2,12 +2,7 @@ import { AnyAction, Reducer } from 'redux';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { NgRedux } from '../components/ng-redux';
 import { ObservableStore } from '../components/observable-store';
-import {
-    Comparator,
-    PathSelector,
-    Selector,
-    Transformer,
-} from '../components/selectors';
+import { Comparator, PathSelector, Selector, Transformer } from '../components/selectors';
 
 /**
  * Used with the `@WithSubStore` class decorator to define a SubStore (AKA a
@@ -17,17 +12,17 @@ import {
  * https://github.com/angular-redux/platform/blob/master/packages/store/articles/fractal-store.md
  */
 export interface FractalStoreOptions {
-  /**
-   * The name of an instance method that will define the
-   * base path for the subStore. This method is expected to return an array
-   * of property names or undefined/null.
-   */
-  basePathMethodName: string;
+    /**
+     * The name of an instance method that will define the
+     * base path for the subStore. This method is expected to return an array
+     * of property names or undefined/null.
+     */
+    basePathMethodName: string;
 
-  /**
-   * The localReducer for the substore in question.
-   */
-  localReducer: Reducer<any, AnyAction>;
+    /**
+     * The localReducer for the substore in question.
+     */
+    localReducer: Reducer<any, AnyAction>;
 }
 
 /**
@@ -50,8 +45,7 @@ const OPTIONS_KEY = '@angular-redux::substore::class::options';
  * class.
  */
 const INSTANCE_SUBSTORE_KEY = '@angular-redux::substore::instance::store';
-const INSTANCE_SELECTIONS_KEY =
-  '@angular-redux::substore::instance::selections';
+const INSTANCE_SELECTIONS_KEY = '@angular-redux::substore::instance::selections';
 
 /**
  * Used to detect when the base path changes - this allows components to
@@ -59,14 +53,10 @@ const INSTANCE_SELECTIONS_KEY =
  */
 const INSTANCE_BASE_PATH_KEY = '@angular-redux::substore::instance::basepath';
 
-const getClassOptions = (decoratedInstance: any): FractalStoreOptions =>
-    decoratedInstance.constructor[OPTIONS_KEY];
+const getClassOptions = (decoratedInstance: any): FractalStoreOptions => decoratedInstance.constructor[OPTIONS_KEY];
 
 /** @hidden */
-export const setClassOptions = (
-    decoratedClassConstructor: any,
-    options: FractalStoreOptions,
-): void => {
+export const setClassOptions = (decoratedClassConstructor: any, options: FractalStoreOptions): void => {
     decoratedClassConstructor[OPTIONS_KEY] = options;
 };
 
@@ -74,13 +64,10 @@ export const setClassOptions = (
 // 1. different instances can have distinct substores if necessary
 // 2. the substore/selections will be marked for garbage collection when the
 //    instance is destroyed.
-const setInstanceStore = (
-    decoratedInstance: any,
-    store?: ObservableStore<any>,
-) => (decoratedInstance[INSTANCE_SUBSTORE_KEY] = store);
+const setInstanceStore = (decoratedInstance: any, store?: ObservableStore<any>) =>
+    (decoratedInstance[INSTANCE_SUBSTORE_KEY] = store);
 
-const getInstanceStore = (decoratedInstance: any): ObservableStore<any> =>
-    decoratedInstance[INSTANCE_SUBSTORE_KEY];
+const getInstanceStore = (decoratedInstance: any): ObservableStore<any> => decoratedInstance[INSTANCE_SUBSTORE_KEY];
 
 const getInstanceSelectionMap = (decoratedInstance: any) => {
     const map = decoratedInstance[INSTANCE_SELECTIONS_KEY] || {};
@@ -88,16 +75,10 @@ const getInstanceSelectionMap = (decoratedInstance: any) => {
     return map;
 };
 
-const hasBasePathChanged = (
-    decoratedInstance: any,
-    basePath?: PathSelector,
-): boolean =>
+const hasBasePathChanged = (decoratedInstance: any, basePath?: PathSelector): boolean =>
     decoratedInstance[INSTANCE_BASE_PATH_KEY] !== (basePath || []).toString();
 
-const setInstanceBasePath = (
-    decoratedInstance: any,
-    basePath?: PathSelector,
-): void => {
+const setInstanceBasePath = (decoratedInstance: any, basePath?: PathSelector): void => {
     decoratedInstance[INSTANCE_BASE_PATH_KEY] = (basePath || []).toString();
 };
 
@@ -112,9 +93,7 @@ const clearInstanceState = (decoratedInstance: any) => {
  * component or service)
  * @hidden
  */
-export const getBaseStore = (
-    decoratedInstance: any,
-): ObservableStore<any> | undefined => {
+export const getBaseStore = (decoratedInstance: any): ObservableStore<any> | undefined => {
     // The root store hasn't been set up yet.
     if (!NgRedux.instance) {
         return undefined;
@@ -140,10 +119,7 @@ export const getBaseStore = (
 
     const store = getInstanceStore(decoratedInstance);
     if (!store) {
-        setInstanceStore(
-            decoratedInstance,
-            NgRedux.instance.configureSubStore(basePath, options.localReducer),
-        );
+        setInstanceStore(decoratedInstance, NgRedux.instance.configureSubStore(basePath, options.localReducer));
     }
 
     return getInstanceStore(decoratedInstance);
@@ -168,13 +144,13 @@ export const getInstanceSelection = <T>(
         const selections = getInstanceSelectionMap(decoratedInstance);
 
         selections[key] =
-      selections[key] ||
-      (!transformer
-          ? store.select(selector, comparator)
-          : store.select(selector).pipe(
-              obs$ => transformer(obs$, decoratedInstance),
-              distinctUntilChanged(comparator),
-          ));
+            selections[key] ||
+            (!transformer
+                ? store.select(selector, comparator)
+                : store.select(selector).pipe(
+                    obs$ => transformer(obs$, decoratedInstance),
+                    distinctUntilChanged(comparator),
+                ));
 
         return selections[key];
     }

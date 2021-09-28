@@ -37,13 +37,13 @@ a global 'AppState' by composing the reducer types:
 
 ```typescript
 export interface IAppState {
-  foo?: TFoo;
-  bar?: IBar;
+    foo?: TFoo;
+    bar?: IBar;
 }
 
 export const rootReducer = combineReducers({
-  foo: fooReducer,
-  bar: barReducer,
+    foo: fooReducer,
+    bar: barReducer,
 });
 ```
 
@@ -55,9 +55,9 @@ import { IAppState } from './store';
 
 @Injectable()
 export class MyActionService {
-  constructor(private ngRedux: NgRedux<IAppState>) {}
+    constructor(private ngRedux: NgRedux<IAppState>) {}
 
-  // ...
+    // ...
 }
 ```
 
@@ -69,11 +69,8 @@ particular, consider importing and using the `Action` and `Reducer` types:
 ```typescript
 import { Action, Reducer } from 'redux';
 
-export const fooReducer: Reducer<TFoo> = (
-  state: TFoo,
-  action: Action,
-): TFoo => {
-  // ...
+export const fooReducer: Reducer<TFoo> = (state: TFoo, action: Action): TFoo => {
+    // ...
 };
 ```
 
@@ -97,11 +94,8 @@ further:
 import { Reducer } from 'redux';
 import { Action } from 'flux-standard-action';
 
-export const fooReducer: Reducer<TFoo> = (
-  state: TFoo,
-  action: Action<TFoo>,
-): TFoo => {
-  // ...
+export const fooReducer: Reducer<TFoo> = (state: TFoo, action: Action<TFoo>): TFoo => {
+    // ...
 };
 ```
 
@@ -110,21 +104,18 @@ If you need more flexibility in payload types, you can use a union and
 [type assertions](https://www.typescriptlang.org/docs/handbook/advanced-types.html):
 
 ```typescript
-export const barReducer: Reducer<IBar> = (
-  state: IBar,
-  action: Action<number | string>,
-): IBar => {
-  switch (action.type) {
-    case A_HAS_CHANGED:
-      return Object.assign({}, state, {
-        a: <number>action.payload,
-      });
-    case B_HAS_CHANGED:
-      return Object.assign({}, state, {
-        b: <string>action.payload,
-      });
-    // ...
-  }
+export const barReducer: Reducer<IBar> = (state: IBar, action: Action<number | string>): IBar => {
+    switch (action.type) {
+        case A_HAS_CHANGED:
+            return Object.assign({}, state, {
+                a: <number>action.payload,
+            });
+        case B_HAS_CHANGED:
+            return Object.assign({}, state, {
+                b: <string>action.payload,
+            });
+        // ...
+    }
 };
 ```
 
@@ -136,18 +127,15 @@ In the Babel world, reducers often use `Object.assign` or property spread to
 maintain immutability. This works in Typescript too, but it's not typesafe:
 
 ```typescript
-export const barReducer: Reducer<IBar> = (
-  state: IBar,
-  action: Action<number | string>,
-): IBar => {
-  switch (action.type) {
-    case A_HAS_CHANGED:
-      return Object.assign({}, state, {
-        a: <number>action.payload,
-        zzz: 'test', // We'd like this to generate a compile error, but it doesn't
-      });
-    // ...
-  }
+export const barReducer: Reducer<IBar> = (state: IBar, action: Action<number | string>): IBar => {
+    switch (action.type) {
+        case A_HAS_CHANGED:
+            return Object.assign({}, state, {
+                a: <number>action.payload,
+                zzz: 'test', // We'd like this to generate a compile error, but it doesn't
+            });
+        // ...
+    }
 };
 ```
 
@@ -162,18 +150,15 @@ that will catch this type of error:
 ```typescript
 import { tassign } from 'tassign';
 
-export const barReducer: Reducer<IBar> = (
-  state: IBar,
-  action: Action<number | string>,
-): IBar => {
-  switch (action.type) {
-    case A_HAS_CHANGED:
-      return tassign(state, {
-        a: <number>action.payload,
-        zzz: 'test', // Error: zzz is not a property of IBar
-      });
-    // ...
-  }
+export const barReducer: Reducer<IBar> = (state: IBar, action: Action<number | string>): IBar => {
+    switch (action.type) {
+        case A_HAS_CHANGED:
+            return tassign(state, {
+                a: <number>action.payload,
+                zzz: 'test', // Error: zzz is not a property of IBar
+            });
+        // ...
+    }
 };
 ```
 

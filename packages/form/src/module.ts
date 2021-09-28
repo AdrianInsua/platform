@@ -11,12 +11,7 @@ export function formStoreFactory(ngRedux: NgRedux<any>) {
 }
 
 @NgModule({
-    imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        NgReduxFormConnectModule,
-        NgReduxFormConnectArrayModule,
-    ],
+    imports: [ FormsModule, ReactiveFormsModule, NgReduxFormConnectModule, NgReduxFormConnectArrayModule ],
     exports: [ NgReduxFormConnectModule, NgReduxFormConnectArrayModule ],
     providers: [
         {

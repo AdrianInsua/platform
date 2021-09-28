@@ -6,9 +6,7 @@ import { FORM_CHANGED } from './form-store';
 
 import { State } from './state';
 
-export const defaultFormReducer = <RootState>(
-    initialState?: RootState | Collection.Keyed<string, any>,
-) => {
+export const defaultFormReducer = <RootState>(initialState?: RootState | Collection.Keyed<string, any>) => {
     const reducer = (
         state: RootState | Collection.Keyed<string, any> | undefined = initialState,
         action: Action & { payload?: any },

@@ -27,17 +27,17 @@ import { createLogger } from 'redux-logger';
 import { rootReducer } from './reducers';
 
 interface IAppState {
-  /* ... */
+    /* ... */
 }
 
 @NgModule({
-  /* ... */
-  imports: [, /* ... */ NgReduxModule],
+    /* ... */
+    imports: [, /* ... */ NgReduxModule],
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.configureStore(rootReducer, {}, [createLogger()]);
-  }
+    constructor(ngRedux: NgRedux<IAppState>) {
+        ngRedux.configureStore(rootReducer, {}, [createLogger()]);
+    }
 }
 ```
 
@@ -45,34 +45,25 @@ Or if you prefer to create the Redux store yourself you can do that and use the
 `provideStore()` function instead:
 
 ```typescript
-import {
-  applyMiddleware,
-  Store,
-  combineReducers,
-  compose,
-  createStore,
-} from 'redux';
+import { applyMiddleware, Store, combineReducers, compose, createStore } from 'redux';
 import { NgReduxModule, NgRedux } from 'ngredux-store';
 import { createLogger } from 'redux-logger';
 import { rootReducer } from './reducers';
 
 interface IAppState {
-  /* ... */
+    /* ... */
 }
 
-export const store: Store<IAppState> = createStore(
-  rootReducer,
-  applyMiddleware(createLogger()),
-);
+export const store: Store<IAppState> = createStore(rootReducer, applyMiddleware(createLogger()));
 
 @NgModule({
-  /* ... */
-  imports: [, /* ... */ NgReduxModule],
+    /* ... */
+    imports: [, /* ... */ NgReduxModule],
 })
 class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.provideStore(store);
-  }
+    constructor(ngRedux: NgRedux<IAppState>) {
+        ngRedux.provideStore(store);
+    }
 }
 ```
 
@@ -91,16 +82,15 @@ access your store state, and `.dispatch()` to dispatch actions:
 import { select } from 'ngredux-store';
 
 @Component({
-  template:
-    '<button (click)="onClick()">Clicked {{ count | async }} times</button>',
+    template: '<button (click)="onClick()">Clicked {{ count | async }} times</button>',
 })
 class App {
-  @select() count$: Observable<number>;
+    @select() count$: Observable<number>;
 
-  constructor(private ngRedux: NgRedux<IAppState>) {}
+    constructor(private ngRedux: NgRedux<IAppState>) {}
 
-  onClick() {
-    this.ngRedux.dispatch({ type: INCREMENT });
-  }
+    onClick() {
+        this.ngRedux.dispatch({ type: INCREMENT });
+    }
 }
 ```

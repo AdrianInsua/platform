@@ -7,14 +7,14 @@ import { NgRedux } from 'ngredux-store';
 import { Action, Unsubscribe } from 'redux';
 
 export interface AbstractStore<RootState> {
-  /// Dispatch an action
-  dispatch(action: Action & { payload: any }): void;
+    /// Dispatch an action
+    dispatch(action: Action & { payload: any }): void;
 
-  /// Retrieve the current application state
-  getState(): RootState;
+    /// Retrieve the current application state
+    getState(): RootState;
 
-  /// Subscribe to changes in the store
-  subscribe(fn: (state: RootState) => void): Unsubscribe;
+    /// Subscribe to changes in the store
+    subscribe(fn: (state: RootState) => void): Unsubscribe;
 }
 
 export const FORM_CHANGED = '@ngredux-form/FORM_CHANGED';
