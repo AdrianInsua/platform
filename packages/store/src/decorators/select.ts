@@ -6,7 +6,7 @@ import { getInstanceSelection } from './helpers';
  * property.
  *
  * ```ts
- *  import { select } from 'ngredux-store';
+ *  import { select } from '@adrian.insua/ngredux-store';
  *
  *  class SomeClass {
  *    @select(['foo','bar']) foo$: Observable<string>

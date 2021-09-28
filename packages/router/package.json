@@ -1,5 +1,5 @@
 {
-    "name": "ngredux-router",
+    "name": "@adrian.insua/ngredux-router",
     "version": "0.0.1",
     "description": "Keep your Angular 2+ router state in Redux.",
     "author": "Dag Stuan",
@@ -40,10 +40,10 @@
         "node": ">=8"
     },
     "devDependencies": {
-        "ngredux-store": "*"
+        "@adrian.insua/ngredux-store": "*"
     },
     "peerDependencies": {
-        "ngredux-store": "*",
+        "@adrian.insua/ngredux-store": "*",
         "@angular/common": "11.0.5",
         "@angular/core": "11.0.5",
         "@angular/router": "11.0.5",

@@ -1,5 +1,5 @@
 {
-    "name": "ngredux-store",
+    "name": "@adrian.insua/ngredux-store",
     "version": "0.0.1",
     "description": "Angular bindings for Redux",
     "author": "William Buchwalter <wbuchwalter@gmail.com> (http://github.com/wbuchwalter)",
@@ -15,12 +15,12 @@
     "bugs": {
         "url": "https://github.com/AdrianInsua/platform"
     },
-    "main": "dist/ngredux-store/bundles/ngredux-store.umd.js",
-    "module": "dist/ngredux-store/fesm2015/ngredux-store.js",
-    "es2015": "dist/ngredux-store/fesm2015/ngredux-store.js",
-    "esm2015": "dist/ngredux-store/esm2015/ngredux-store.js",
-    "fesm2015": "dist/ngredux-store/fesm2015/ngredux-store.js",
-    "typings": "dist/ngredux-store/ngredux-store.d.ts",
+    "main": "dist/bundles/adrian.insua-ngredux-store.umd.js",
+    "module": "dist/fesm2015/adrian.insua-ngredux-store.js",
+    "es2015": "dist/fesm2015/adrian.insua-ngredux-store.js",
+    "esm2015": "dist/esm2015/adrian.insua-ngredux-store.js",
+    "fesm2015": "dist/fesm2015/adrian.insua-ngredux-store.js",
+    "typings": "dist/adrian.insua-ngredux-store.d.ts",
     "files": [
         "dist/"
     ],

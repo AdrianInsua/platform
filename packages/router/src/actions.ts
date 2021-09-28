@@ -1,1 +1,1 @@
-export const UPDATE_LOCATION: string = 'ngredux-router::UPDATE_LOCATION';
+export const UPDATE_LOCATION: string = '@adrian.insua/ngredux-router::UPDATE_LOCATION';

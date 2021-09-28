@@ -1,9 +1,9 @@
 ## Installation
 
-`ngredux-store` has a peer dependency on redux, so we need to install it as well.
+`@adrian.insua/ngredux-store` has a peer dependency on redux, so we need to install it as well.
 
 ```sh
-npm install --save redux ngredux-store
+npm install --save redux @adrian.insua/ngredux-store
 ```
 
 ## Quick Start
@@ -22,7 +22,7 @@ can configure your Redux store with reducers, initial state,
 and optionally middlewares and enhancers as you would in Redux directly.
 
 ```typescript
-import { NgReduxModule, NgRedux } from 'ngredux-store';
+import { NgReduxModule, NgRedux } from '@adrian.insua/ngredux-store';
 import { createLogger } from 'redux-logger';
 import { rootReducer } from './reducers';
 
@@ -46,7 +46,7 @@ Or if you prefer to create the Redux store yourself you can do that and use the
 
 ```typescript
 import { applyMiddleware, Store, combineReducers, compose, createStore } from 'redux';
-import { NgReduxModule, NgRedux } from 'ngredux-store';
+import { NgReduxModule, NgRedux } from '@adrian.insua/ngredux-store';
 import { createLogger } from 'redux-logger';
 import { rootReducer } from './reducers';
 
@@ -69,7 +69,7 @@ class AppModule {
 
 > Note that we're also using a Redux middleware from the community here:
 > [redux-logger](https://www.npmjs.com/package/redux-logger). This is just to show
-> off that `ngredux-store` is indeed compatible with Redux middlewares as you
+> off that `@adrian.insua/ngredux-store` is indeed compatible with Redux middlewares as you
 > might expect.
 >
 > Note that to use it, you'll need to install it with `npm install --save redux-logger`
@@ -79,7 +79,7 @@ Now your Angular app has been reduxified! Use the `@select` decorator to
 access your store state, and `.dispatch()` to dispatch actions:
 
 ```typescript
-import { select } from 'ngredux-store';
+import { select } from '@adrian.insua/ngredux-store';
 
 @Component({
     template: '<button (click)="onClick()">Clicked {{ count | async }} times</button>',

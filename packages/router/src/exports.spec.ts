@@ -1,6 +1,6 @@
 import { NgReduxRouter, NgReduxRouterModule, routerReducer, UPDATE_LOCATION } from './index';
 
-describe('The ngredux-router package exports', () => {
+describe('The @adrian.insua/ngredux-router package exports', () => {
     it('should contain the NgReduxRouter class', () => {
         expect(NgReduxRouter).toBeDefined();
     });

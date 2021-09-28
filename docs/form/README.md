@@ -1,5 +1,5 @@
-[![npm version](https://img.shields.io/npm/v/ngredux-form.svg)](https://www.npmjs.com/package/ngredux-form)
-[![downloads per month](https://img.shields.io/npm/dm/ngredux-form.svg)](https://www.npmjs.com/package/ngredux-form)
+[![npm version](https://img.shields.io/npm/v/@adrian.insua/ngredux-form.svg)](https://www.npmjs.com/package/@adrian.insua/ngredux-form)
+[![downloads per month](https://img.shields.io/npm/dm/@adrian.insua/ngredux-form.svg)](https://www.npmjs.com/package/@adrian.insua/ngredux-form)
 
 This library is a thin layer of connective tissue between Angular 2+ forms and
 Redux. It provides unidirectional data binding between your Redux state and
@@ -49,12 +49,12 @@ the class that is responsible for connecting your forms to your Redux state.
 There are two ways of doing this: either using an `Redux.Store<T>` object or
 an `NgRedux<T>` object. There are no substantial differences between these
 approaches, but if you are already using
-[ngredux-store](https://github.com/angular-redux/platform/blob/master/packages/store) or you wish to integrate
+[@adrian.insua/ngredux-store](https://github.com/angular-redux/platform/blob/master/packages/store) or you wish to integrate
 it into your project, then you would do something like this:
 
 ```typescript
-import { NgReduxModule } from 'ngredux-store';
-import { NgReduxFormModule } from 'ngredux-form';
+import { NgReduxModule } from '@adrian.insua/ngredux-store';
+import { NgReduxFormModule } from '@adrian.insua/ngredux-form';
 
 @NgModule({
     imports: [BrowserModule, ReactiveFormsModule, FormsModule, NgReduxFormModule, NgReduxModule],
@@ -63,11 +63,11 @@ import { NgReduxFormModule } from 'ngredux-form';
 export class ExampleModule {}
 ```
 
-Or if you are using Redux without `ngredux-store`, then your bootstrap call would look
+Or if you are using Redux without `@adrian.insua/ngredux-store`, then your bootstrap call would look
 more like this (substitute your own store creation code):
 
 ```typescript
-import { provideReduxForms } from 'ngredux-form';
+import { provideReduxForms } from '@adrian.insua/ngredux-form';
 
 const storeCreator = compose(applyMiddleware(logger))(createStore);
 const store = create(reducers, <MyApplicationState>{});
@@ -81,7 +81,7 @@ export class ExampleModule {}
 ```
 
 The essential bit of code in the above samples is the call to `provideReduxForms(...)`.
-This configures `ngredux-form` and provides access to your Redux store or NgRedux
+This configures `@adrian.insua/ngredux-form` and provides access to your Redux store or NgRedux
 instance. The shape of the object that `provideReduxForms` expects is very
 basic:
 
@@ -186,7 +186,7 @@ the `path` property on our first `<select>` element, it would look like this:
 ['form1', 'dependents', 0, 'type']
 ```
 
-From there, `ngredux-form` is able to take that path and extract the value for
+From there, `@adrian.insua/ngredux-form` is able to take that path and extract the value for
 that element from the Redux state.
 
 # Reactive Forms
@@ -212,14 +212,14 @@ the easy part and is unlikely to cause any problems for you. Slightly more diffi
 is _updating your Redux state_ when the form values change. There are two approaches
 that you can take in order to do this.
 
-The first, and by far the simplest, is to use the reducer that comes with `ngredux-form`
+The first, and by far the simplest, is to use the reducer that comes with `@adrian.insua/ngredux-form`
 and uses the value supplied in `connect` and the form input names in order to update
 your Redux state automatically. If you do not need to do any special processing on
 your data when the user updates form inputs, then you should use this default reducer.
 To use it, you need to combine it with your existing reducers like so:
 
 ```typescript
-import { composeReducers, defaultFormReducer } from 'ngredux-form';
+import { composeReducers, defaultFormReducer } from '@adrian.insua/ngredux-form';
 
 const reducer = composeReducers(
     defaultFormReducer(),
@@ -284,4 +284,4 @@ you have to use `composeReducers` distasteful, then this is another route availa
 to you.
 
 The unit tests in `*.test.ts` files also contain useful examples of how to build
-forms using `ngredux-form`.
+forms using `@adrian.insua/ngredux-form`.

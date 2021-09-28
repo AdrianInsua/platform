@@ -61,7 +61,7 @@
             "@angular/router/testing",
             "@angular/platform-browser-dynamic/testing",
             "@angular/platform-browser/animations",
-            "ngredux-store/testing"
+            "@adrian.insua/ngredux-store/testing"
         ],
         "no-implicit-dependencies": false // disabled due to monorepo hoisting
     }

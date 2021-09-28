@@ -1,6 +1,6 @@
 # Using DevTools
 
-`ngredux-store` is fully compatible with the Chrome extension version of the Redux dev
+`@adrian.insua/ngredux-store` is fully compatible with the Chrome extension version of the Redux dev
 tools:
 
 https://github.com/zalmoxisus/redux-devtools-extension
@@ -15,7 +15,7 @@ tools that handles this for you.
 Here's how to hook the extension up to your app:
 
 ```typescript
-import { NgReduxModule, NgRedux, DevToolsExtension } from 'ngredux-store';
+import { NgReduxModule, NgRedux, DevToolsExtension } from '@adrian.insua/ngredux-store';
 
 // Add the dev tools enhancer your ngRedux.configureStore called
 // when you initialize your root component:

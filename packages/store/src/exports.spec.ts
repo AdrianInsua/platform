@@ -9,7 +9,7 @@ import {
     WithSubStore,
 } from './index';
 
-describe('The ngredux-store package exports', () => {
+describe('The @adrian.insua/ngredux-store package exports', () => {
     it('should contain the NgReduxModule class', () => {
         expect(NgReduxModule).toBeDefined();
     });

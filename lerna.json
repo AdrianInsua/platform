@@ -1,9 +1,14 @@
 {
-    "packages": ["packages/store", "packages/router", "packages/form"],
+    "packages": [
+        "packages/*"
+    ],
     "version": "0.0.1",
     "npmClient": "yarn",
     "command": {
-      "npmClient": "yarn"
+        "npmClient": "yarn"
     },
-    "ignoreChanges": ["**/*.spec.ts", "**/*.md"]
+    "ignoreChanges": [
+        "**/*.spec.ts",
+        "**/*.md"
+    ]
 }

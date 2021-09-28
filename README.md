@@ -8,6 +8,6 @@ Project forked from unmantained [angular-redux/platform](https://github.com/angu
 
 ## Packages
 
--   [ngredux-store](packages/store) - Bindings between Redux and Angular
--   [ngredux-form](packages/form) - Bindings between Angular Forms and your Redux state
--   [ngredux-router](packages/router) - Bindings between Angular Router and your Redux state
+-   [@adrian.insua/ngredux-store](packages/store) - Bindings between Redux and Angular
+-   [@adrian.insua/ngredux-form](packages/form) - Bindings between Angular Forms and your Redux state
+-   [@adrian.insua/ngredux-router](packages/router) - Bindings between Angular Router and your Redux state

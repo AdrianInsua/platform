@@ -7,9 +7,9 @@
         "baseUrl": ".",
         "strict": true,
         "paths": {
-            "ngredux-store": ["packages/store/src/index.ts"],
-            "ngredux-form": ["packages/form/source/index.ts"],
-            "ngredux-router": ["packages/router/src/index.ts"]
+            "@adrian.insua/ngredux-store": ["packages/store/src/index.ts"],
+            "@adrian.insua/ngredux-form": ["packages/form/source/index.ts"],
+            "@adrian.insua/ngredux-router": ["packages/router/src/index.ts"]
         },
         "sourceMap": true,
         "esModuleInterop": true,

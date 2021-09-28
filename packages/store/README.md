@@ -2,23 +2,23 @@
 
 ## Angular 6+
 
-`ngredux-store@^9` is what you need. This consumes breaking changes from RxJS and Angular 6, as well as updated typedefs from Redux 4.
+`@adrian.insua/ngredux-store@^9` is what you need. This consumes breaking changes from RxJS and Angular 6, as well as updated typedefs from Redux 4.
 
 ## Angular 5
 
-Use `ngredux-store@^7` - this version supports Angular 5, and also changes to using lettable operators.
+Use `@adrian.insua/ngredux-store@^7` - this version supports Angular 5, and also changes to using lettable operators.
 
 ## Angular 4 or lower
 
-Use `ngredux-store@^6` - This supports Angular 4 and earlier.
+Use `@adrian.insua/ngredux-store@^6` - This supports Angular 4 and earlier.
 
-# Support for `ngredux-store@6`?
+# Support for `@adrian.insua/ngredux-store@6`?
 
 Where possible, I will be maintaining and applying any fixes / enhancements for v7 into v6 where it does not introduce a breaking change.
 
 I made a few mistakes trying to publish fixes / etc to two major versions, which caused some releases to get tagged incorrectly and caused some confusion. Sorry for any confusion this has caused, and will do better on avoiding this in the future, and being more transparent with the releases that are going out.
 
-# ngredux-store
+# @adrian.insua/ngredux-store
 
 Angular bindings for [Redux](https://github.com/reactjs/redux).
 
@@ -26,8 +26,8 @@ For Angular 1 see [ng-redux](https://github.com/wbuchwalter/ng-redux)
 
 [![Join the chat at https://gitter.im/angular-redux/ng2-redux](https://badges.gitter.im/angular-redux/ng2-redux.svg)](https://gitter.im/angular-redux/ng2-redux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![CircleCI](https://img.shields.io/circleci/project/github/angular-redux/store.svg)](https://github.com/angular-redux/store)
-[![npm version](https://img.shields.io/npm/v/ngredux-store.svg)](https://www.npmjs.com/package/ngredux-store)
-[![downloads per month](https://img.shields.io/npm/dm/ngredux-store.svg)](https://www.npmjs.com/package/ngredux-store)
+[![npm version](https://img.shields.io/npm/v/@adrian.insua/ngredux-store.svg)](https://www.npmjs.com/package/@adrian.insua/ngredux-store)
+[![downloads per month](https://img.shields.io/npm/dm/@adrian.insua/ngredux-store.svg)](https://www.npmjs.com/package/@adrian.insua/ngredux-store)
 
 ## What is Redux?
 
@@ -58,10 +58,10 @@ with some of Angular's advanced features, including:
 
 ## Installation
 
-`ngredux-store` has a peer dependency on redux, so we need to install it as well.
+`@adrian.insua/ngredux-store` has a peer dependency on redux, so we need to install it as well.
 
 ```sh
-npm install --save redux ngredux-store
+npm install --save redux @adrian.insua/ngredux-store
 ```
 
 ## Quick Start
@@ -80,7 +80,7 @@ can configure your Redux store with reducers, initial state,
 and optionally middlewares and enhancers as you would in Redux directly.
 
 ```typescript
-import { NgReduxModule, NgRedux } from 'ngredux-store';
+import { NgReduxModule, NgRedux } from '@adrian.insua/ngredux-store';
 import { createLogger } from 'redux-logger';
 import { rootReducer } from './reducers';
 
@@ -104,7 +104,7 @@ Or if you prefer to create the Redux store yourself you can do that and use the
 
 ```typescript
 import { applyMiddleware, Store, combineReducers, compose, createStore } from 'redux';
-import { NgReduxModule, NgRedux } from 'ngredux-store';
+import { NgReduxModule, NgRedux } from '@adrian.insua/ngredux-store';
 import { createLogger } from 'redux-logger';
 import { rootReducer } from './reducers';
 
@@ -127,7 +127,7 @@ class AppModule {
 
 > Note that we're also using a Redux middleware from the community here:
 > [redux-logger](https://www.npmjs.com/package/redux-logger). This is just to show
-> off that `ngredux-store` is indeed compatible with Redux middlewares as you
+> off that `@adrian.insua/ngredux-store` is indeed compatible with Redux middlewares as you
 > might expect.
 >
 > Note that to use it, you'll need to install it with `npm install --save redux-logger`
@@ -137,7 +137,7 @@ Now your Angular app has been reduxified! Use the `@select` decorator to
 access your store state, and `.dispatch()` to dispatch actions:
 
 ```typescript
-import { select } from 'ngredux-store';
+import { select } from '@adrian.insua/ngredux-store';
 
 @Component({
     template: '<button (click)="onClick()">Clicked {{ count | async }} times</button>',
@@ -161,8 +161,8 @@ Here are some examples of the `angular-redux` family of packages in action:
 
 ## Companion Packages
 
--   [Reduxify your Routing with ngredux-router](https://github.com/angular-redux/platform/blob/master/packages/router)
--   [Reduxify your Forms with ngredux-form](https://github.com/angular-redux/platform/blob/master/packages/form)
+-   [Reduxify your Routing with @adrian.insua/ngredux-router](https://github.com/angular-redux/platform/blob/master/packages/router)
+-   [Reduxify your Forms with @adrian.insua/ngredux-form](https://github.com/angular-redux/platform/blob/master/packages/form)
 
 ## Resources
 
@@ -172,7 +172,7 @@ Here are some examples of the `angular-redux` family of packages in action:
 
 ## In-Depth Usage
 
-`ngredux-store` uses an approach to redux based on RxJS Observables to `select` and transform
+`@adrian.insua/ngredux-store` uses an approach to redux based on RxJS Observables to `select` and transform
 data on its way out of the store and into your UI or side-effect handlers. Observables
 are an efficient analogue to `reselect` for the RxJS-heavy Angular world.
 
@@ -184,7 +184,7 @@ We also have a number of 'cookbooks' for specific Angular topics:
 -   [Using Angular's Dependency Injector with Middlewares](articles/di-middleware.md)
 -   [Managing Side-Effects with redux-observable Epics](articles/epics.md)
 -   [Using the Redux DevTools Chrome Extension](articles/redux-dev-tools.md)
--   [ngredux-store and ImmutableJS](articles/immutable-js.md)
+-   [@adrian.insua/ngredux-store and ImmutableJS](articles/immutable-js.md)
 -   [Strongly Typed Reducers](articles/strongly-typed-reducers.md)
 
 ## Hacking on angular-redux/store

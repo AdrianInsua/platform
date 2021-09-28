@@ -15,7 +15,7 @@ and a simple `RandomNumberService` to show a side effect.
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgRedux } from 'ngredux-store';
+import { NgRedux } from '@adrian.insua/ngredux-store';
 import * as Redux from 'redux';
 import { RootState } from '../store';
 import { RandomNumberService } from '../services/random-number';
@@ -66,7 +66,7 @@ them into our component:
 
 ```typescript
 import { Component } from '@angular/core';
-import { NgRedux, select } from 'ngredux-store';
+import { NgRedux, select } from '@adrian.insua/ngredux-store';
 import { CounterActions } from '../actions/counter-actions';
 import { RandomNumberService } from '../services/random-number';
 

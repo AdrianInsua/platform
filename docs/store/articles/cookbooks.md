@@ -17,7 +17,7 @@ and a simple `RandomNumberService` to show a side effect.
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgRedux } from 'ngredux-store';
+import { NgRedux } from '@adrian.insua/ngredux-store';
 import * as Redux from 'redux';
 import { RootState } from '../store';
 import { RandomNumberService } from '../services/random-number';
@@ -68,7 +68,7 @@ them into our component:
 
 ```typescript
 import { Component } from '@angular/core';
-import { NgRedux, select } from 'ngredux-store';
+import { NgRedux, select } from '@adrian.insua/ngredux-store';
 import { CounterActions } from '../actions/counter-actions';
 import { RandomNumberService } from '../services/random-number';
 
@@ -132,7 +132,7 @@ properly-bound function context.
 
 ```typescript
 import { NgModule } from '@angular/core';
-import { NgReduxModule, NgRedux } from 'ngredux-store';
+import { NgReduxModule, NgRedux } from '@adrian.insua/ngredux-store';
 import reduxLogger from 'redux-logger';
 import { LogRemoteName } from './middleware/log-remote-name';
 
@@ -154,7 +154,7 @@ export class AppModule {
 
 ## Side-Effect Management Using Epics
 
-`ngredux-store` also works well with the `Epic` feature of
+`@adrian.insua/ngredux-store` also works well with the `Epic` feature of
 [redux-observable](https://github.com/redux-observable). For
 example, a common use case for a side-effect is making an API call; while
 we can use asynchronous actions for this, epics provide a much cleaner
@@ -167,7 +167,7 @@ create some trivial actions:
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgRedux } from 'ngredux-store';
+import { NgRedux } from '@adrian.insua/ngredux-store';
 import { IAppState } from '../reducers';
 
 @Injectable()
@@ -241,7 +241,7 @@ This allows us to configure our Redux store with the new epic as follows:
 
 ```typescript
 import { NgModule } from '@angular/core';
-import { NgReduxModule, NgRedux } from 'ngredux-store';
+import { NgReduxModule, NgRedux } from '@adrian.insua/ngredux-store';
 import { createEpicMiddleware } from 'redux-observable';
 import rootReducer from './reducers';
 import { SessionEpics } from './epics';
@@ -269,7 +269,7 @@ side effects as a set of simple RxJS epics.
 
 ## Using DevTools
 
-`ngredux-store` is fully compatible with the Chrome extension version of the Redux dev
+`@adrian.insua/ngredux-store` is fully compatible with the Chrome extension version of the Redux dev
 tools:
 
 https://github.com/zalmoxisus/redux-devtools-extension
@@ -284,7 +284,7 @@ tools that handles this for you.
 Here's how to hook the extension up to your app:
 
 ```typescript
-import { NgReduxModule, NgRedux, DevToolsExtension } from 'ngredux-store';
+import { NgReduxModule, NgRedux, DevToolsExtension } from '@adrian.insua/ngredux-store';
 
 // Add the dev tools enhancer your ngRedux.configureStore called
 // when you initialize your root component:
@@ -435,7 +435,7 @@ constructor() {
 
 ### Post 3.3.0:
 
-In `ngredux-store` 3.3.0 we've allowed you to have your cake and eat it too: the
+In `@adrian.insua/ngredux-store` 3.3.0 we've allowed you to have your cake and eat it too: the
 `@select` decorator can now detect if the selected state is an ImmutableJS
 construct and call `.get` or `.getIn` for you.
 

@@ -1,4 +1,4 @@
-import { NgRedux } from 'ngredux-store';
+import { NgRedux } from '@adrian.insua/ngredux-store';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 

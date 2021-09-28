@@ -1,5 +1,5 @@
-[![npm version](https://img.shields.io/npm/v/ngredux-store.svg)](https://www.npmjs.com/package/ngredux-store)
-[![downloads per month](https://img.shields.io/npm/dm/ngredux-store.svg)](https://www.npmjs.com/package/ngredux-store)
+[![npm version](https://img.shields.io/npm/v/@adrian.insua/ngredux-store.svg)](https://www.npmjs.com/package/@adrian.insua/ngredux-store)
+[![downloads per month](https://img.shields.io/npm/dm/@adrian.insua/ngredux-store.svg)](https://www.npmjs.com/package/@adrian.insua/ngredux-store)
 
 # Getting Started
 
@@ -9,10 +9,10 @@
 
 ## Quickstart
 
-`ngredux-store` has a peer dependency on redux, so we need to install it.
+`@adrian.insua/ngredux-store` has a peer dependency on redux, so we need to install it.
 
 ```sh
-npm install --save redux ngredux-store
+npm install --save redux @adrian.insua/ngredux-store
 ```
 
 ```typescript
@@ -29,7 +29,7 @@ can configure your Redux store with reducers, initial state,
 and optionally middlewares and enhancers as you would in Redux directly.
 
 ```typescript
-import { NgReduxModule, NgRedux } from 'ngredux-store';
+import { NgReduxModule, NgRedux } from '@adrian.insua/ngredux-store';
 import { createLogger } from 'redux-logger';
 import { rootReducer } from './reducers';
 
@@ -53,7 +53,7 @@ Or if you prefer to create the Redux store yourself you can do that and use the
 
 ```typescript
 import { applyMiddleware, Store, combineReducers, compose, createStore } from 'redux';
-import { NgReduxModule, NgRedux } from 'ngredux-store';
+import { NgReduxModule, NgRedux } from '@adrian.insua/ngredux-store';
 import { createLogger } from 'redux-logger';
 import { rootReducer } from './reducers';
 
@@ -76,7 +76,7 @@ class AppModule {
 
 > Note that we're also using a Redux middleware from the community here:
 > [redux-logger](https://www.npmjs.com/package/redux-logger). This is just to show
-> off that `ngredux-store` is indeed compatible with Redux middlewares as you
+> off that `@adrian.insua/ngredux-store` is indeed compatible with Redux middlewares as you
 > might expect.
 >
 > Note that to use it, you'll need to install it with `npm install --save redux-logger`
@@ -86,7 +86,7 @@ Now your Angular app has been reduxified! Use the `@select` decorator to
 access your store state, and `.dispatch()` to dispatch actions:
 
 ```typescript
-import { select } from 'ngredux-store';
+import { select } from '@adrian.insua/ngredux-store';
 
 @Component({
     template: '<button (click)="onClick()">Clicked {{ count | async }} times</button>',
@@ -106,8 +106,8 @@ class App {
 
 # Companion Packages
 
--   [Reduxify your Routing with ngredux-router](https://github.com/angular-redux/platform/blob/master/packages/router)
--   [Reduxify your Forms with ngredux-form](https://github.com/angular-redux/platform/blob/master/packages/form)
+-   [Reduxify your Routing with @adrian.insua/ngredux-router](https://github.com/angular-redux/platform/blob/master/packages/router)
+-   [Reduxify your Forms with @adrian.insua/ngredux-form](https://github.com/angular-redux/platform/blob/master/packages/form)
 
 # Resources
 
@@ -117,7 +117,7 @@ class App {
 
 # In-Depth Usage
 
-`ngredux-store` uses an approach to redux based on RxJS Observables to `select` and transform
+`@adrian.insua/ngredux-store` uses an approach to redux based on RxJS Observables to `select` and transform
 data on its way out of the store and into your UI or side-effect handlers. Observables
 are an efficient analogue to `reselect` for the RxJS-heavy Angular world.
 
@@ -150,7 +150,7 @@ parameter at all.
 ```typescript
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { select } from 'ngredux-store';
+import { select } from '@adrian.insua/ngredux-store';
 
 @Component({
     selector: 'counter-value-printed-many-times',
@@ -198,7 +198,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Counter } from '../components/Counter';
 import * as CounterActions from '../actions/CounterActions';
-import { NgRedux } from 'ngredux-store';
+import { NgRedux } from '@adrian.insua/ngredux-store';
 
 interface IAppState {
     counter: number;
@@ -251,5 +251,5 @@ class Foo {
 -   [Using Angular's Dependency Injector with Middlewares](store/articles/cookbooks#using-angular-2-services-in-your-middleware)
 -   [Managing Side-Effects with redux-observable Epics](store/articles/cookbooks#side-effect-management-using-epics)
 -   [Using the Redux DevTools Chrome Extension](store/articles/cookbooks#using-devtools)
--   [ngredux-store and ImmutableJS](store/articles/cookbooks#using-immutablejs)
+-   [@adrian.insua/ngredux-store and ImmutableJS](store/articles/cookbooks#using-immutablejs)
 -   [Strongly Typed Reducers](store/articles/cookbooks#strongly-typed-reducers)
