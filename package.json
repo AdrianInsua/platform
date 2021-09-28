@@ -75,6 +75,8 @@
         "redux": "4.0.1",
         "rimraf": "2.6.3",
         "rxjs": "6.3.3",
+        "semantic-release": "^17.0.6",
+        "semantic-release-monorepo": "^7.0.5",
         "tsickle": "0.34.0",
         "tslib": "^2.0.0",
         "ts-node": "~8.3.0",
