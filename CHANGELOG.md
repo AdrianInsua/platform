@@ -1,3 +1,10 @@
+## [10.1.1](https://github.com/AdrianInsua/platform/compare/v10.1.0...v10.1.1) (2021-09-28)
+
+
+### Bug Fixes
+
+* fix dist routes ([#1](https://github.com/AdrianInsua/platform/issues/1)) ([c072d97](https://github.com/AdrianInsua/platform/commit/c072d97891835c717c8279acd5f66d1b4a405107))
+
 # [10.1.0](https://github.com/AdrianInsua/platform/compare/v10.0.0...v10.1.0) (2021-09-28)
 
 
