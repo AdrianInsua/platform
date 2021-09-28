@@ -1,4 +1,4 @@
-:warning: **This project is currently unmaintained**
+Project forked from unmantained [@angular-redux/platform](https://github.com/angular-redux/platform) to add Ivy compilation support.
 
 # Angular Redux
 

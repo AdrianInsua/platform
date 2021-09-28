@@ -1,9 +1,8 @@
 {
   "packages": ["packages/*"],
-  "version": "10.0.0",
+  "version": "0.0.1",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "ignore": "example-app",
   "ignoreChanges": ["**/*.spec.ts", "**/*.md"],
   "command": {
     "init": {
@@ -15,7 +14,7 @@
       "contents": "dist"
     },
     "version": {
-      "allowBranch": "master",
+      "allowBranch": "main",
       "conventionalCommits": true,
       "exact": true,
       "githubRelease": true,
