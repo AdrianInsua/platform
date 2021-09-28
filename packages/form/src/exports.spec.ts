@@ -16,7 +16,7 @@ import {
   ReactiveConnectDirective,
 } from './index';
 
-describe('The @angular-redux/form package exports', () => {
+describe('The ngredux-form package exports', () => {
   it('should contain the composeReducers function', () => {
     expect(composeReducers).toBeDefined();
   });

@@ -25,7 +25,7 @@ parameter at all.
 ```typescript
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { select } from '@angular-redux/store';
+import { select } from 'ngredux-store';
 
 @Component({
   selector: 'counter-value-printed-many-times',
@@ -73,7 +73,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Counter } from '../components/Counter';
 import * as CounterActions from '../actions/CounterActions';
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux } from 'ngredux-store';
 
 interface IAppState {
   counter: number;

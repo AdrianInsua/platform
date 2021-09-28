@@ -1,24 +1,34 @@
 {
-  "name": "nredux-router",
+  "name": "ngredux-router",
   "version": "0.0.1",
   "description": "Keep your Angular 2+ router state in Redux.",
   "author": "Dag Stuan",
   "license": "MIT",
-  "homepage": "https://github.com/angular-redux/platform",
-  "main": "src/index.ts",
+  "homepage": "https://github.com/AdrianInsua/platform",
+  "main": "dist/ngredux-router/bundles/ngredux-router.umd.js",
+  "module": "dist/ngredux-router/fesm2015/ngredux-router.js",
+  "es2015": "dist/ngredux-router/fesm2015/ngredux-router.js",
+  "esm2015": "dist/ngredux-router/esm2015/ngredux-router.js",
+  "fesm2015": "dist/ngredux-router/fesm2015/ngredux-router.js",
+  "typings": "dist/ngredux-router/ngredux-router.d.ts",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
-    "build": "ng-packagr -p ."
+    "build": "ng build --prod ngredux-router"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/angular-redux/platform.git"
+    "url": "git+https://github.com/AdrianInsua/platform"
   },
   "bugs": {
-    "url": "https://github.com/angular-redux/platform/issues"
+    "url": "https://github.com/AdrianInsua/platform"
   },
   "keywords": [
     "angular",
     "angular2",
+    "angular@11",
+    "ivy",
     "redux",
     "routing",
     "router"
@@ -30,7 +40,7 @@
     "node": ">=8"
   },
   "peerDependencies": {
-    "@angular-redux/store": "*",
+    "ngredux-store": "*",
     "@angular/common": "11.0.5",
     "@angular/core": "11.0.5",
     "@angular/router": "11.0.5",

@@ -1,6 +1,6 @@
 # Fractal Stores
 
-As of 6.4.0, `@angular-redux/store` supports 'subStores'. A subStore expose
+As of 6.4.0, `ngredux-store` supports 'subStores'. A subStore expose
 the same interface as the main Redux store (`dispatch`, `select`, etc.),
 but is rooted at a particular path in your global state.
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { NgForm } from '@angular/forms';
 
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux } from 'ngredux-store';
 
 import { Action, Unsubscribe } from 'redux';
 
@@ -17,14 +17,14 @@ export interface AbstractStore<RootState> {
   subscribe(fn: (state: RootState) => void): Unsubscribe;
 }
 
-export const FORM_CHANGED = '@@angular-redux/form/FORM_CHANGED';
+export const FORM_CHANGED = '@ngredux-form/FORM_CHANGED';
 
 @Injectable()
 export class FormStore {
   /// NOTE(cbond): The declaration of store is misleading. This class is
   /// actually capable of taking a plain Redux store or an NgRedux instance.
   /// But in order to make the ng dependency injector work properly, we
-  /// declare it as an NgRedux type, since the @angular-redux/store use case involves
+  /// declare it as an NgRedux type, since the ngredux-store use case involves
   /// calling the constructor of this class manually (from configure.ts),
   /// where a plain store can be cast to an NgRedux. (For our purposes, they
   /// have almost identical shapes.)

@@ -1,6 +1,6 @@
 # Using DevTools
 
-`@angular-redux/store` is fully compatible with the Chrome extension version of the Redux dev
+`ngredux-store` is fully compatible with the Chrome extension version of the Redux dev
 tools:
 
 https://github.com/zalmoxisus/redux-devtools-extension
@@ -19,7 +19,7 @@ import {
   NgReduxModule,
   NgRedux,
   DevToolsExtension,
-} from '@angular-redux/store';
+} from 'ngredux-store';
 
 // Add the dev tools enhancer your ngRedux.configureStore called
 // when you initialize your root component:

@@ -1,4 +1,4 @@
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux } from 'ngredux-store';
 import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
@@ -23,8 +23,8 @@ export class NgReduxRouter {
   ) {}
 
   /**
-   * Destroys the bindings between @angular-redux/router and @angular/router.
-   * This method unsubscribes from both @angular-redux/router and @angular router, in case
+   * Destroys the bindings between ngredux-router and @angular/router.
+   * This method unsubscribes from both ngredux-router and @angular router, in case
    * your app needs to tear down the bindings without destroying Angular or Redux
    * at the same time.
    */
@@ -41,7 +41,7 @@ export class NgReduxRouter {
   }
 
   /**
-   * Initialize the bindings between @angular-redux/router and @angular/router
+   * Initialize the bindings between ngredux-router and @angular/router
    *
    * This should only be called once for the lifetime of your app, for
    * example in the constructor of your root component.
@@ -60,7 +60,7 @@ export class NgReduxRouter {
   ) {
     if (this.initialized) {
       throw new Error(
-        '@angular-redux/router already initialized! If you meant to re-initialize, call destroy first.',
+        'ngredux-router already initialized! If you meant to re-initialize, call destroy first.',
       );
     }
 

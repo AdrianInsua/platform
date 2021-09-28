@@ -1,4 +1,4 @@
-Project forked from unmantained [@angular-redux/platform](https://github.com/angular-redux/platform) to add Ivy compilation support.
+Project forked from unmantained [ngredux-platform](https://github.com/angular-redux/platform) to add Ivy compilation support.
 
 # Angular Redux
 
@@ -8,9 +8,9 @@ Project forked from unmantained [@angular-redux/platform](https://github.com/ang
 
 ## Packages
 
-- [@angular-redux/store](packages/store) - Bindings between Redux and Angular
-- [@angular-redux/form](packages/form) - Bindings between Angular Forms and your Redux state
-- [@angular-redux/router](packages/router) - Bindings between Angular Router and your Redux state
+- [ngredux-store](packages/store) - Bindings between Redux and Angular
+- [ngredux-form](packages/form) - Bindings between Angular Forms and your Redux state
+- [ngredux-router](packages/router) - Bindings between Angular Router and your Redux state
 
 ## Examples
 

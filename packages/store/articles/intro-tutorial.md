@@ -1,7 +1,7 @@
 # Beginners' Tutorial
 
 In this tutorial, we'll start from scratch and build a simple counter UI with Angular,
-Redux, and @angular-redux/store. I'll try to explain the basic concepts as we go.
+Redux, and ngredux-store. I'll try to explain the basic concepts as we go.
 
 ## Installation
 
@@ -25,12 +25,12 @@ You should now be able to see your new Angular app running at http://localhost:4
 Now let's install Redux into your new app:
 
 ```sh
-npm install redux @angular-redux/store
+npm install redux ngredux-store
 ```
 
-This installs Redux and `@angular-redux/store` (the Redux bindings for Angular).
+This installs Redux and `ngredux-store` (the Redux bindings for Angular).
 
-## Importing @angular-redux/store into your App.
+## Importing ngredux-store into your App.
 
 The first thing we need to do is tell Angular about the new Redux functionality
 we just installed. We do that by importing the `NgReduxModule` into our application.
@@ -45,7 +45,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { NgReduxModule, NgRedux } from '@angular-redux/store'; // <- New
+import { NgReduxModule, NgRedux } from 'ngredux-store'; // <- New
 
 import { AppComponent } from './app.component';
 
@@ -63,7 +63,7 @@ import { AppComponent } from './app.component';
 export class AppModule {}
 ```
 
-This will allow us to inject services from `@angular-redux/store` into our app.
+This will allow us to inject services from `ngredux-store` into our app.
 
 ## A Concrete Example
 
@@ -233,7 +233,7 @@ import { CounterActions } from './app.actions'; // <- New
 })
 export class AppModule {
   constructor(ngRedux: NgRedux<IAppState>) {
-    // Tell @angular-redux/store about our rootReducer and our initial state.
+    // Tell ngredux-store about our rootReducer and our initial state.
     // It will use this to create a redux store for us and wire up all the
     // events.
     ngRedux.configureStore(rootReducer, INITIAL_STATE);
@@ -298,7 +298,7 @@ they are dispatched when the user clicks the buttons:
 ```typescript
 // Imports as before.
 
-import { NgRedux } from '@angular-redux/store'; // <- New
+import { NgRedux } from 'ngredux-store'; // <- New
 import { CounterActions } from './app.actions'; // <- New
 import { IAppState } from '../store'; // <- New
 
@@ -432,14 +432,14 @@ to do lots of transformations with RxJS operators to massage the store data in t
 UIs need. However in this scenario it's overkill: we just want to display the current value of
 a property in the store.
 
-For simple cases like this, `@angular-redux/store` exposes a shorthand for selection in the form
+For simple cases like this, `ngredux-store` exposes a shorthand for selection in the form
 of the `@select` decorator. With `@select`, the whole component can be boiled down to the following:
 
 Make the following changes to `src/app/app.component.ts`.
 
 ```typescript
 import { Component } from '@angular/core';
-import { NgRedux, select } from '@angular-redux/store'; // <- Changed
+import { NgRedux, select } from 'ngredux-store'; // <- Changed
 import { CounterActions } from './app.actions';
 import { IAppState } from '../store';
 import { Observable } from 'rxjs/Observable';
@@ -493,7 +493,7 @@ expose a mock class that can help you. Just pull
 `my-component.spec.ts`:
 
 ```typescript
-import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
+import { NgReduxTestingModule, MockNgRedux } from 'ngredux-store/testing';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/toArray';
 
@@ -591,7 +591,7 @@ import {
   NgReduxModule,
   NgRedux,
   DevToolsExtension,
-} from '@angular-redux/store'; // <- Changed
+} from 'ngredux-store'; // <- Changed
 
 @NgModule({
   // Decorator as before

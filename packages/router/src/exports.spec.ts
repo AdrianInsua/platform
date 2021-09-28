@@ -5,7 +5,7 @@ import {
   UPDATE_LOCATION,
 } from './index';
 
-describe('The @angular-redux/router package exports', () => {
+describe('The ngredux-router package exports', () => {
   it('should contain the NgReduxRouter class', () => {
     expect(NgReduxRouter).toBeDefined();
   });

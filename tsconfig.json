@@ -7,9 +7,9 @@
     "baseUrl": ".",
     "strict": true,
     "paths": {
-      "@angular-redux/store": ["packages/store/src/index.ts"],
-      "@angular-redux/form": ["packages/form/source/index.ts"],
-      "@angular-redux/router": ["packages/router/src/index.ts"]
+      "ngredux-store": ["packages/store/src/index.ts"],
+      "ngredux-form": ["packages/form/source/index.ts"],
+      "ngredux-router": ["packages/router/src/index.ts"]
     },
     "sourceMap": true,
     "esModuleInterop": true,

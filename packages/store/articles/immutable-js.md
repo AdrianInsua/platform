@@ -123,7 +123,7 @@ constructor() {
 
 ## Post 3.3.0:
 
-In `@angular-redux/store` 3.3.0 we've allowed you to have your cake and eat it too: the
+In `ngredux-store` 3.3.0 we've allowed you to have your cake and eat it too: the
 `@select` decorator can now detect if the selected state is an ImmutableJS
 construct and call `.get` or `.getIn` for you.
 

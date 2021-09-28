@@ -3,10 +3,10 @@ import { NgReduxRouter } from './router';
 
 @NgModule()
 export class NgReduxRouterModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: NgReduxRouterModule,
-      providers: [NgReduxRouter],
-    };
-  }
+    static forRoot(): ModuleWithProviders<NgReduxRouterModule> {
+        return {
+            ngModule: NgReduxRouterModule,
+            providers: [NgReduxRouter],
+        };
+    }
 }

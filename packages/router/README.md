@@ -1,23 +1,23 @@
-# @angular-redux/router
+# ngredux-router
 
-[![npm version](https://img.shields.io/npm/v/@angular-redux/router.svg)](https://www.npmjs.com/package/@angular-redux/router)
-[![downloads per month](https://img.shields.io/npm/dm/@angular-redux/router.svg)](https://www.npmjs.com/package/@angular-redux/router)
+[![npm version](https://img.shields.io/npm/v/ngredux-router.svg)](https://www.npmjs.com/package/ngredux-router)
+[![downloads per month](https://img.shields.io/npm/dm/ngredux-router.svg)](https://www.npmjs.com/package/ngredux-router)
 
-Bindings to connect @angular/router to @angular-redux/core
+Bindings to connect @angular/router to ngredux-core
 
 ## Setup
 
 1.  Use npm to install the bindings:
 
 ```
-npm install @angular-redux/router --save
+npm install ngredux-router --save
 ```
 
 2.  Use the `routerReducer` when providing `Store`:
 
 ```ts
 import { combineReducers } from 'redux';
-import { routerReducer } from '@angular-redux/router';
+import { routerReducer } from 'ngredux-router';
 
 export default combineReducers<IAppState>({
   // your reducers..
@@ -29,8 +29,8 @@ export default combineReducers<IAppState>({
 
 ```ts
 import { NgModule } from '@angular/core';
-import { NgReduxModule, NgRedux } from '@angular-redux/core';
-import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
+import { NgReduxModule, NgRedux } from 'ngredux-core';
+import { NgReduxRouterModule, NgReduxRouter } from 'ngredux-router';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 
@@ -70,4 +70,4 @@ getting the URL from there.
 
 ## Examples
 
-- [Example-app: An example of using @angular-redux/router along with the other companion packages.](https://github.com/angular-redux/platform/tree/master/packages/example-app)
+- [Example-app: An example of using ngredux-router along with the other companion packages.](https://github.com/angular-redux/platform/tree/master/packages/example-app)

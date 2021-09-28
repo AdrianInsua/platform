@@ -4,9 +4,9 @@
 
 # Packages
 
-- [@angular-redux/store](store/) - Bindings between Redux and Angular
-- [@angular-redux/form](form/) - Bindings between Angular Forms and your Redux state
-- [@angular-redux/router](router/) - Bindings between Angular Router and your Redux state
+- [ngredux-store](store/) - Bindings between Redux and Angular
+- [ngredux-form](form/) - Bindings between Angular Forms and your Redux state
+- [ngredux-router](router/) - Bindings between Angular Router and your Redux state
 
 # Examples
 

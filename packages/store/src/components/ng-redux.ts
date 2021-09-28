@@ -12,7 +12,7 @@ import { ObservableStore } from './observable-store';
 import { Comparator, PathSelector, Selector } from './selectors';
 
 /**
- * This is the public interface of @angular-redux/store. It wraps the global
+ * This is the public interface of ngredux-store. It wraps the global
  * redux store and adds a few other add on methods. It's what you'll inject
  * into your Angular application as a service.
  */
