@@ -5,26 +5,29 @@
     "projects": {
         "ngredux-store": {
             "projectType": "library",
-            "root": "packages/store",
-            "sourceRoot": "packages/store/src",
+            "root": "packages/store/projects/ngredux-store/",
+            "sourceRoot": "packages/store/projects/ngredux-store/src",
             "prefix": "lib",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:ng-packagr",
                     "options": {
-                        "tsConfig": "./tsconfig.lib.json",
-                        "project": "packages/store/ng-package.json"
+                        "tsConfig": "./packages/store/projects/ngredux-store/tsconfig.lib.json",
+                        "project": "packages/store/projects/ngredux-store/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "./tsconfig.lib.prod.json"
+                            "tsConfig": "./packages/store/projects/ngredux-store/tsconfig.lib.prod.json"
                         }
                     }
                 },
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
-                        "tsConfig": ["./tsconfig.lib.json", "./tsconfig.spec.json"],
+                        "tsConfig": [
+                            "./packages/store/projects/ngredux-store/tsconfig.lib.json",
+                            "./packages/store/projects/ngredux-store/tsconfig.spec.json"
+                        ],
                         "exclude": ["**/node_modules/**"]
                     }
                 }

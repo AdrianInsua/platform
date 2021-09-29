@@ -1,0 +1,9 @@
+{
+    "dest": "../../dist/ngredux-store",
+    "lib": {
+        "entryFile": "./src/public-api.ts",
+        "umdModuleIds": {
+          "redux": "redux"
+        }
+    }
+}

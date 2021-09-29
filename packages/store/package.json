@@ -15,12 +15,12 @@
     "bugs": {
         "url": "https://github.com/AdrianInsua/platform"
     },
-    "main": "dist/bundles/adrian.insua-ngredux-store.umd.js",
-    "module": "dist/fesm2015/adrian.insua-ngredux-store.js",
-    "es2015": "dist/fesm2015/adrian.insua-ngredux-store.js",
-    "esm2015": "dist/esm2015/adrian.insua-ngredux-store.js",
-    "fesm2015": "dist/fesm2015/adrian.insua-ngredux-store.js",
-    "typings": "dist/adrian.insua-ngredux-store.d.ts",
+    "main": "dist/ngredux-store/bundles/adrian.insua-ngredux-store.umd.js",
+    "module": "dist/ngredux-store/fesm2015/adrian.insua-ngredux-store.js",
+    "es2015": "dist/ngredux-store/fesm2015/adrian.insua-ngredux-store.js",
+    "esm2015": "dist/ngredux-store/esm2015/adrian.insua-ngredux-store.js",
+    "fesm2015": "dist/ngredux-store/fesm2015/adrian.insua-ngredux-store.js",
+    "typings": "dist/ngredux-store/adrian.insua-ngredux-store.d.ts",
     "files": [
         "dist/"
     ],

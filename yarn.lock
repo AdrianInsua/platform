@@ -10423,18 +10423,18 @@ next-tick@~1.0.0:
   resolved "https://registry.npmjs.org/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-ng-packagr@^10.1.0:
-  version "10.1.2"
-  resolved "https://registry.npmjs.org/ng-packagr/-/ng-packagr-10.1.2.tgz#7c869ec5bea92ff3ab65392913ad4e8af749799a"
-  integrity sha512-pm61gu6jPkohL8tFWk+2DwUtb3rs5GpND1ZjKUYv5WUJPUQmBfG5WvEO/CDVQpSDWhNWWLTt17NIQ+RS3hNUHg==
+ng-packagr@10.1.0:
+  version "10.1.0"
+  resolved "https://registry.npmjs.org/ng-packagr/-/ng-packagr-10.1.0.tgz#a2fc0f86f5f8895f811597d33d943f93c7c77c17"
+  integrity sha512-KXyajkAyY/51iMJPVezDybb5Bn1rtl/JDGC4w9jjIdeL2Ip+KTMDGsqpc+5nQm/vnasZcJ/Xj2a+0VOwrbyVWg==
   dependencies:
     "@rollup/plugin-commonjs" "^15.0.0"
     "@rollup/plugin-json" "^4.0.0"
     "@rollup/plugin-node-resolve" "^9.0.0"
     ajv "^6.12.3"
-    ansi-colors "^4.1.1"
     autoprefixer "^9.6.5"
     browserslist "^4.7.0"
+    chalk "^4.0.0"
     chokidar "^3.2.1"
     commander "^6.0.0"
     cssnano-preset-default "^4.0.7"
@@ -13222,10 +13222,10 @@ rx-lite@^3.1.2:
   resolved "https://registry.npmjs.org/rx-lite/-/rx-lite-3.1.2.tgz#19ce502ca572665f3b647b10939f97fd1615f102"
   integrity sha1-Gc5QLKVyZl87ZHsQk5+X/RYV8QI=
 
-rxjs@6.3.3:
-  version "6.3.3"
-  resolved "https://registry.npmjs.org/rxjs/-/rxjs-6.3.3.tgz#3c6a7fa420e844a81390fb1158a9ec614f4bad55"
-  integrity sha512-JTWmoY9tWCs7zvIk/CvRjhjGaOd+OVBM987mxFo+OW66cGpdKjZcpmc74ES1sB//7Kl/PAe8+wEakuhG4pcgOw==
+rxjs@6.6.0:
+  version "6.6.0"
+  resolved "https://registry.npmjs.org/rxjs/-/rxjs-6.6.0.tgz#af2901eedf02e3a83ffa7f886240ff9018bbec84"
+  integrity sha512-3HMA8z/Oz61DUHe+SdOiQyzIf4tOx5oQHmMir7IZEu6TMqCLHT4LRcmNaUS0NwOz8VLvmmBduMsoaUvMaIiqzg==
   dependencies:
     tslib "^1.9.0"
 

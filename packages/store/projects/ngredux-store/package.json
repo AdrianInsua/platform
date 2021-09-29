@@ -1,0 +1,12 @@
+{
+    "name": "@adrian.insua/ngredux-store",
+    "description": "Angular bindings for Redux",
+    "peerDependencies": {
+        "@angular/core": "^11.0.5",
+        "redux": "^4.0.0",
+        "rxjs": "^6.0.0"
+    },
+    "devDependencies": {
+        "redux-devtools-extension": "2.13.7"
+    }
+}

@@ -1,16 +1,14 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "module": "es2015",
+        "target": "es2015",
+        "module": "es2020",
         "moduleResolution": "node",
-        "lib": ["esnext", "dom", "dom.iterable"],
+        "lib": ["es2018", "dom"],
         "baseUrl": ".",
         "strict": true,
-        "paths": {
-            "@adrian.insua/ngredux-store": ["packages/store/src/index.ts"],
-            "@adrian.insua/ngredux-form": ["packages/form/source/index.ts"],
-            "@adrian.insua/ngredux-router": ["packages/router/src/index.ts"]
-        },
+        "downlevelIteration": true,
+        "allowSyntheticDefaultImports": true,
+        "importHelpers": true,
         "sourceMap": true,
         "esModuleInterop": true,
         "emitDecoratorMetadata": true,

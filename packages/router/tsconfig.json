@@ -2,7 +2,7 @@
     "extends": "./../../tsconfig.json",
     "compilerOptions": {
         "paths": {
-            "@adrian.insua/ngredux-form": ["dist/adrian.insua-ngredux-form", "dist"]
+            "@adrian.insua/ngredux-router": ["dist/adrian.insua-ngredux-router", "dist"]
         }
     }
 }
