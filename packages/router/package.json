@@ -5,12 +5,12 @@
     "author": "Dag Stuan",
     "license": "MIT",
     "homepage": "https://github.com/AdrianInsua/platform",
-    "main": "dist/ngredux-router/bundles/adrian.insua-ngredux-router.umd.js",
-    "module": "dist/ngredux-router/fesm2015/adrian.insua-ngredux-router.js",
-    "es2015": "dist/ngredux-router/fesm2015/adrian.insua-ngredux-router.js",
-    "esm2015": "dist/ngredux-router/esm2015/adrian.insua-ngredux-router.js",
-    "fesm2015": "dist/ngredux-router/fesm2015/adrian.insua-ngredux-router.js",
-    "typings": "dist/ngredux-router/adrian.insua-ngredux-router.d.ts",
+    "main": "dist/bundles/adrian.insua-ngredux-router.umd.js",
+    "module": "dist/fesm2015/adrian.insua-ngredux-router.js",
+    "es2015": "dist/fesm2015/adrian.insua-ngredux-router.js",
+    "esm2015": "dist/esm2015/adrian.insua-ngredux-router.js",
+    "fesm2015": "dist/fesm2015/adrian.insua-ngredux-router.js",
+    "typings": "dist/adrian.insua-ngredux-router.d.ts",
     "files": [
         "dist/"
     ],
