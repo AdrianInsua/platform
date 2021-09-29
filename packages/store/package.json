@@ -6,7 +6,7 @@
     "license": "MIT",
     "homepage": "https://github.com/AdrianInsua/platform",
     "scripts": {
-        "build": "ng build --prod ngredux-store"
+        "build": "ng build --configuration production ngredux-store"
     },
     "repository": {
         "type": "git",
@@ -40,7 +40,7 @@
         "node": ">=8"
     },
     "peerDependencies": {
-        "@angular/core": "^11.0.5",
+        "@angular/core": "^12.2.7",
         "redux": "^4.0.0",
         "rxjs": "^6.0.0"
     },
