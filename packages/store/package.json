@@ -1,6 +1,6 @@
 {
     "name": "@adrian.insua/ngredux-store",
-    "version": "1.0.0",
+    "version": "1.0.1-release-candidate.1",
     "description": "Angular bindings for Redux",
     "author": "William Buchwalter <wbuchwalter@gmail.com> (http://github.com/wbuchwalter)",
     "license": "MIT",
