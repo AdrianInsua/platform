@@ -1,3 +1,11 @@
+# [@adrian.insua/ngredux-form-v1.0.2-release-candidate.1](https://github.com/AdrianInsua/platform/compare/@adrian.insua/ngredux-form-v1.0.1...@adrian.insua/ngredux-form-v1.0.2-release-candidate.1) (2021-09-29)
+
+
+### Bug Fixes
+
+* change store compilation ([e40d2f1](https://github.com/AdrianInsua/platform/commit/e40d2f146adc813e92654a18c13128327dfac321))
+* fix build paths ([f461239](https://github.com/AdrianInsua/platform/commit/f461239f1f8172fb9bc14d674436da2c5ed0bcfb))
+
 # [@adrian.insua/ngredux-form-v1.0.1](https://github.com/AdrianInsua/platform/compare/@adrian.insua/ngredux-form-v1.0.0...@adrian.insua/ngredux-form-v1.0.1) (2021-09-28)
 
 
