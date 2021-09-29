@@ -1,3 +1,15 @@
+# [10.2.0-release-candidate.1](https://github.com/AdrianInsua/platform/compare/v10.1.2...v10.2.0-release-candidate.1) (2021-09-29)
+
+
+### Bug Fixes
+
+* fix secret ([a951c54](https://github.com/AdrianInsua/platform/commit/a951c548b648086bdfc427313ec3e603a0912e63))
+
+
+### Features
+
+* bump angular to v12 and compile with ivy ([0f0cbaa](https://github.com/AdrianInsua/platform/commit/0f0cbaa1977f8f93684b9c9163246f452dd1bacd))
+
 ## [10.1.2](https://github.com/AdrianInsua/platform/compare/v10.1.1...v10.1.2) (2021-09-29)
 
 
