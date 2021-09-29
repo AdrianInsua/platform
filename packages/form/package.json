@@ -15,12 +15,12 @@
     "bugs": {
         "url": "https://github.com/AdrianInsua/platform"
     },
-    "main": "dist/ngredux-form/bundles/adrian.insua-ngredux-form.umd.js",
-    "module": "dist/ngredux-form/fesm2015/adrian.insua-ngredux-form.js",
-    "es2015": "dist/ngredux-form/fesm2015/adrian.insua-ngredux-form.js",
-    "esm2015": "dist/ngredux-form/esm2015/adrian.insua-ngredux-form.js",
-    "fesm2015": "dist/ngredux-form/fesm2015/adrian.insua-ngredux-form.js",
-    "typings": "dist/ngredux-form/adrian.insua-ngredux-form.d.ts",
+    "main": "dist/bundles/adrian.insua-ngredux-form.umd.js",
+    "module": "dist/fesm2015/adrian.insua-ngredux-form.js",
+    "es2015": "dist/fesm2015/adrian.insua-ngredux-form.js",
+    "esm2015": "dist/esm2015/adrian.insua-ngredux-form.js",
+    "fesm2015": "dist/fesm2015/adrian.insua-ngredux-form.js",
+    "typings": "dist/adrian.insua-ngredux-form.d.ts",
     "files": [
         "dist/"
     ],
