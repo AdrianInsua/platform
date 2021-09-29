@@ -1,3 +1,10 @@
+## [10.1.2](https://github.com/AdrianInsua/platform/compare/v10.1.1...v10.1.2) (2021-09-29)
+
+
+### Bug Fixes
+
+* fix build paths ([#2](https://github.com/AdrianInsua/platform/issues/2)) ([57d1cae](https://github.com/AdrianInsua/platform/commit/57d1cae0f159e91224ef563d0b2f3ceddf2fad52))
+
 ## [10.1.1](https://github.com/AdrianInsua/platform/compare/v10.1.0...v10.1.1) (2021-09-28)
 
 
