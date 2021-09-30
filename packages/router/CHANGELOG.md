@@ -1,3 +1,10 @@
+# [@adrian.insua/ngredux-router-v1.1.0](https://github.com/AdrianInsua/platform/compare/@adrian.insua/ngredux-router-v1.0.2...@adrian.insua/ngredux-router-v1.1.0) (2021-09-30)
+
+
+### Features
+
+* bump angular to v12 and compile with ivy ([0f0cbaa](https://github.com/AdrianInsua/platform/commit/0f0cbaa1977f8f93684b9c9163246f452dd1bacd))
+
 # [@adrian.insua/ngredux-router-v1.1.0-release-candidate.1](https://github.com/AdrianInsua/platform/compare/@adrian.insua/ngredux-router-v1.0.2...@adrian.insua/ngredux-router-v1.1.0-release-candidate.1) (2021-09-29)
 
 
