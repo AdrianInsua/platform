@@ -18,7 +18,7 @@
     "test:ci": "jest --coverage --ci --maxWorkers=2",
     "test:watch": "jest --watch",
     "commit": "commit",
-    "postinstall": "ngcc & npm run bootstrap",
+    "postinstall": "ngcc && npm run bootstrap",
     "bootstrap": "lerna bootstrap --force-local",
     "semantic-release": "lerna exec --concurrency 1 -- npx semantic-release -e semantic-release-monorepo"
   },
