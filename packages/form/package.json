@@ -1,12 +1,12 @@
 {
     "name": "@adrian.insua/ngredux-form",
-    "version": "1.0.2",
+    "version": "1.0.1",
     "description": "Build Angular 2+ forms with Redux",
     "author": "Chris Bond",
     "license": "MIT",
     "homepage": "https://github.com/AdrianInsua/platform",
     "scripts": {
-        "build": "ng build --prod ngredux-form"
+        "build": "ng build --configuration production ngredux-form"
     },
     "repository": {
         "type": "git",
@@ -40,8 +40,8 @@
     },
     "peerDependencies": {
         "@adrian.insua/ngredux-store": "*",
-        "@angular/core": "11.0.5",
-        "@angular/forms": "11.0.5",
+        "@angular/core": "^12.2.7",
+        "@angular/forms": "^12.2.7",
         "redux": "^4.0.0",
         "rxjs": "^6.0.0"
     },

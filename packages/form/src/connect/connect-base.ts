@@ -1,4 +1,4 @@
-import { AfterContentInit, Input, OnDestroy } from '@angular/core';
+import { AfterContentInit, Injectable, Input, OnDestroy } from '@angular/core';
 
 import { AbstractControl, FormArray, FormControl, FormGroup, NgControl } from '@angular/forms';
 
@@ -16,6 +16,7 @@ export interface ControlPair {
     control: AbstractControl;
 }
 
+@Injectable()
 export class ConnectBase implements OnDestroy, AfterContentInit {
     get path(): string[] {
         const path = typeof this.connect === 'function' ? this.connect() : this.connect;
@@ -73,19 +74,19 @@ export class ConnectBase implements OnDestroy, AfterContentInit {
 
         if (formElement instanceof FormArray) {
             formElement.controls.forEach((c, index) => {
-                for (const d of this.descendants((path as any).concat([ index ]), c)) {
+                for (const d of this.descendants((path as any).concat([index]), c)) {
                     pairs.push(d);
                 }
             });
         } else if (formElement instanceof FormGroup) {
             for (const k of Object.keys(formElement.controls)) {
                 pairs.push({
-                    path: path.concat([ k ]),
+                    path: path.concat([k]),
                     control: formElement.controls[k],
                 });
             }
         } else if (formElement instanceof NgControl || formElement instanceof FormControl) {
-            return [ { path, control: formElement as any } ];
+            return [{ path, control: formElement as any }];
         } else {
             throw new Error(`Unknown type of form element: ${formElement.constructor.name}`);
         }
