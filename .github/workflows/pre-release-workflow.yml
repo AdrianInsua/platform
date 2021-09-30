@@ -2,11 +2,6 @@ name: Publish pre-release version
 
 on:
   workflow_dispatch:
-    inputs:
-      BASELINE:
-        description: 'Baseline branch'
-        required: true
-        default: 'develop'
 
 jobs:
     build:
@@ -14,17 +9,11 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Determine Checkout Ref / Is Workflow Dispatch
-              if: github.event_name == 'workflow_dispatch'
-              run: echo "BRANCH_REF=${{ github.event.inputs.BASELINE }}" >> $GITHUB_ENV
-
             - name: Checkout
               uses: actions/checkout@v2
               with:
                   submodules: recursive
                   token: ${{ secrets.GITHUB_TOKEN }}
-                  ref: ${{ env.BRANCH_REF }}
-                  fetch-depth: 0
 
             - name: Use Node.js 14.x
               uses: actions/setup-node@v2
