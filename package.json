@@ -5,7 +5,7 @@
     "store": "lerna run --scope=@adrian.insua/ngredux-store --parallel",
     "form": "lerna run --scope=@adrian.insua/ngredux-form --parallel",
     "router": "lerna run --scope=@adrian.insua/ngredux-router --parallel",
-    "build": "npm run store build && npm run form build && npm run router build",
+    "build": "lerna run build --stream",
     "clean": "npm-run-all -p clean:*",
     "clean:deps": "npm-run-all -p clean:deps:*",
     "clean:deps:workspace": "rimraf node_modules",
@@ -84,5 +84,5 @@
     "typescript": "~4.3.5",
     "zone.js": "~0.11.4"
   },
-  "version": "10.2.0-release-candidate.1"
+  "version": "1.0.1"
 }
