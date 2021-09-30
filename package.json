@@ -5,7 +5,7 @@
     "store": "lerna run --scope=@adrian.insua/ngredux-store --parallel",
     "form": "lerna run --scope=@adrian.insua/ngredux-form --parallel",
     "router": "lerna run --scope=@adrian.insua/ngredux-router --parallel",
-    "build": "lerna run build --include-dependencies --stream",
+    "build": "npm run store build && npm run form build && npm run router build",
     "clean": "npm-run-all -p clean:*",
     "clean:deps": "npm-run-all -p clean:deps:*",
     "clean:deps:workspace": "rimraf node_modules",
