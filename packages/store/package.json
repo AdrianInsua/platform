@@ -42,7 +42,7 @@
     "peerDependencies": {
         "@angular/core": "^12.2.7",
         "redux": "^4.0.0",
-        "rxjs": "^6.0.0"
+        "rxjs": "^7.0.0"
     },
     "devDependencies": {
         "redux-devtools-extension": "2.13.7"
