@@ -1,3 +1,10 @@
+# [@adrian.insua/ngredux-store-v1.1.1](https://github.com/AdrianInsua/platform/compare/@adrian.insua/ngredux-store-v1.1.0...@adrian.insua/ngredux-store-v1.1.1) (2021-10-09)
+
+
+### Bug Fixes
+
+* increase rxjs version ([fed1c5b](https://github.com/AdrianInsua/platform/commit/fed1c5b4383da1aff89c891be4a43f495c341bc9))
+
 # [@adrian.insua/ngredux-store-v1.1.0](https://github.com/AdrianInsua/platform/compare/@adrian.insua/ngredux-store-v1.0.1...@adrian.insua/ngredux-store-v1.1.0) (2021-09-30)
 
 
