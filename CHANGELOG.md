@@ -1,3 +1,11 @@
+## [10.2.1](https://github.com/AdrianInsua/platform/compare/v10.2.0...v10.2.1) (2021-10-09)
+
+
+### Bug Fixes
+
+* increase rxjs version ([e1ca41c](https://github.com/AdrianInsua/platform/commit/e1ca41cf83f21d6c2b02335ce2e99e03097db98c))
+* increase rxjs version ([fed1c5b](https://github.com/AdrianInsua/platform/commit/fed1c5b4383da1aff89c891be4a43f495c341bc9))
+
 # [10.2.0](https://github.com/AdrianInsua/platform/compare/v10.1.2...v10.2.0) (2021-09-30)
 
 
