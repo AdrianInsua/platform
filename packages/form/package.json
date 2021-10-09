@@ -43,7 +43,7 @@
         "@angular/core": "^12.2.7",
         "@angular/forms": "^12.2.7",
         "redux": "^4.0.0",
-        "rxjs": "^7.0.0"
+        "rxjs": "^7.3.0"
     },
     "devDependencies": {
         "@adrian.insua/ngredux-store": "*"
