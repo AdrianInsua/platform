@@ -1,3 +1,10 @@
+# [@adrian.insua/ngredux-router-v1.1.1](https://github.com/AdrianInsua/platform/compare/@adrian.insua/ngredux-router-v1.1.0...@adrian.insua/ngredux-router-v1.1.1) (2021-10-09)
+
+
+### Bug Fixes
+
+* increase rxjs version ([e1ca41c](https://github.com/AdrianInsua/platform/commit/e1ca41cf83f21d6c2b02335ce2e99e03097db98c))
+
 # [@adrian.insua/ngredux-router-v1.1.0](https://github.com/AdrianInsua/platform/compare/@adrian.insua/ngredux-router-v1.0.2...@adrian.insua/ngredux-router-v1.1.0) (2021-09-30)
 
 
