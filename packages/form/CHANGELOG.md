@@ -1,3 +1,10 @@
+# [@adrian.insua/ngredux-form-v1.2.0](https://github.com/AdrianInsua/platform/compare/@adrian.insua/ngredux-form-v1.1.1...@adrian.insua/ngredux-form-v1.2.0) (2022-05-09)
+
+
+### Features
+
+* buump ng dependencies to v13 ([4246a74](https://github.com/AdrianInsua/platform/commit/4246a74be46ea6e84312a1981efc34622482f353))
+
 # [@adrian.insua/ngredux-form-v1.1.1](https://github.com/AdrianInsua/platform/compare/@adrian.insua/ngredux-form-v1.1.0...@adrian.insua/ngredux-form-v1.1.1) (2021-10-09)
 
 
