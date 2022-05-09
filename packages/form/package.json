@@ -40,8 +40,8 @@
     },
     "peerDependencies": {
         "@adrian.insua/ngredux-store": "*",
-        "@angular/core": "^12.2.7",
-        "@angular/forms": "^12.2.7",
+        "@angular/core": "^13.3.6",
+        "@angular/forms": "^13.3.6",
         "redux": "^4.0.0",
         "rxjs": "^7.3.0"
     },

@@ -44,9 +44,9 @@
     },
     "peerDependencies": {
         "@adrian.insua/ngredux-store": "*",
-        "@angular/common": "^12.2.7",
-        "@angular/core": "^12.2.7",
-        "@angular/router": "^12.2.7",
+        "@angular/common": "^13.3.6",
+        "@angular/core": "^13.3.6",
+        "@angular/router": "^13.3.6",
         "redux": "^4.0.0",
         "rxjs": "^7.3.0"
     }
