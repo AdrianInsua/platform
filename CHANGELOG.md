@@ -1,3 +1,10 @@
+# [10.3.0](https://github.com/adrianiy/platform/compare/v10.2.1...v10.3.0) (2022-05-09)
+
+
+### Features
+
+* update ng version ([3692b24](https://github.com/adrianiy/platform/commit/3692b2472672bb62aa29249650966fd7cd143915))
+
 ## [10.2.1](https://github.com/AdrianInsua/platform/compare/v10.2.0...v10.2.1) (2021-10-09)
 
 
