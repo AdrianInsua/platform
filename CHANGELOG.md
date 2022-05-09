@@ -1,3 +1,10 @@
+# [10.3.0](https://github.com/adrianiy/platform/compare/v10.2.1...v10.3.0) (2022-05-09)
+
+
+### Features
+
+* buump ng dependencies to v13 ([4246a74](https://github.com/adrianiy/platform/commit/4246a74be46ea6e84312a1981efc34622482f353))
+* update ng version ([218d6b2](https://github.com/adrianiy/platform/commit/218d6b28bc28975bc4c48100ab05fecfec27074f))
 
 ## [10.2.1](https://github.com/AdrianInsua/platform/compare/v10.2.0...v10.2.1) (2021-10-09)
 
